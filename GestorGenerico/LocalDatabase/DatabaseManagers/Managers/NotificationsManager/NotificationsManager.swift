@@ -42,30 +42,22 @@ class NotificationsManager: NSObject {
         return notifications
     }
     
-    func addNotificationToDatabase(newNotification: NotificationModel) -> Bool {
+    func addNotificationToDatabase(newNotification: NotificationModel) {
         let entity = NSEntityDescription.entity(forEntityName: NOTIFICATIONS_ENTITY_NAME, in: backgroundContext)
         
         if getNotificationFromDatabase(notificationId: newNotification.notificationId).count == 0 {
             let coreService = NSManagedObject(entity: entity!, insertInto: backgroundContext)
             databaseHelper.setCoreDataObjectDataFromNotification(coreDataObject: coreService, newNotification: newNotification)
-            
-            var result: Bool = false
             backgroundContext.performAndWait {
                 do {
                     try backgroundContext.save()
-                    result = true
                 } catch {
-                    print("")
                 }
             }
             
             DispatchQueue.main.async {
                 Constants.rootController.setNotificationBarItemBadge()
             }
-            
-            return result
-        } else {
-            return false
         }
     }
     
@@ -84,11 +76,10 @@ class NotificationsManager: NSObject {
         return results
     }
     
-    func markNotificationAsRead(notification: NotificationModel) -> Bool {
+    func markNotificationAsRead(notification: NotificationModel) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: NOTIFICATIONS_ENTITY_NAME)
         fetchRequest.predicate = NSPredicate(format: "notificationId = %f", argumentArray: [notification.notificationId])
         var results: [NSManagedObject] = []
-        var result: Bool = false
         
         backgroundContext.performAndWait {
             do {
@@ -98,13 +89,9 @@ class NotificationsManager: NSObject {
                     coreNotification.setValue(notification.leido, forKey: "leido")
                 }
                 try backgroundContext.save()
-                result = true
             } catch {
-                print("Error actualizando notificación")
             }
         }
-        
-        return result
     }
     
     func getAllNotificationsForClientAndNotificationType(notificationType: String, clientId: Int64) -> [NotificationModel] {
@@ -116,10 +103,11 @@ class NotificationsManager: NSObject {
             do {
                 let results: [NSManagedObject] = try mainContext.fetch(fetchRequest)
                 for data in results {
-                    let clientIds: [Int64] = data.value(forKey: "clientId") as! [Int64]
-                    if clientIds.contains(clientId) {
+                    let notiClientId: Int64 = data.value(forKey: "clientId") as! Int64
+                    if notiClientId == clientId {
                         let notification: NotificationModel = databaseHelper.parseNotificationCoreObjectToNotificationModel(coreObject: data)
                         notifications.append(notification)
+                        
                     }
                 }
                 
@@ -173,12 +161,10 @@ class NotificationsManager: NSObject {
         return result
     }
     
-    func eliminarNotificacion(notificationId: Int64) -> Bool {
+    func eliminarNotificacion(notificationId: Int64) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: NOTIFICATIONS_ENTITY_NAME)
         fetchRequest.predicate = NSPredicate(format: "notificationId = %f", argumentArray: [notificationId])
         var results: [NSManagedObject] = []
-        
-        var result: Bool = false
         backgroundContext.performAndWait {
             do {
                 results = try backgroundContext.fetch(fetchRequest)
@@ -188,12 +174,9 @@ class NotificationsManager: NSObject {
                 }
                 
                 try backgroundContext.save()
-                result = true
             } catch {
             }
         }
-        
-        return result
     }
     
     func deleteOldNotifications() {

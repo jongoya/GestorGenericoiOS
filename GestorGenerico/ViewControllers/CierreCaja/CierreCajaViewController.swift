@@ -118,10 +118,10 @@ class CierreCajaViewController: UIViewController {
     }
     
     func saveCierreCaja() {
-        cierreCaja.cajaId = Int64(Date().timeIntervalSince1970)
         cierreCaja.fecha = Int64(presentDate.timeIntervalSince1970)
         CommonFunctions.showLoadingStateView(descriptionText: "Guardando el cierre de caja")
-        Constants.cloudDatabaseManager.cierreCajaManager.saveCierreCaja(cierreCaja: cierreCaja, delegate: self)
+        //TODO
+        //Constants.cloudDatabaseManager.cierreCajaManager.saveCierreCaja(cierreCaja: cierreCaja, delegate: self)
     }
 }
 
@@ -186,6 +186,22 @@ extension CierreCajaViewController: AddClientInputFieldProtocol {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 extension CierreCajaViewController: CloudCierreCajaProtocol {
     func cierreCajaSaved() {

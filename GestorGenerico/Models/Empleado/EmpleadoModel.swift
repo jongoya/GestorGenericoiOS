@@ -21,20 +21,7 @@ class EmpleadoModel: Codable {
     var comercioId: Int64 = 0
     var is_empleado_jefe: Bool = false
     
-    
-    private enum CodingKeys: String, CodingKey {
-        case nombre = "nombre"
-        case apellidos = "apellidos"
-        case fecha = "fecha"
-        case telefono = "telefono"
-        case email = "email"
-        case empleadoId = "empleadoId"
-        case redColorValue = "redColorValue"
-        case greenColorValue = "greenColorValue"
-        case blueColorValue = "blueColorValue"
-        case comercioId = "comercioId"
-        case is_empleado_jefe = "is_empleado_jefe"
-    }
+ 
 }
 
 extension EmpleadoModel {

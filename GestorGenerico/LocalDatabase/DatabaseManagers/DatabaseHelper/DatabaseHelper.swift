@@ -87,12 +87,13 @@ class DatabaseHelper: NSObject {
     
     func parseNotificationCoreObjectToNotificationModel(coreObject: NSManagedObject) -> NotificationModel {
         let notification: NotificationModel = NotificationModel()
-        notification.clientId = coreObject.value(forKey: "clientId") as! [Int64]
+        notification.clientId = coreObject.value(forKey: "clientId") as! Int64
         notification.notificationId = coreObject.value(forKey: "notificationId") as! Int64
         notification.descripcion = coreObject.value(forKey: "descripcion") as! String
         notification.fecha = coreObject.value(forKey: "fecha") as! Int64
         notification.leido = coreObject.value(forKey: "leido") as! Bool
         notification.type = coreObject.value(forKey: "type") as! String
+        notification.comercioId = coreObject.value(forKey: "comercioId") as! Int64
         
         return notification
     }
@@ -104,6 +105,7 @@ class DatabaseHelper: NSObject {
         coreDataObject.setValue(newNotification.fecha, forKey: "fecha")
         coreDataObject.setValue(newNotification.leido, forKey: "leido")
         coreDataObject.setValue(newNotification.type, forKey: "type")
+        coreDataObject.setValue(newNotification.comercioId, forKey: "comercioId")
     }
     
     func parseEmpleadosCoreObjectToEmpleadosModel(coreObject: NSManagedObject) -> EmpleadoModel {

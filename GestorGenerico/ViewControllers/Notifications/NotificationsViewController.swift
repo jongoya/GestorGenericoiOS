@@ -235,7 +235,7 @@ extension NotificationsViewController {
     }
     
     @objc func refreshNotifications() {
-        Constants.cloudDatabaseManager.notificationManager.getNotificaciones(delegate: self)
+        WebServices.getNotificaciones(comercioId: UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64, delegate: self)
     }
 }
 
@@ -250,8 +250,8 @@ extension NotificationsViewController {
     }
 }
 
-extension NotificationsViewController: CloudNotificationProtocol {
-    func notificacionSincronizationFinished() {
+extension NotificationsViewController: GetNotificacionesProtocol {
+    func successGettingNotificaciones() {
         DispatchQueue.main.async {
             self.tableRefreshControl.endRefreshing()
             self.showNotifications()
@@ -259,7 +259,7 @@ extension NotificationsViewController: CloudNotificationProtocol {
         }
     }
     
-    func notificacionSincronizationError(error: String) {
+    func errorGettingNotificaciones() {
         DispatchQueue.main.async {
             CommonFunctions.showGenericAlertMessage(mensaje: "Error cargando notificaciones", viewController: self)
         }

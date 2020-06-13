@@ -37,7 +37,7 @@ class NotificationDetailViewController: UIViewController {
     func markNotificationAsRead() {
         notification.leido = true
         CommonFunctions.showLoadingStateView(descriptionText: "Actualizando notificación")
-        Constants.cloudDatabaseManager.notificationManager.updateNotification(notification: notification, delegate: self)
+        //Constants.cloudDatabaseManager.notificationManager.updateNotification(notification: notification, delegate: self)
     }
     
     func setContentView() {
@@ -62,7 +62,8 @@ class NotificationDetailViewController: UIViewController {
     }
     
     func createBirthdayDescription() -> String {
-        let users: [Int64] = notification.clientId
+        //TODO
+        /*let users: [Int64] = notification.clientId
         var text: String = ""
         for user in users {
             if let client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: user) {
@@ -75,7 +76,9 @@ class NotificationDetailViewController: UIViewController {
             text.append(", ")
         }
         
-        return text + (users.count > 1 ? "felicitalos!" : "felicitalo!")
+        return text + (users.count > 1 ? "felicitalos!" : "felicitalo!")*/
+        
+        return ""
     }
     
     func createNotificacionPersonalizadaDescription() -> String {
@@ -88,11 +91,12 @@ class NotificationDetailViewController: UIViewController {
     
     func showActionsheet(comunicationCase: Int) {
         let alert = UIAlertController(title: "Elige", message: "Debe elegir una de las opciones", preferredStyle: .actionSheet)
-        for index in 0...notification.clientId.count - 1 {
+        //TODO
+        /*for index in 0...notification.clientId.count - 1 {
             alert.addAction(UIAlertAction(title: getNombreApellidosFromUser(userId: notification.clientId[index]), style: .default , handler:{ (UIAlertAction) in
                 self.openComunicationForCase(comunicationCase: comunicationCase, userPosition: index)
             }))
-        }
+        }*/
 
         alert.addAction(UIAlertAction(title: "cancelar", style: .cancel, handler:{ (UIAlertAction)in
             print("User click Dismiss button")
@@ -102,13 +106,14 @@ class NotificationDetailViewController: UIViewController {
     }
     
     func getTelefonoFromUser(userId: Int64) -> String {
-        if let client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId.first!) {
+        //TODO
+        /*if let client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId.first!) {
             return client.telefono.replacingOccurrences(of: " ", with: "")
          }
          
          if let empleado = Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: notification.clientId.first!) {
             return empleado.telefono.replacingOccurrences(of: " ", with: "")
-         }
+         }*/
         
         return " "
     }
@@ -138,15 +143,16 @@ class NotificationDetailViewController: UIViewController {
     }
     
     func openComunicationForCase(comunicationCase: Int, userPosition: Int) {
+        //TODO
         switch comunicationCase {
         case 1:
-            CommonFunctions.callPhone(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
+            //CommonFunctions.callPhone(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
             break
         case 2:
-            composeLetter(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
+            //composeLetter(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
             break
         default:
-            CommonFunctions.openWhatsapp(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
+            //CommonFunctions.openWhatsapp(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
             break
         }
     }
@@ -154,27 +160,30 @@ class NotificationDetailViewController: UIViewController {
 
 extension NotificationDetailViewController {
     @IBAction func didClickCallButton(_ sender: Any) {
-        if notification.clientId.count > 1 {
+        //TODO
+        /*if notification.clientId.count > 1 {
             showActionsheet(comunicationCase: 1)
         } else {
             CommonFunctions.callPhone(telefono: getTelefonoFromUser(userId: notification.clientId.first!))
-        }
+        }*/
     }
     
     @IBAction func didClickSendEmailButton(_ sender: Any) {
-        if notification.clientId.count > 1 {
+        //TODO
+        /*if notification.clientId.count > 1 {
             showActionsheet(comunicationCase: 2)
         } else {
             composeLetter(telefono: getTelefonoFromUser(userId: notification.clientId.first!))
-        }
+        }*/
     }
     
     @IBAction func didClickChatButton(_ sender: Any) {
-        if notification.clientId.count > 1 {
+        //TODO
+        /*if notification.clientId.count > 1 {
             showActionsheet(comunicationCase: 3)
         } else {
             CommonFunctions.openWhatsapp(telefono: getTelefonoFromUser(userId: notification.clientId.first!))
-        }
+        }*/
     }
 }
 

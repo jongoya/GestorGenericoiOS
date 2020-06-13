@@ -53,7 +53,7 @@ class AddClientViewController: UIViewController {
     }
     
     func customizeImageView() {
-        clientImageView.layer.cornerRadius = 50
+        clientImageView.layer.cornerRadius = 75
     }
     
     func showServicio(servicio: ServiceModel) {

@@ -157,9 +157,9 @@ class CloudNotificationManager {
         operation.recordFetchedBlock = { (record: CKRecord!) in
             if record != nil {
                 let notification: NotificationModel = self.cloudDatabaseHelper.parseCloudNotificationsObjectToLocalNotificationObject(record: record)
-                if notification.clientId.count == 1 && notification.clientId.contains(clientId) {
+                /*if notification.clientId.count == 1 && notification.clientId.contains(clientId) {
                     recordIds.append(record.recordID)
-                }
+                }*/
             }
         }
         operation.queryCompletionBlock = {(cursor : CKQueryOperation.Cursor?, error : Error?) -> Void in

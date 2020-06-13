@@ -43,9 +43,9 @@ class NotificationCell: UITableViewCell {
     private func setBirthdayContent(notification: NotificationModel) {
         notificationImage.image = UIImage(named: "cumple")!.withRenderingMode(.alwaysTemplate)
         clientName.text = "¡Felicitaciones!"
-        
-        let nextText: String = notification.clientId.count > 1 ? " personas, felicitalos!" : " persona, felicitalo!"
-        notificationDescriptionLabel.text = "¡Hoy cumplen años " + String(notification.clientId.count) +  nextText
+        //TODO
+        /*let nextText: String = notification.clientId.count > 1 ? " personas, felicitalos!" : " persona, felicitalo!"
+        notificationDescriptionLabel.text = "¡Hoy cumplen años " + String(notification.clientId.count) +  nextText*/
     }
     
     private func setCierreCajaContent(notification: NotificationModel) {
@@ -62,22 +62,23 @@ class NotificationCell: UITableViewCell {
     private func setCadenciacontent(notification: NotificationModel) {
         notificationImage.image = UIImage(named: "cadencia")!.withRenderingMode(.alwaysTemplate)
         clientName.text = "¡Cadencia!"
-        
-        var text: String = String(notification.clientId.count)
+        //TODO
+        /*var text: String = String(notification.clientId.count)
         text.append(notification.clientId.count > 1 ? " clientes llevan tiempo sin venir" : " cliente lleva tiempo sin venir")
         
-        notificationDescriptionLabel.text = text
+        notificationDescriptionLabel.text = text*/
     }
     
     private func setPersonalizadaContent(notification: NotificationModel) {
         notificationImage.image = UIImage(named: "campana")!.withRenderingMode(.alwaysTemplate)
-        let cliente: ClientModel = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId.first!)!
+        //TODO
+        /*let cliente: ClientModel = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId.first!)!
         
         let year: Int = AgendaFunctions.getYearNumberFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha)))
         let month: String = AgendaFunctions.getMonthNameFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha))).capitalized
         let day: Int = Calendar.current.component(.day, from: Date(timeIntervalSince1970: TimeInterval(notification.fecha)))
         
         clientName.text = String(day) + " de " + String(month) + " de " + String(year)
-        notificationDescriptionLabel.text = "Notificación de " + cliente.nombre + " " + cliente.apellidos
+        notificationDescriptionLabel.text = "Notificación de " + cliente.nombre + " " + cliente.apellidos*/
     }
 }

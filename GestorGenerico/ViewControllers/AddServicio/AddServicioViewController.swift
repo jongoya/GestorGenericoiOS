@@ -274,12 +274,10 @@ extension AddServicioViewController: ListSelectorProtocol {
 extension AddServicioViewController: AddNuevoServicioProtocol {
     func successSavingService(servicio: ServiceModel) {
         Constants.databaseManager.servicesManager.addServiceInDatabase(newService: servicio)
-        
-        //TODO eliminar las notificaciones de cadencia del cliente si los tiene
-        /*let notifications: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsForClientAndNotificationType(notificationType: Constants.notificacionCadenciaIdentifier, clientId: client.id)
-        if notifications.count > 0 {
-            
-        }*/
+        let notifications: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsForClientAndNotificationType(notificationType: Constants.notificacionCadenciaIdentifier, clientId: client.id)
+        for notificacion: NotificationModel in notifications {
+            Constants.databaseManager.notificationsManager.eliminarNotificacion(notificationId: notificacion.notificationId)
+        }
         
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()

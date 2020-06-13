@@ -197,6 +197,20 @@ public class WebServices {
         }
     }
     
+    static func deleteService(service: ServiceModel, delegate: DeleteServiceProtocol) {
+        let url: String = baseUrl + "delete_servicio"
+        AF.request(url, method: .post, parameters: service.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).response { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    delegate.successDeletingService(service: service)
+                    return
+                }
+            }
+            
+            delegate.errorDeletingService()
+        }
+    }
+    
     static func updateNotificacionPersonalizada(cliente: ClientModel, delegate: UpdateNotificacionPersonalizadaProtocol) {
         let url: String = baseUrl + "update_notificacion_personalizada"
         AF.request(url, method: .put, parameters: cliente.createClientJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
@@ -332,6 +346,46 @@ public class WebServices {
             }
             
             delegate.errorSavingServicio()
+        }
+    }
+    
+    static func getNotificaciones(comercioId: Int64, delegate: GetNotificacionesProtocol) {
+        let url: String = baseUrl + "get_notifications/" + String(comercioId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let notificaciones: [NotificationModel] = try! JSONDecoder().decode([NotificationModel].self, from: response.data!)
+                    for notificacion: NotificationModel in notificaciones {
+                        if Constants.databaseManager.notificationsManager.getNotificationFromDatabase(notificationId: notificacion.notificationId).count == 0 {
+                            Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notificacion)
+                        } else {
+                            Constants.databaseManager.notificationsManager.markNotificationAsRead(notification: notificacion)
+                        }
+                    }
+                    
+                    deleteNotificationsIfNeeded(serveNotificaciones: notificaciones)
+                    delegate.successGettingNotificaciones()
+                    return
+                }
+            }
+            
+            delegate.errorGettingNotificaciones()
+        }
+    }
+    
+    private static func deleteNotificationsIfNeeded(serveNotificaciones: [NotificationModel]) {
+        let localNotificaciones: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsFromDatabase()
+        for localNoti: NotificationModel in localNotificaciones {
+            var notificationExists: Bool = false
+            for serverNoti: NotificationModel in serveNotificaciones {
+                if serverNoti.notificationId == localNoti.notificationId {
+                    notificationExists = true
+                }
+            }
+            
+            if !notificationExists {
+                Constants.databaseManager.notificationsManager.eliminarNotificacion(notificationId: localNoti.notificationId)
+            }
         }
     }
 }

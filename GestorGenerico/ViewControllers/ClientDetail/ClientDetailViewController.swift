@@ -80,7 +80,7 @@ class ClientDetailViewController: UIViewController {
         if client.imagen.count > 0 {
             let dataDecoded : Data = Data(base64Encoded: client.imagen, options: .ignoreUnknownCharacters)!
             clientImageView.image = UIImage(data: dataDecoded)
-            clientImageView.layer.cornerRadius = 50
+            clientImageView.layer.cornerRadius = 75
         } else {
             clientImageView.image = UIImage(named: "add_image")
         }
@@ -507,7 +507,10 @@ extension ClientDetailViewController: UpdateNotificacionPersonalizadaProtocol {
     func successUpdatingNotificacion(cliente: ClientModel) {
         Constants.databaseManager.clientsManager.updateClientInDatabase(client: client)
         if client.fechaNotificacionPersonalizada == 0 {
-            //TODO eliminar notificaciones personalizadas del cliente en la bbdd local
+            let notifications: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsForClientAndNotificationType(notificationType: Constants.notificacionPersonalizadaIdentifier, clientId: cliente.id)
+            for notificacion: NotificationModel in notifications {
+                Constants.databaseManager.notificationsManager.eliminarNotificacion(notificationId: notificacion.notificationId)
+            }
         }
         
         DispatchQueue.main.async {

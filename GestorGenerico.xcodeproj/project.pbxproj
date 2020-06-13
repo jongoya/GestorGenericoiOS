@@ -26,6 +26,8 @@
 		FB17F05E2493D24F00F0BC39 /* AddEmpleadoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17F05D2493D24F00F0BC39 /* AddEmpleadoProtocol.swift */; };
 		FB17F0602493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17F05F2493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift */; };
 		FB17F0632493D77700F0BC39 /* EmpleadoMasServicios.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17F0622493D77700F0BC39 /* EmpleadoMasServicios.swift */; };
+		FB1FFF092495350A00AD9B17 /* DeleteServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */; };
+		FB1FFF0B24953F8800AD9B17 /* GetNotificacionesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */; };
 		FB2B26D22456EBD30017D9CA /* clientesHeme.json in Resources */ = {isa = PBXBuildFile; fileRef = FB2B26D12456EBD30017D9CA /* clientesHeme.json */; };
 		FB2B26D52456EC790017D9CA /* ClientesJsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2B26D42456EC790017D9CA /* ClientesJsonManager.swift */; };
 		FB2B26D92456FBB70017D9CA /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2B26D82456FBB70017D9CA /* BackupManager.swift */; };
@@ -190,6 +192,8 @@
 		FB17F05D2493D24F00F0BC39 /* AddEmpleadoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmpleadoProtocol.swift; sourceTree = "<group>"; };
 		FB17F05F2493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmpleadoProtocol.swift; sourceTree = "<group>"; };
 		FB17F0622493D77700F0BC39 /* EmpleadoMasServicios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadoMasServicios.swift; sourceTree = "<group>"; };
+		FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteServiceProtocol.swift; sourceTree = "<group>"; };
+		FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotificacionesProtocol.swift; sourceTree = "<group>"; };
 		FB2B26D12456EBD30017D9CA /* clientesHeme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clientesHeme.json; sourceTree = "<group>"; };
 		FB2B26D42456EC790017D9CA /* ClientesJsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientesJsonManager.swift; sourceTree = "<group>"; };
 		FB2B26D82456FBB70017D9CA /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
@@ -1357,6 +1361,8 @@
 				FB43BF202494F4310035BA87 /* UpdateClientProtocol.swift */,
 				FB43BF222494F8C80035BA87 /* GetServiciosProtocol.swift */,
 				FB43BF242494FBF60035BA87 /* UpdateNotificacionPersonalizadaProtocol.swift */,
+				FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */,
+				FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1547,6 +1553,7 @@
 				FB3E4B5A24364300009DB88B /* CommonFunctions.swift in Sources */,
 				FB14CECD24409AA9000CBE77 /* HemeTableViewCell.swift in Sources */,
 				FBAB77D12451D594001C5F4E /* BirthdayModel.swift in Sources */,
+				FB1FFF0B24953F8800AD9B17 /* GetNotificacionesProtocol.swift in Sources */,
 				FB8185B124434400004697D3 /* TipoServiciosManager.swift in Sources */,
 				FBEA8507245AE5DE004E96FC /* CloudCierreCajaProtocol.swift in Sources */,
 				FB9DED0624499B9800614CD2 /* CloudEmpleadoManager.swift in Sources */,
@@ -1598,6 +1605,7 @@
 				FBB4F832245992EA00278161 /* AgendaServiceProtocol.swift in Sources */,
 				FB8329E02490F95D003B8009 /* DispositivoModel.swift in Sources */,
 				FBDF1BB8244F5669004DDD3F /* CierreCajaModel.swift in Sources */,
+				FB1FFF092495350A00AD9B17 /* DeleteServiceProtocol.swift in Sources */,
 				FBB59DF22450429E005E5EB0 /* StadisticaView.swift in Sources */,
 				FB9DECFA2449980700614CD2 /* CloudClientManager.swift in Sources */,
 				FB9A8E252444911C00E0A9E4 /* AddTipoServicioViewController.swift in Sources */,

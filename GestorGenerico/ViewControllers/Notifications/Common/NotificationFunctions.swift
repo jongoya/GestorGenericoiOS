@@ -22,9 +22,10 @@ class NotificationFunctions: NSObject {
         for user in birthdayUsers {
             var notificationExists = false
             for notification in todayNotifications {
-                if notification.clientId.contains(user.userId) {
+                //TODO
+                /*if notification.clientId.contains(user.userId) {
                     notificationExists = true
-                }
+                }*/
             }
             
             if !notificationExists {
@@ -107,12 +108,13 @@ class NotificationFunctions: NSObject {
         let notification: NotificationModel = NotificationModel()
         notification.notificationId = Int64(Date().timeIntervalSince1970)
         notification.fecha = Int64(Date().timeIntervalSince1970)
-        notification.clientId = getUserIdsFromBirthdayModels(users: users)
+        //TODO
+        //notification.clientId = getUserIdsFromBirthdayModels(users: users)
         notification.leido = false
         notification.type = Constants.notificacionCumpleIdentifier
         _ = Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notification)
         print("NOTIFICACION CUMPLEAÑOS CREADO")
-        Constants.cloudDatabaseManager.notificationManager.saveNotification(notification: notification, delegate: nil)
+        //Constants.cloudDatabaseManager.notificationManager.saveNotification(notification: notification, delegate: nil)
     }
     
     private static func getUserIdsFromBirthdayModels(users: [BirthdayModel]) -> [Int64] {
@@ -236,9 +238,10 @@ class NotificationFunctions: NSObject {
     private static func hasClientANotification(notifications: [NotificationModel], clientId: Int64) -> Bool {
         var notificationExists = false
         for notification in notifications {
-            if notification.clientId.contains(clientId) {
+            //TODO
+            /*if notification.clientId.contains(clientId) {
                 notificationExists = true
-            }
+            }*/
         }
         
         return notificationExists
@@ -248,7 +251,8 @@ class NotificationFunctions: NSObject {
         let notification: NotificationModel = NotificationModel()
         notification.notificationId = Int64(Date().timeIntervalSince1970)
         notification.fecha = Int64(Date().timeIntervalSince1970)
-        notification.clientId = getClientIds(clients: clientArray)
+        //TODO
+        //notification.clientId = getClientIds(clients: clientArray)
         notification.leido = false
         notification.type = Constants.notificacionCadenciaIdentifier
         _ = Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notification)
@@ -259,7 +263,7 @@ class NotificationFunctions: NSObject {
         let notification: NotificationModel = NotificationModel()
         notification.notificationId = Int64(Date().timeIntervalSince1970)
         notification.fecha = fecha
-        notification.clientId = [clientId]
+        //notification.clientId = [clientId]
         notification.leido = false
         notification.descripcion = descripcion
         notification.type = Constants.notificacionPersonalizadaIdentifier
@@ -290,9 +294,10 @@ class NotificationFunctions: NSObject {
     private static func existsNotificacionPersonalizada(clientId: Int64) -> Bool {
         let notificaciones: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsForType(type: Constants.notificacionPersonalizadaIdentifier)
         for notificacion in notificaciones {
-            if notificacion.clientId.contains(clientId) {
+            //TODO
+            /*if notificacion.clientId.contains(clientId) {
                 return true
-            }
+            }*/
         }
         
         return false

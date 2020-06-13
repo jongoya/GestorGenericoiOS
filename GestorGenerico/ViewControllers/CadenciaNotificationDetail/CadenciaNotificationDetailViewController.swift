@@ -33,15 +33,17 @@ class CadenciaNotificationDetailViewController: UIViewController {
     }
     
     func setCadenciaLabel() {
-        cadenciaTextLabel.text = notification.clientId.count > 1 ? "Hay " + String(notification.clientId.count) + " clientes que llevan tiémpo sin venir" : "Hay 1 Cliente que lleva tiémpo sin venir"
+        //TODO
+        //cadenciaTextLabel.text = notification.clientId.count > 1 ? "Hay " + String(notification.clientId.count) + " clientes que llevan tiémpo sin venir" : "Hay 1 Cliente que lleva tiémpo sin venir"
     }
     
     func getClientes() {
-        for clientId: Int64 in notification.clientId {
+        //TODO
+        /*for clientId: Int64 in notification.clientId {
             clientes.append(Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: clientId)!)
         }
         
-        clientTableView.reloadData()
+        clientTableView.reloadData()*/
     }
     
     func markNotificationAsRead() {

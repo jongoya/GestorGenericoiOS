@@ -80,21 +80,19 @@ extension ServiciosViewController {
     }
     
     @objc func refreshServicios(_ sender: Any) {
-        Constants.cloudDatabaseManager.tipoServicioManager.getTipoServicios(delegate: self)
+        WebServices.getTipoServicios(comercioId: UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64, delegate: self)
     }
 }
 
-extension ServiciosViewController: CloudTipoServiciosProtocol {
-    func tipoServiciosSincronizationFinished() {
-        print("EXITO CARGANDO TIPO SERVICIOS")
+extension ServiciosViewController: GetTipoServiciosProtocol {
+    func successGettingServicios() {
         DispatchQueue.main.async {
             self.tableRefreshControl.endRefreshing()
             self.showServicios()
         }
     }
     
-    func tipoServiciosSincronizationError(error: String) {
-        print("ERROR CARGANDO TIPO SERVICIOS")
+    func errorGettingServicios() {
         DispatchQueue.main.async {
             CommonFunctions.showGenericAlertMessage(mensaje: "Error cargando servicios", viewController: self)
         }

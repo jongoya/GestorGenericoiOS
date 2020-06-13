@@ -32,7 +32,6 @@ class ClientDetailViewController: UIViewController {
     var addServicioButtonBottomAnchor: NSLayoutConstraint!
     var scrollRefreshControl: UIRefreshControl = UIRefreshControl()
     var modificacionHecha: Bool = false
-    var sincronizandoCliente: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +108,7 @@ class ClientDetailViewController: UIViewController {
         }
         
         for service: ServiceModel in serviciosFuturos {
-            let serviceView: ServicioView = ServicioView(service: service)
+            let serviceView: ServicioView = ServicioView(service: service, client: client)
             serviceView.delegate = self
             scrollContentView.addSubview(serviceView)
             serviceViewsArray.append(serviceView)
@@ -120,7 +119,7 @@ class ClientDetailViewController: UIViewController {
         }
         
         for service: ServiceModel in serviciosPasados {
-            let serviceView: ServicioView = ServicioView(service: service)
+            let serviceView: ServicioView = ServicioView(service: service, client: client)
             serviceView.delegate = self
             scrollContentView.addSubview(serviceView)
             serviceViewsArray.append(serviceView)
@@ -151,7 +150,6 @@ class ClientDetailViewController: UIViewController {
         
         scrollContentView.bottomAnchor.constraint(equalTo: previousView.bottomAnchor, constant: 30).isActive = true
     }
-    
     
     func sortServicesByDate() {
         return services.sort(by: { $0.fecha > $1.fecha })
@@ -185,9 +183,8 @@ class ClientDetailViewController: UIViewController {
     }
     
     func updateClient() {
-        sincronizandoCliente = true
         CommonFunctions.showLoadingStateView(descriptionText: "Actualizando cliente")
-        Constants.cloudDatabaseManager.clientManager.updateClient(client: client, delegate: self, notificationDelegate: nil)
+        WebServices.updateClient(cliente: client, delegate: self)
     }
     
     func addRefreshControl() {
@@ -238,10 +235,8 @@ class ClientDetailViewController: UIViewController {
     
     func updateClientForNotificacionPersonalizada() {
         CommonFunctions.showLoadingStateView(descriptionText: "Actualizando cliente")
-        Constants.cloudDatabaseManager.clientManager.updateClient(client: client, delegate: nil, notificationDelegate: self)
+        WebServices.updateNotificacionPersonalizada(cliente: client, delegate: self)
     }
-
-    
 }
 
 extension ClientDetailViewController {
@@ -298,7 +293,7 @@ extension ClientDetailViewController {
     }
     
     @objc func refreshClient() {
-        Constants.cloudDatabaseManager.serviceManager.getServiciosPorCliente(clientId: client.id, delegate: self)
+        WebServices.getServices(comercioId: UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64, delegate: self)
     }
     
     @objc func didClickBackButton(sender: UIBarButtonItem) {
@@ -391,10 +386,6 @@ extension ClientDetailViewController {
             return "Observaciones"
         }
     }
-    
-    func updateServices(services: [ServiceModel]) {
-        //Constants.cloudDatabaseManager.serviceManager.updateServices(services: services, delegate: self)
-    }
 }
 
 extension ClientDetailViewController: DatePickerSelectorProtocol {
@@ -465,122 +456,6 @@ extension ClientDetailViewController: PickerSelectorProtocol {
     }
 }
 
-extension ClientDetailViewController: CloudServiceManagerProtocol {
-    func serviceSincronizationFinished() {
-        DispatchQueue.main.async {
-            if self.sincronizandoCliente {
-                print("EXITO ACTUALIZANDO SERVICIOS")
-                self.sincronizandoCliente = false
-                CommonFunctions.hideLoadingStateView()
-                Constants.databaseManager.clientsManager.updateClientInDatabase(client: self.client)
-                
-                if !Constants.databaseManager.servicesManager.updateServicesForClientId(clientId: self.client.id) {
-                    CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando servicios, intentelo de nuevo", viewController: self)
-                }
-                
-                self.navigationController!.popViewController(animated: true)
-            } else {
-                print("EXITO CARGANDO SERVICIOS")
-                self.scrollRefreshControl.endRefreshing()
-                self.getClientDetails()
-            }
-        }
-    }
-    
-    func serviceSincronizationError(error: String) {
-        DispatchQueue.main.async {
-            if self.sincronizandoCliente {
-                print("ERROR ACTUALIZANDO SERVICIOS")
-                self.sincronizandoCliente = false
-                CommonFunctions.hideLoadingStateView()
-            } else {
-                print("ERROR CARGANDO SERVICIOS")
-            }
-            
-            CommonFunctions.showGenericAlertMessage(mensaje: error, viewController: self)
-        }
-    }
-}
-
-extension ClientDetailViewController: CloudClientManagerProtocol {
-    func clientSincronizationFinished() {
-        let services: [ServiceModel] = Constants.databaseManager.servicesManager.getServicesForClientId(clientId: client.id)
-        print("EXITO ACTUALIZANDO CLIENTE")
-        if services.count == 0 {
-            DispatchQueue.main.async {
-                self.sincronizandoCliente = false
-                CommonFunctions.hideLoadingStateView()
-                Constants.databaseManager.clientsManager.updateClientInDatabase(client: self.client)
-                
-                self.navigationController!.popViewController(animated: true)
-            }
-        } else {
-            updateServices(services: services)
-        }
-    }
-    
-    func clientSincronizationError(error: String) {
-        DispatchQueue.main.async {
-            self.sincronizandoCliente = false
-            CommonFunctions.hideLoadingStateView()
-            CommonFunctions.showGenericAlertMessage(mensaje: error, viewController: self)
-        }
-    }
-}
-
-extension ClientDetailViewController: CloudNotificacionPersonalizadaProtocol {
-    func clientUpdated() {
-        if client.fechaNotificacionPersonalizada == 0 {
-            let notifications: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsForClientAndNotificationType(notificationType: Constants.notificacionPersonalizadaIdentifier, clientId: client.id)
-            if notifications.count == 0 {
-                _ = Constants.databaseManager.clientsManager.updateClientInDatabase(client: client)
-                updateNotificacionPersonalizada()
-            } else {
-                Constants.cloudDatabaseManager.notificationManager.deleteNotifications(notifications: notifications, notificationType: Constants.notificacionPersonalizadaIdentifier, clientId: client.id, delegate: self)
-            }
-        } else {
-            _ = Constants.databaseManager.clientsManager.updateClientInDatabase(client: client)
-            updateNotificacionPersonalizada()
-        }
-    }
-    
-    func errorUpdatingClient(error: String) {
-        DispatchQueue.main.async {
-            CommonFunctions.hideLoadingStateView()
-            CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando cliente", viewController: self)
-        }
-    }
-    
-    func updateNotificacionPersonalizada() {
-        DispatchQueue.main.async {
-            CommonFunctions.hideLoadingStateView()
-            if self.client.fechaNotificacionPersonalizada == 0 {
-                self.deactivateAlarmButton()
-            } else {
-                self.activateAlarmButton()
-            }
-        }
-    }
-}
-
-extension ClientDetailViewController: CloudEliminarNotificationsProtocol {
-    func succesDeletingNotification(notifications: [NotificationModel]) {
-        _ = Constants.databaseManager.clientsManager.updateClientInDatabase(client: client)
-        for notification in notifications {
-            _ = Constants.databaseManager.notificationsManager.eliminarNotificacion(notificationId: notification.notificationId)
-        }
-        
-        updateNotificacionPersonalizada()
-    }
-    
-    func errorDeletingNotifications(error: String) {
-        DispatchQueue.main.async {
-            CommonFunctions.hideLoadingStateView()
-            CommonFunctions.showGenericAlertMessage(mensaje: "Error eliminando notificación", viewController: self)
-        }
-    }
-}
-
 extension ClientDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
@@ -594,3 +469,63 @@ extension ClientDetailViewController: UIImagePickerControllerDelegate, UINavigat
         client.imagen = imageString
     }
 }
+
+extension ClientDetailViewController: UpdateClientProtocol {
+    func successUpdatingClient(cliente: ClientModel) {
+        Constants.databaseManager.clientsManager.updateClientInDatabase(client: self.client)
+        DispatchQueue.main.async {
+            CommonFunctions.hideLoadingStateView()
+            self.navigationController!.popViewController(animated: true)
+        }
+    }
+    
+    func errorUpdatingClient() {
+        DispatchQueue.main.async {
+            CommonFunctions.hideLoadingStateView()
+            CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando cliente", viewController: self)
+        }
+    }
+}
+
+extension ClientDetailViewController: GetServiciosProtocol {
+    func successGettingServicios() {
+        DispatchQueue.main.async {
+            self.scrollRefreshControl.endRefreshing()
+            self.getClientDetails()
+        }
+    }
+    
+    func errorGettingServicios() {
+        DispatchQueue.main.async {
+            self.scrollRefreshControl.endRefreshing()
+            CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando cliente", viewController: self)
+        }
+    }
+}
+
+extension ClientDetailViewController: UpdateNotificacionPersonalizadaProtocol {
+    func successUpdatingNotificacion(cliente: ClientModel) {
+        Constants.databaseManager.clientsManager.updateClientInDatabase(client: client)
+        if client.fechaNotificacionPersonalizada == 0 {
+            //TODO eliminar notificaciones personalizadas del cliente en la bbdd local
+        }
+        
+        DispatchQueue.main.async {
+            CommonFunctions.hideLoadingStateView()
+            if self.client.fechaNotificacionPersonalizada == 0 {
+                self.deactivateAlarmButton()
+            } else {
+                self.activateAlarmButton()
+            }
+        }
+    }
+    
+    func errorUpdatingNotificacion() {
+        DispatchQueue.main.async {
+            CommonFunctions.hideLoadingStateView()
+            CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando cliente", viewController: self)
+        }
+    }
+}
+
+

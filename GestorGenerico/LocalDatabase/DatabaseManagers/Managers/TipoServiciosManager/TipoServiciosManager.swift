@@ -42,25 +42,18 @@ class TipoServiciosManager: NSObject {
         return servicios
     }
     
-    func addTipoServicioToDatabase(servicio: TipoServicioModel) -> Bool {
+    func addTipoServicioToDatabase(servicio: TipoServicioModel) {
         let entity = NSEntityDescription.entity(forEntityName: TIPOSERVICIOS_ENTITY_NAME, in: backgroundContext)
         
         if getCoreTipoServicioFromDatabase(servicioId: servicio.servicioId).count == 0 {
             let coreService = NSManagedObject(entity: entity!, insertInto: backgroundContext)
             databaseHelper.setCoreDataObjectDataFromTipoServicio(coreDataObject: coreService, newServicio: servicio)
-            
-            var result: Bool = false
             backgroundContext.performAndWait {
                 do {
                     try backgroundContext.save()
-                    result = true
                 } catch {
                 }
             }
-            
-            return result
-        } else {
-            return false
         }
     }
     

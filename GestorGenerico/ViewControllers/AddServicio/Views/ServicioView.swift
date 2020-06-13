@@ -21,13 +21,13 @@ class ServicioView: UIView {
     var fieldArray: [UIView] = []
     var delegate: ServicioViewProtocol!
     
-    init(service: ServiceModel) {
+    init(service: ServiceModel, client: ClientModel) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         servicio = service
         
         addGestureRecognizer()
-        createContent()
+        createContent(cliente: client)
     }
     
     required init?(coder: NSCoder) {
@@ -38,11 +38,10 @@ class ServicioView: UIView {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(servicioClicked(_:))))
     }
     
-    func createContent() {
+    func createContent(cliente: ClientModel) {
         customizeView()
         
         addTitle()
-        let cliente: ClientModel = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: servicio.clientId)!
         addFieldForServiceField(serviceField: "Nombre y Apellidos", serviceValue: cliente.nombre + " " + cliente.apellidos)
         addFieldForServiceField(serviceField: "Fecha", serviceValue: CommonFunctions.getDateAndTimeTypeStringFromDate(date: Date(timeIntervalSince1970: TimeInterval(servicio.fecha))))
         addFieldForServiceField(serviceField: "Profesional", serviceValue: Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: servicio.empleadoId)!.nombre)

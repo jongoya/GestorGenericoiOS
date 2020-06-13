@@ -76,8 +76,7 @@ extension ColorPickerViewController {
         empleado.blueColorValue = Float(components![2])
 
         CommonFunctions.showLoadingStateView(descriptionText: "Guardando color")
-        
-        Constants.cloudDatabaseManager.empleadoManager.updateEmpleado(empleado: empleado, delegate: self)
+        WebServices.updateEmpleado(empleado: empleado, delegate: self)
     }
 }
 
@@ -87,23 +86,19 @@ extension ColorPickerViewController: ChromaColorPickerDelegate {
     }
 }
 
-extension ColorPickerViewController: CloudEmpleadoProtocol {
-    func empleadoSincronizationFinished() {
+extension ColorPickerViewController: UpdateEmpleadoProtocol {
+    func successUpdatingEmpleado(empleado: EmpleadoModel) {
+        Constants.databaseManager.empleadosManager.updateEmpleado(empleado: self.empleado)
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()
-            Constants.databaseManager.empleadosManager.updateEmpleado(empleado: self.empleado)
             self.navigationController!.popViewController(animated: true)
         }
     }
     
-    func empleadoSincronizationError(error: String) {
+    func errorUpdatingEmpleado() {
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()
-            CommonFunctions.showGenericAlertMessage(mensaje: error, viewController: self)
+            CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando empleado", viewController: self)
         }
     }
-    func empleadoDeleted(empleado: EmpleadoModel) {
-        //NO es necesario implementar
-    }
-    
 }

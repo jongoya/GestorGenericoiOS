@@ -93,7 +93,11 @@ public class WebServices {
     
     static func addClient(model: ClientMasServicios, delegate: AddClientAndServicesProtocol) {
         let url: String = baseUrl + "save_cliente"
-        model.cliente.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        let comercioId: Int64 = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        model.cliente.comercioId = comercioId
+        for servicio: ServiceModel in model.servicios {
+            servicio.comercioId = comercioId
+        }
         AF.request(url, method: .post, parameters: model.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
             if response.error == nil {
                 if response.response?.statusCode == 200 {
@@ -104,6 +108,107 @@ public class WebServices {
             }
             
             delegate.errorSavignClient()
+        }
+    }
+    
+    static func updateClient(cliente: ClientModel, delegate: UpdateClientProtocol) {
+        let url: String = baseUrl + "update_cliente"
+        AF.request(url, method: .put, parameters: cliente.createClientJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let model :ClientMasServicios = try! JSONDecoder().decode(ClientMasServicios.self, from: response.data!)
+                    delegate.successUpdatingClient(cliente: model.cliente)
+                    return
+                }
+            }
+            
+            delegate.errorUpdatingClient()
+        }
+    }
+    
+    static func getServices(comercioId: Int64, delegate: GetServiciosProtocol) {
+        let url: String = baseUrl + "get_servicios/" + String(comercioId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers:  createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let servicios: [ServiceModel] = try! JSONDecoder().decode([ServiceModel].self, from: response.data!)
+                    for servicio : ServiceModel in servicios {
+                        if Constants.databaseManager.servicesManager.getServiceFromDatabase(serviceId: servicio.serviceId).count == 0 {
+                            Constants.databaseManager.servicesManager.addServiceInDatabase(newService: servicio)
+                        } else {
+                            Constants.databaseManager.servicesManager.updateServiceInDatabase(service: servicio)
+                        }
+                    }
+                    
+                    deleteLocalServicesIfNeeded(serverServices: servicios)
+                    delegate.successGettingServicios()
+                    return
+                }
+            }
+            
+            delegate.errorGettingServicios()
+        }
+    }
+    
+    private static func deleteLocalServicesIfNeeded(serverServices: [ServiceModel]) {
+        let localServices: [ServiceModel] = Constants.databaseManager.servicesManager.getAllServicesFromDatabase()
+        for localService: ServiceModel in localServices {
+            var servicioExists: Bool = false
+            for serverService: ServiceModel in serverServices {
+                if localService.serviceId == serverService.serviceId {
+                    servicioExists = true
+                }
+            }
+            
+            if !servicioExists {
+                Constants.databaseManager.servicesManager.deleteService(service: localService)
+            }
+        }
+    }
+    
+    static func addService(service: ServiceModel, delegate: AddNuevoServicioProtocol) {
+        let url: String = baseUrl + "save_servicio"
+        service.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        AF.request(url, method: .post, parameters: service.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 201 {
+                    let servicio :ServiceModel = try! JSONDecoder().decode(ServiceModel.self, from: response.data!)
+                    delegate.successSavingService(servicio: servicio)
+                    return
+                }
+            }
+            
+            delegate.errorSavingServicio()
+        }
+    }
+    
+    static func updateService(service: ServiceModel, delegate: UpdateServicioProtocol) {
+        let url: String = baseUrl + "update_servicio"
+        AF.request(url, method: .put, parameters: service.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let servicio :ServiceModel = try! JSONDecoder().decode(ServiceModel.self, from: response.data!)
+                    delegate.successUpdatingService(service: servicio)
+                    return
+                }
+            }
+            
+            delegate.errorUpdatingService()
+        }
+    }
+    
+    static func updateNotificacionPersonalizada(cliente: ClientModel, delegate: UpdateNotificacionPersonalizadaProtocol) {
+        let url: String = baseUrl + "update_notificacion_personalizada"
+        AF.request(url, method: .put, parameters: cliente.createClientJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let cliente :ClientModel = try! JSONDecoder().decode(ClientModel.self, from: response.data!)
+                    delegate.successUpdatingNotificacion(cliente: cliente)
+                    return
+                }
+            }
+            
+            delegate.errorUpdatingNotificacion()
         }
     }
     
@@ -192,6 +297,41 @@ public class WebServices {
             }
             
             delegate.errorDeletingEmpleado()
+        }
+    }
+    
+    static func getTipoServicios(comercioId: Int64, delegate: GetTipoServiciosProtocol) {
+        let url: String = baseUrl + "get_tipo_servicios/" + String(comercioId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let tipoServicios: [TipoServicioModel] = try! JSONDecoder().decode([TipoServicioModel].self, from: response.data!)
+                    for tipoServicio: TipoServicioModel in tipoServicios {
+                        Constants.databaseManager.tipoServiciosManager.addTipoServicioToDatabase(servicio: tipoServicio)
+                    }
+                    
+                    delegate.successGettingServicios()
+                    return
+                }
+            }
+            
+            delegate.errorGettingServicios()
+        }
+    }
+    
+    static func addTipoServicio(tipoServicio: TipoServicioModel, delegate: AddTipoServicioProtocol) {
+        let url: String = baseUrl + "save_tipo_servicio"
+        tipoServicio.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        AF.request(url, method: .post, parameters: tipoServicio.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 201 {
+                    let tipoServicio: TipoServicioModel = try! JSONDecoder().decode(TipoServicioModel.self, from: response.data!)
+                    delegate.successSavingServicio(tipoServicio: tipoServicio)
+                    return
+                }
+            }
+            
+            delegate.errorSavingServicio()
         }
     }
 }

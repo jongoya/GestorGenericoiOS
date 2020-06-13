@@ -49,6 +49,13 @@
 		FB3E4B65243649CA009DB88B /* list_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3E4B64243649CA009DB88B /* list_icon.png */; };
 		FB3E4B6824364E60009DB88B /* AddServicioProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3E4B6724364E60009DB88B /* AddServicioProtocol.swift */; };
 		FB3E4B6B24364EFD009DB88B /* ServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3E4B6A24364EFD009DB88B /* ServicesManager.swift */; };
+		FB43BF192494D9610035BA87 /* GetTipoServiciosProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB43BF182494D9610035BA87 /* GetTipoServiciosProtocol.swift */; };
+		FB43BF1B2494DBA80035BA87 /* AddTipoServicioProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB43BF1A2494DBA80035BA87 /* AddTipoServicioProtocol.swift */; };
+		FB43BF1D2494E5180035BA87 /* AddNuevoServicioProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB43BF1C2494E5180035BA87 /* AddNuevoServicioProtocol.swift */; };
+		FB43BF1F2494E92B0035BA87 /* UpdateServicioProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB43BF1E2494E92B0035BA87 /* UpdateServicioProtocol.swift */; };
+		FB43BF212494F4310035BA87 /* UpdateClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB43BF202494F4310035BA87 /* UpdateClientProtocol.swift */; };
+		FB43BF232494F8C80035BA87 /* GetServiciosProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB43BF222494F8C80035BA87 /* GetServiciosProtocol.swift */; };
+		FB43BF252494FBF60035BA87 /* UpdateNotificacionPersonalizadaProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB43BF242494FBF60035BA87 /* UpdateNotificacionPersonalizadaProtocol.swift */; };
 		FB486E44243DB801009EBF26 /* AgendaClientItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB486E43243DB801009EBF26 /* AgendaClientItemView.swift */; };
 		FB486E46243DC7D4009EBF26 /* ClientItemViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB486E45243DC7D4009EBF26 /* ClientItemViewProtocol.swift */; };
 		FB486E49243DDF75009EBF26 /* AgendaServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB486E48243DDF75009EBF26 /* AgendaServiceViewController.swift */; };
@@ -206,6 +213,13 @@
 		FB3E4B64243649CA009DB88B /* list_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_icon.png; sourceTree = "<group>"; };
 		FB3E4B6724364E60009DB88B /* AddServicioProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddServicioProtocol.swift; sourceTree = "<group>"; };
 		FB3E4B6A24364EFD009DB88B /* ServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesManager.swift; sourceTree = "<group>"; };
+		FB43BF182494D9610035BA87 /* GetTipoServiciosProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTipoServiciosProtocol.swift; sourceTree = "<group>"; };
+		FB43BF1A2494DBA80035BA87 /* AddTipoServicioProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTipoServicioProtocol.swift; sourceTree = "<group>"; };
+		FB43BF1C2494E5180035BA87 /* AddNuevoServicioProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNuevoServicioProtocol.swift; sourceTree = "<group>"; };
+		FB43BF1E2494E92B0035BA87 /* UpdateServicioProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateServicioProtocol.swift; sourceTree = "<group>"; };
+		FB43BF202494F4310035BA87 /* UpdateClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateClientProtocol.swift; sourceTree = "<group>"; };
+		FB43BF222494F8C80035BA87 /* GetServiciosProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetServiciosProtocol.swift; sourceTree = "<group>"; };
+		FB43BF242494FBF60035BA87 /* UpdateNotificacionPersonalizadaProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificacionPersonalizadaProtocol.swift; sourceTree = "<group>"; };
 		FB486E43243DB801009EBF26 /* AgendaClientItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaClientItemView.swift; sourceTree = "<group>"; };
 		FB486E45243DC7D4009EBF26 /* ClientItemViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientItemViewProtocol.swift; sourceTree = "<group>"; };
 		FB486E48243DDF75009EBF26 /* AgendaServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaServiceViewController.swift; sourceTree = "<group>"; };
@@ -1336,6 +1350,13 @@
 				FB17F05B2493CF3100F0BC39 /* DeleteEmpleadoProtocol.swift */,
 				FB17F05D2493D24F00F0BC39 /* AddEmpleadoProtocol.swift */,
 				FB17F05F2493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift */,
+				FB43BF182494D9610035BA87 /* GetTipoServiciosProtocol.swift */,
+				FB43BF1A2494DBA80035BA87 /* AddTipoServicioProtocol.swift */,
+				FB43BF1C2494E5180035BA87 /* AddNuevoServicioProtocol.swift */,
+				FB43BF1E2494E92B0035BA87 /* UpdateServicioProtocol.swift */,
+				FB43BF202494F4310035BA87 /* UpdateClientProtocol.swift */,
+				FB43BF222494F8C80035BA87 /* GetServiciosProtocol.swift */,
+				FB43BF242494FBF60035BA87 /* UpdateNotificacionPersonalizadaProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1534,6 +1555,7 @@
 				FB17F0562493846F00F0BC39 /* ClientMasServicios.swift in Sources */,
 				FBE4C1C72460340F00351452 /* UserPreferences.swift in Sources */,
 				FB0B1B2A2492566E00703E32 /* AppStyle.swift in Sources */,
+				FB43BF252494FBF60035BA87 /* UpdateNotificacionPersonalizadaProtocol.swift in Sources */,
 				FB57F2FC2434857E00192230 /* ClientCell.swift in Sources */,
 				FB2B26D52456EC790017D9CA /* ClientesJsonManager.swift in Sources */,
 				FBEA8504245AE263004E96FC /* CloudEliminarServiceProtocol.swift in Sources */,
@@ -1545,6 +1567,7 @@
 				FBDF1BB2244F2887004DDD3F /* CierreCajaViewController.swift in Sources */,
 				FB14CECA24409760000CBE77 /* SettingsViewController.swift in Sources */,
 				FB4C4456248FB2C700C5CFE9 /* LoginModel.swift in Sources */,
+				FB43BF1D2494E5180035BA87 /* AddNuevoServicioProtocol.swift in Sources */,
 				FB3E4B4A2435D20C009DB88B /* DatePickerSelectorViewController.swift in Sources */,
 				FB3E4B532435EEC9009DB88B /* ClientDetailViewController.swift in Sources */,
 				FB53D697245462BE00331817 /* CadenciaNotificationCell.swift in Sources */,
@@ -1554,6 +1577,7 @@
 				FBBC448E2448850F0016431E /* CloudDatabaseHelper.swift in Sources */,
 				FBB4F83824599DA400278161 /* CloudClientManagerProtocol.swift in Sources */,
 				FB3E4B4D2435D3D0009DB88B /* DatePickerSelectorProtocol.swift in Sources */,
+				FB43BF192494D9610035BA87 /* GetTipoServiciosProtocol.swift in Sources */,
 				FB57F30524349DDD00192230 /* FieldViewController.swift in Sources */,
 				FB6493F824338C0900503627 /* AppDelegate.swift in Sources */,
 				FBF3DF55244256890015BD32 /* AgendaSettingsViewController.swift in Sources */,
@@ -1562,6 +1586,7 @@
 				FBDF1BC0244F6FEE004DDD3F /* StadisticasCajaViewController.swift in Sources */,
 				FB17F0602493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift in Sources */,
 				FB17F0632493D77700F0BC39 /* EmpleadoMasServicios.swift in Sources */,
+				FB43BF212494F4310035BA87 /* UpdateClientProtocol.swift in Sources */,
 				FB57F2F7243481EF00192230 /* DatabaseManager.swift in Sources */,
 				FBE58D3D249036410060004E /* LoginProtocol.swift in Sources */,
 				FBEA8502245AC657004E96FC /* CloudNotificacionPersonalizadaProtocol.swift in Sources */,
@@ -1577,7 +1602,9 @@
 				FB9DECFA2449980700614CD2 /* CloudClientManager.swift in Sources */,
 				FB9A8E252444911C00E0A9E4 /* AddTipoServicioViewController.swift in Sources */,
 				FB9EED9A244DC5E200B04E49 /* CloudServiceManagerProtocol.swift in Sources */,
+				FB43BF1B2494DBA80035BA87 /* AddTipoServicioProtocol.swift in Sources */,
 				FB5F7D72243F1EAC00503E9B /* NotificationsManager.swift in Sources */,
+				FB43BF1F2494E92B0035BA87 /* UpdateServicioProtocol.swift in Sources */,
 				FB486E44243DB801009EBF26 /* AgendaClientItemView.swift in Sources */,
 				FBB59DF52450438B005E5EB0 /* StadisticaModel.swift in Sources */,
 				FB9A8E1C24447C5F00E0A9E4 /* ColorPickerProtocol.swift in Sources */,
@@ -1608,6 +1635,7 @@
 				FBDF1BBB244F5A68004DDD3F /* CloudCierreCajaManager.swift in Sources */,
 				FB88AE662443A0C100B21648 /* AddEmpleadoViewController.swift in Sources */,
 				FB2D05A5243791FB008B5A01 /* AgendaViewController.swift in Sources */,
+				FB43BF232494F8C80035BA87 /* GetServiciosProtocol.swift in Sources */,
 				FB64941C24339C3700503627 /* ListaClientesViewController.swift in Sources */,
 				FB3E4B63243648E9009DB88B /* ListSelectorCell.swift in Sources */,
 				FB5F7D7A243F290300503E9B /* NotificationFunctions.swift in Sources */,

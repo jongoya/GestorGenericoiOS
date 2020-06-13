@@ -50,11 +50,9 @@ extension AddTipoServicioViewController {
             CommonFunctions.showGenericAlertMessage(mensaje: "Debe escribir un nombre para el servicio", viewController: self)
             return
         }
+        
         CommonFunctions.showLoadingStateView(descriptionText: "Guardando servicio")
-        
-        servicio.servicioId = Int64(Date().timeIntervalSince1970)
-        
-        Constants.cloudDatabaseManager.tipoServicioManager.saveTipoServicio(tipoServicio: servicio, delegate: self)
+        WebServices.addTipoServicio(tipoServicio: servicio, delegate: self)
     }
 }
 
@@ -65,14 +63,44 @@ extension AddTipoServicioViewController: AddClientInputFieldProtocol {
     }
 }
 
+extension AddTipoServicioViewController: AddTipoServicioProtocol {
+    func successSavingServicio(tipoServicio: TipoServicioModel) {
+        Constants.databaseManager.tipoServiciosManager.addTipoServicioToDatabase(servicio: tipoServicio)
+        DispatchQueue.main.async {
+            CommonFunctions.hideLoadingStateView()
+            self.navigationController!.popViewController(animated: true)
+        }
+    }
+    
+    func errorSavingServicio() {
+        DispatchQueue.main.async {
+            CommonFunctions.hideLoadingStateView()
+            CommonFunctions.showGenericAlertMessage(mensaje: "Error guardando servicio", viewController: self)
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 extension AddTipoServicioViewController: CloudTipoServiciosProtocol {
     func tipoServiciosSincronizationFinished() {
         print("EXITO GUARDANDO TIPO SERVICIO")
-        if !Constants.databaseManager.tipoServiciosManager.addTipoServicioToDatabase(servicio: servicio) {
-            CommonFunctions.showGenericAlertMessage(mensaje: "Error guardando el nuevo servicio, inténtelo de nuevo", viewController: self)
-            return
-        }
-        
+        Constants.databaseManager.tipoServiciosManager.addTipoServicioToDatabase(servicio: servicio)
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()
             self.navigationController!.popViewController(animated: true)

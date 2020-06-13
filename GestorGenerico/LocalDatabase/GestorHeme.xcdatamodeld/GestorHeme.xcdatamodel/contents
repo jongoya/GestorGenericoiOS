@@ -45,17 +45,18 @@
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Servicio" representedClassName="Servicio" syncable="YES" codeGenerationType="class">
-        <attribute name="apellidos" optional="YES" attributeType="String"/>
+        <attribute name="comercioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="empleadoId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="fecha" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="idCliente" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="idServicio" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="isEfectivo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="observaciones" optional="YES" attributeType="String"/>
         <attribute name="precio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="profesional" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="servicio" optional="YES" attributeType="Transformable"/>
+        <attribute name="servicios" optional="YES" attributeType="Transformable"/>
     </entity>
     <entity name="TipoServicios" representedClassName="TipoServicios" syncable="YES" codeGenerationType="class">
+        <attribute name="comercioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
         <attribute name="servicioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
@@ -65,6 +66,6 @@
         <element name="Empleado" positionX="-54" positionY="81" width="128" height="208"/>
         <element name="Notifications" positionX="-54" positionY="81" width="128" height="133"/>
         <element name="Servicio" positionX="-45" positionY="63" width="128" height="178"/>
-        <element name="TipoServicios" positionX="-45" positionY="90" width="128" height="73"/>
+        <element name="TipoServicios" positionX="-45" positionY="90" width="128" height="88"/>
     </elements>
 </model>

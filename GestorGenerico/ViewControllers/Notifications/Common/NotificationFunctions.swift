@@ -252,7 +252,7 @@ class NotificationFunctions: NSObject {
         notification.leido = false
         notification.type = Constants.notificacionCadenciaIdentifier
         _ = Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notification)
-        Constants.cloudDatabaseManager.notificationManager.saveNotification(notification: notification, delegate: nil)
+        //Constants.cloudDatabaseManager.notificationManager.saveNotification(notification: notification, delegate: nil)
     }
     
     static func createNotificacionPersonalizada(fecha: Int64, clientId: Int64, descripcion: String) -> NotificationModel {

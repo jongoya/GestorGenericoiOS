@@ -473,13 +473,7 @@ extension AgendaViewController: AgendaServiceProtocol {
 
 extension AgendaViewController: CloudEliminarServiceProtocol {
     func serviceEliminado(service: ServiceModel) {
-        if !Constants.databaseManager.servicesManager.deleteService(service: service) {
-            DispatchQueue.main.async {
-                CommonFunctions.hideLoadingStateView()
-                CommonFunctions.showGenericAlertMessage(mensaje: "Error eliminando servicio, intentelo de nuevo", viewController: self)
-            }
-            return
-        }
+        Constants.databaseManager.servicesManager.deleteService(service: service)
         
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()

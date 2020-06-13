@@ -122,12 +122,7 @@ class ServicesManager: NSObject {
                 results = try mainContext.fetch(fetchRequest)
                 if results.count != 0 {
                     let coreService: NSManagedObject = results.first!
-                    coreService.setValue(service.fecha, forKey: "fecha")
-                    coreService.setValue(service.empleadoId, forKey: "profesional")
-                    coreService.setValue(service.servicios, forKey: "servicio")
-                    coreService.setValue(service.precio, forKey: "precio")
-                    coreService.setValue(service.observaciones, forKey: "observaciones")
-                    
+                    databaseHelper.setCoreDataObjectDataFromService(coreDataObject: coreService, newService: service)
                     try mainContext.save()
                 }
             } catch {
@@ -144,12 +139,10 @@ class ServicesManager: NSObject {
         return allServices
     }
     
-    func deleteService(service: ServiceModel) -> Bool {
+    func deleteService(service: ServiceModel) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: SERVICES_ENTITY_NAME)
         fetchRequest.predicate = NSPredicate(format: "idServicio = %f", argumentArray: [service.serviceId])
         var results: [NSManagedObject] = []
-        
-        var result: Bool = false
         backgroundContext.performAndWait {
             do {
                 results = try backgroundContext.fetch(fetchRequest)
@@ -159,12 +152,9 @@ class ServicesManager: NSObject {
                 }
                 
                 try backgroundContext.save()
-                result = true
             } catch {
             }
         }
-
-        return result
     }
     
     func updateEmpleadoIdForServices(oldEmpleadoId: Int64, newEmpleadoId: Int64) {

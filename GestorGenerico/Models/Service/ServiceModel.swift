@@ -25,15 +25,15 @@ class ServiceModel: Codable {
         case fecha = "fecha"
         case empleadoId = "empleadoId"
         case servicios = "servicios"
-        case observaciones = "observaciones"
+        case observaciones = "observacion"
         case precio = "precio"
         case comercioId = "comercioId"
-        case isEfectivo = "isEfectivo"
+        case isEfectivo = "efectivo"
     }
 }
 
 extension ServiceModel {
     func createJson() -> [String : Any] {
-        return ["clientId" : clientId, "serviceId" : serviceId, "fecha" : fecha, "empleadoId" : empleadoId, "servicios" : servicios, "observaciones" : observaciones, "precio" : precio, "comercioId" : comercioId, "isEfectivo" : isEfectivo]
+        return ["clientId" : clientId, "serviceId" : serviceId, "fecha" : fecha, "empleadoId" : empleadoId, "servicios" : servicios, "observacion" : observaciones, "precio" : precio, "comercioId" : comercioId, "efectivo" : isEfectivo]
     }
 }

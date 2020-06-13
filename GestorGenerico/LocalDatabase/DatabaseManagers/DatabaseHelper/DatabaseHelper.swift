@@ -50,7 +50,7 @@ class DatabaseHelper: NSObject {
         service.serviceId = coreObject.value(forKey: "idServicio") as! Int64
         service.fecha = coreObject.value(forKey: "fecha") as! Int64
         service.empleadoId = coreObject.value(forKey: "empleadoId") as! Int64
-        service.servicios = coreObject.value(forKey: "servicio") as! [Int64]
+        service.servicios = coreObject.value(forKey: "servicios") as! [Int64]
         service.precio = coreObject.value(forKey: "precio") as! Double
         service.observaciones = coreObject.value(forKey: "observaciones") as! String
         service.comercioId = coreObject.value(forKey: "comercioId") as! Int64
@@ -141,6 +141,7 @@ class DatabaseHelper: NSObject {
         let servicio: TipoServicioModel = TipoServicioModel()
         servicio.servicioId = coreObject.value(forKey: "servicioId") as! Int64
         servicio.nombre = coreObject.value(forKey: "nombre") as! String
+        servicio.comercioId = coreObject.value(forKey: "comercioId") as! Int64
         
         return servicio
     }
@@ -148,6 +149,7 @@ class DatabaseHelper: NSObject {
     func setCoreDataObjectDataFromTipoServicio(coreDataObject: NSManagedObject, newServicio: TipoServicioModel) {
         coreDataObject.setValue(newServicio.servicioId, forKey: "servicioId")
         coreDataObject.setValue(newServicio.nombre, forKey: "nombre")
+        coreDataObject.setValue(newServicio.comercioId, forKey: "comercioId")
     }
     
     func parseCierreCajaCoreObjectToCierreCajaModel(coreObject: NSManagedObject) -> CierreCajaModel {

@@ -193,7 +193,8 @@ extension NotificationDetailViewController: MFMessageComposeViewControllerDelega
     }
 }
 
-extension NotificationDetailViewController: CloudNotificationProtocol {
+//TODO
+/*extension NotificationDetailViewController: CloudNotificationProtocol {
     func notificacionSincronizationFinished() {
         _ = Constants.databaseManager.notificationsManager.markNotificationAsRead(notification: notification)
         DispatchQueue.main.async {
@@ -208,4 +209,4 @@ extension NotificationDetailViewController: CloudNotificationProtocol {
             CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando notificación", viewController: self)
         }
     }
-}
+}*/

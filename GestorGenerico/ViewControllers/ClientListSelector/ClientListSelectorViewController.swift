@@ -110,7 +110,7 @@ extension ClientListSelectorViewController {
     }
     
     @objc func refreshClients() {
-        Constants.cloudDatabaseManager.clientManager.getClients(delegate: self)
+        WebServices.getClientes(comercioId: UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64, delegate: self)
     }
 }
 
@@ -164,17 +164,18 @@ extension ClientListSelectorViewController: UITextFieldDelegate {
     }
 }
 
-extension ClientListSelectorViewController: CloudClientManagerProtocol {
-    func clientSincronizationFinished() {
+extension ClientListSelectorViewController: ListaClientesProtocol {
+    func successGettingClients() {
         DispatchQueue.main.async {
             self.tableRefreshControl.endRefreshing()
             self.getClients()
         }
     }
     
-    func clientSincronizationError(error: String) {
+    func errorGettingClients() {
         DispatchQueue.main.async {
-            CommonFunctions.showGenericAlertMessage(mensaje: error, viewController: self)
+            self.tableRefreshControl.endRefreshing()
+            CommonFunctions.showGenericAlertMessage(mensaje: "Error sincronizando clientes", viewController: self)
         }
     }
 }

@@ -111,7 +111,6 @@
 		FB8329E32490FA00003B8009 /* LoginMasDispositivosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8329E22490FA00003B8009 /* LoginMasDispositivosModel.swift */; };
 		FB88AE632443939F00B21648 /* EmpleadosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88AE622443939F00B21648 /* EmpleadosViewController.swift */; };
 		FB88AE662443A0C100B21648 /* AddEmpleadoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88AE652443A0C100B21648 /* AddEmpleadoViewController.swift */; };
-		FB8B4F0E2455A9DC00A8097D /* CloudNotificationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8B4F0D2455A9DC00A8097D /* CloudNotificationProtocol.swift */; };
 		FB8B4F102455B6F900A8097D /* campana.png in Resources */ = {isa = PBXBuildFile; fileRef = FB8B4F0F2455B6F900A8097D /* campana.png */; };
 		FB8B4F122455F19C00A8097D /* personalizada.png in Resources */ = {isa = PBXBuildFile; fileRef = FB8B4F112455F19C00A8097D /* personalizada.png */; };
 		FB9A8E1C24447C5F00E0A9E4 /* ColorPickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A8E1B24447C5F00E0A9E4 /* ColorPickerProtocol.swift */; };
@@ -119,15 +118,7 @@
 		FB9A8E2224448D8F00E0A9E4 /* ServicioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A8E2124448D8F00E0A9E4 /* ServicioTableViewCell.swift */; };
 		FB9A8E252444911C00E0A9E4 /* AddTipoServicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A8E242444911C00E0A9E4 /* AddTipoServicioViewController.swift */; };
 		FB9A8E272444961700E0A9E4 /* sync.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8E262444961700E0A9E4 /* sync.png */; };
-		FB9DECFA2449980700614CD2 /* CloudClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9DECF92449980700614CD2 /* CloudClientManager.swift */; };
-		FB9DECFD2449995000614CD2 /* CloudServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9DECFC2449995000614CD2 /* CloudServiceManager.swift */; };
-		FB9DED0024499A6400614CD2 /* CloudNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9DECFF24499A6400614CD2 /* CloudNotificationManager.swift */; };
-		FB9DED0324499B1400614CD2 /* CloudTipoServicioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9DED0224499B1400614CD2 /* CloudTipoServicioManager.swift */; };
-		FB9DED0624499B9800614CD2 /* CloudEmpleadoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9DED0524499B9800614CD2 /* CloudEmpleadoManager.swift */; };
 		FB9EA5092433A9CF005B9F52 /* ClientesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9EA5082433A9CF005B9F52 /* ClientesManager.swift */; };
-		FB9EED94244DC0E500B04E49 /* CloudEmpleadoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9EED93244DC0E500B04E49 /* CloudEmpleadoProtocol.swift */; };
-		FB9EED97244DC2AE00B04E49 /* CloudTipoServiciosProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9EED96244DC2AE00B04E49 /* CloudTipoServiciosProtocol.swift */; };
-		FB9EED9A244DC5E200B04E49 /* CloudServiceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9EED99244DC5E200B04E49 /* CloudServiceManagerProtocol.swift */; };
 		FBA3008E246D5DEA000F1B86 /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA3008D246D5DEA000F1B86 /* add_image.png */; };
 		FBA783FD245C359000FDF557 /* AddClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA783FC245C359000FDF557 /* AddClientProtocol.swift */; };
 		FBAA2A8A243B45EF009DE78B /* MonthDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2A89243B45EF009DE78B /* MonthDayModel.swift */; };
@@ -138,14 +129,11 @@
 		FBAB77D12451D594001C5F4E /* BirthdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB77D02451D594001C5F4E /* BirthdayModel.swift */; };
 		FBAB77D324520477001C5F4E /* notification_cumple.png in Resources */ = {isa = PBXBuildFile; fileRef = FBAB77D224520477001C5F4E /* notification_cumple.png */; };
 		FBB4F832245992EA00278161 /* AgendaServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4F831245992EA00278161 /* AgendaServiceProtocol.swift */; };
-		FBB4F83824599DA400278161 /* CloudClientManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4F83724599DA400278161 /* CloudClientManagerProtocol.swift */; };
 		FBB59DF22450429E005E5EB0 /* StadisticaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF12450429E005E5EB0 /* StadisticaView.swift */; };
 		FBB59DF52450438B005E5EB0 /* StadisticaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF42450438B005E5EB0 /* StadisticaModel.swift */; };
 		FBB59DF824509A64005E5EB0 /* StadisticasFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF724509A64005E5EB0 /* StadisticasFunctions.swift */; };
 		FBB59DFA2450B1E4005E5EB0 /* AxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF92450B1E4005E5EB0 /* AxisFormatter.swift */; };
 		FBB84FB72445B18B0004CE5F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB84FB62445B18A0004CE5F /* CloudKit.framework */; };
-		FBBC448C2448845A0016431E /* CloudDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC448B2448845A0016431E /* CloudDatabaseManager.swift */; };
-		FBBC448E2448850F0016431E /* CloudDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC448D2448850F0016431E /* CloudDatabaseHelper.swift */; };
 		FBC164C5243C7E08003C631D /* AgendaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC164C4243C7E08003C631D /* AgendaItemView.swift */; };
 		FBC164C8243CFE99003C631D /* AgendaItemViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC164C7243CFE99003C631D /* AgendaItemViewProtocol.swift */; };
 		FBD88E102447127900BC51DB /* CarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD88E0F2447127900BC51DB /* CarouselItem.swift */; };
@@ -153,16 +141,11 @@
 		FBDF1BB2244F2887004DDD3F /* CierreCajaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF1BB1244F2887004DDD3F /* CierreCajaViewController.swift */; };
 		FBDF1BB5244F55E8004DDD3F /* CierreCajaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF1BB4244F55E8004DDD3F /* CierreCajaManager.swift */; };
 		FBDF1BB8244F5669004DDD3F /* CierreCajaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF1BB7244F5669004DDD3F /* CierreCajaModel.swift */; };
-		FBDF1BBB244F5A68004DDD3F /* CloudCierreCajaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF1BBA244F5A68004DDD3F /* CloudCierreCajaManager.swift */; };
 		FBDF1BBD244F6F20004DDD3F /* StadisticasCaja.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBDF1BBC244F6F20004DDD3F /* StadisticasCaja.storyboard */; };
 		FBDF1BC0244F6FEE004DDD3F /* StadisticasCajaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF1BBF244F6FEE004DDD3F /* StadisticasCajaViewController.swift */; };
 		FBE4C1C72460340F00351452 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE4C1C62460340F00351452 /* UserPreferences.swift */; };
 		FBE58D3A24902FA90060004E /* EstiloLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE58D3924902FA90060004E /* EstiloLoginModel.swift */; };
 		FBE58D3D249036410060004E /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE58D3C249036410060004E /* LoginProtocol.swift */; };
-		FBEA8502245AC657004E96FC /* CloudNotificacionPersonalizadaProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEA8501245AC657004E96FC /* CloudNotificacionPersonalizadaProtocol.swift */; };
-		FBEA8504245AE263004E96FC /* CloudEliminarServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEA8503245AE263004E96FC /* CloudEliminarServiceProtocol.swift */; };
-		FBEA8507245AE5DE004E96FC /* CloudCierreCajaProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEA8506245AE5DE004E96FC /* CloudCierreCajaProtocol.swift */; };
-		FBEA850A245AF476004E96FC /* CloudEliminarNotificationsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEA8509245AF476004E96FC /* CloudEliminarNotificationsProtocol.swift */; };
 		FBF3DF55244256890015BD32 /* AgendaSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF3DF54244256890015BD32 /* AgendaSettingsViewController.swift */; };
 		FBF3DF57244257A20015BD32 /* pincel.png in Resources */ = {isa = PBXBuildFile; fileRef = FBF3DF56244257A20015BD32 /* pincel.png */; };
 		FBFB5F82244A01D7000DC77F /* PickerSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFB5F81244A01D7000DC77F /* PickerSelectorViewController.swift */; };
@@ -281,7 +264,6 @@
 		FB8329E22490FA00003B8009 /* LoginMasDispositivosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMasDispositivosModel.swift; sourceTree = "<group>"; };
 		FB88AE622443939F00B21648 /* EmpleadosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadosViewController.swift; sourceTree = "<group>"; };
 		FB88AE652443A0C100B21648 /* AddEmpleadoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmpleadoViewController.swift; sourceTree = "<group>"; };
-		FB8B4F0D2455A9DC00A8097D /* CloudNotificationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudNotificationProtocol.swift; sourceTree = "<group>"; };
 		FB8B4F0F2455B6F900A8097D /* campana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = campana.png; sourceTree = "<group>"; };
 		FB8B4F112455F19C00A8097D /* personalizada.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personalizada.png; sourceTree = "<group>"; };
 		FB9A8E1B24447C5F00E0A9E4 /* ColorPickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerProtocol.swift; sourceTree = "<group>"; };
@@ -289,15 +271,7 @@
 		FB9A8E2124448D8F00E0A9E4 /* ServicioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicioTableViewCell.swift; sourceTree = "<group>"; };
 		FB9A8E242444911C00E0A9E4 /* AddTipoServicioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTipoServicioViewController.swift; sourceTree = "<group>"; };
 		FB9A8E262444961700E0A9E4 /* sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sync.png; sourceTree = "<group>"; };
-		FB9DECF92449980700614CD2 /* CloudClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudClientManager.swift; sourceTree = "<group>"; };
-		FB9DECFC2449995000614CD2 /* CloudServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudServiceManager.swift; sourceTree = "<group>"; };
-		FB9DECFF24499A6400614CD2 /* CloudNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudNotificationManager.swift; sourceTree = "<group>"; };
-		FB9DED0224499B1400614CD2 /* CloudTipoServicioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTipoServicioManager.swift; sourceTree = "<group>"; };
-		FB9DED0524499B9800614CD2 /* CloudEmpleadoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudEmpleadoManager.swift; sourceTree = "<group>"; };
 		FB9EA5082433A9CF005B9F52 /* ClientesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientesManager.swift; sourceTree = "<group>"; };
-		FB9EED93244DC0E500B04E49 /* CloudEmpleadoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudEmpleadoProtocol.swift; sourceTree = "<group>"; };
-		FB9EED96244DC2AE00B04E49 /* CloudTipoServiciosProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTipoServiciosProtocol.swift; sourceTree = "<group>"; };
-		FB9EED99244DC5E200B04E49 /* CloudServiceManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudServiceManagerProtocol.swift; sourceTree = "<group>"; };
 		FBA3008D246D5DEA000F1B86 /* add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_image.png; sourceTree = "<group>"; };
 		FBA783FC245C359000FDF557 /* AddClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClientProtocol.swift; sourceTree = "<group>"; };
 		FBAA2A89243B45EF009DE78B /* MonthDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDayModel.swift; sourceTree = "<group>"; };
@@ -308,14 +282,11 @@
 		FBAB77D02451D594001C5F4E /* BirthdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayModel.swift; sourceTree = "<group>"; };
 		FBAB77D224520477001C5F4E /* notification_cumple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_cumple.png; sourceTree = "<group>"; };
 		FBB4F831245992EA00278161 /* AgendaServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaServiceProtocol.swift; sourceTree = "<group>"; };
-		FBB4F83724599DA400278161 /* CloudClientManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudClientManagerProtocol.swift; sourceTree = "<group>"; };
 		FBB59DF12450429E005E5EB0 /* StadisticaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaView.swift; sourceTree = "<group>"; };
 		FBB59DF42450438B005E5EB0 /* StadisticaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaModel.swift; sourceTree = "<group>"; };
 		FBB59DF724509A64005E5EB0 /* StadisticasFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticasFunctions.swift; sourceTree = "<group>"; };
 		FBB59DF92450B1E4005E5EB0 /* AxisFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisFormatter.swift; sourceTree = "<group>"; };
 		FBB84FB62445B18A0004CE5F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		FBBC448B2448845A0016431E /* CloudDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudDatabaseManager.swift; sourceTree = "<group>"; };
-		FBBC448D2448850F0016431E /* CloudDatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudDatabaseHelper.swift; sourceTree = "<group>"; };
 		FBC164C4243C7E08003C631D /* AgendaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItemView.swift; sourceTree = "<group>"; };
 		FBC164C7243CFE99003C631D /* AgendaItemViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItemViewProtocol.swift; sourceTree = "<group>"; };
 		FBD88E0F2447127900BC51DB /* CarouselItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselItem.swift; sourceTree = "<group>"; };
@@ -323,16 +294,11 @@
 		FBDF1BB1244F2887004DDD3F /* CierreCajaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CierreCajaViewController.swift; sourceTree = "<group>"; };
 		FBDF1BB4244F55E8004DDD3F /* CierreCajaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CierreCajaManager.swift; sourceTree = "<group>"; };
 		FBDF1BB7244F5669004DDD3F /* CierreCajaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CierreCajaModel.swift; sourceTree = "<group>"; };
-		FBDF1BBA244F5A68004DDD3F /* CloudCierreCajaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudCierreCajaManager.swift; sourceTree = "<group>"; };
 		FBDF1BBC244F6F20004DDD3F /* StadisticasCaja.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StadisticasCaja.storyboard; sourceTree = "<group>"; };
 		FBDF1BBF244F6FEE004DDD3F /* StadisticasCajaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticasCajaViewController.swift; sourceTree = "<group>"; };
 		FBE4C1C62460340F00351452 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		FBE58D3924902FA90060004E /* EstiloLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstiloLoginModel.swift; sourceTree = "<group>"; };
 		FBE58D3C249036410060004E /* LoginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
-		FBEA8501245AC657004E96FC /* CloudNotificacionPersonalizadaProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudNotificacionPersonalizadaProtocol.swift; sourceTree = "<group>"; };
-		FBEA8503245AE263004E96FC /* CloudEliminarServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudEliminarServiceProtocol.swift; sourceTree = "<group>"; };
-		FBEA8506245AE5DE004E96FC /* CloudCierreCajaProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudCierreCajaProtocol.swift; sourceTree = "<group>"; };
-		FBEA8509245AF476004E96FC /* CloudEliminarNotificationsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudEliminarNotificationsProtocol.swift; sourceTree = "<group>"; };
 		FBF3DF54244256890015BD32 /* AgendaSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaSettingsViewController.swift; sourceTree = "<group>"; };
 		FBF3DF56244257A20015BD32 /* pincel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pincel.png; sourceTree = "<group>"; };
 		FBFB5F81244A01D7000DC77F /* PickerSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectorViewController.swift; sourceTree = "<group>"; };
@@ -856,7 +822,6 @@
 				FB64941024338E2E00503627 /* Common */,
 				FB64940F24338E2600503627 /* ViewControllers */,
 				FB64940E24338E1900503627 /* LocalDatabase */,
-				FBBC448A2448843E0016431E /* CloudDatabase */,
 				FB6493F724338C0900503627 /* AppDelegate.swift */,
 				FB6493F924338C0900503627 /* SceneDelegate.swift */,
 				FB64940324338C0C00503627 /* Assets.xcassets */,
@@ -1033,16 +998,6 @@
 			path = AddEmpleado;
 			sourceTree = "<group>";
 		};
-		FB8B4F0C2455A9C100A8097D /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				FB8B4F0D2455A9DC00A8097D /* CloudNotificationProtocol.swift */,
-				FBEA8501245AC657004E96FC /* CloudNotificacionPersonalizadaProtocol.swift */,
-				FBEA8509245AF476004E96FC /* CloudEliminarNotificationsProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		FB9A8E1A24447C4D00E0A9E4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -1076,64 +1031,6 @@
 			path = AddTipoServicio;
 			sourceTree = "<group>";
 		};
-		FB9DECF7244997E100614CD2 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				FBDF1BB9244F5A4D004DDD3F /* CloudCierreCajaManager */,
-				FB9DED0424499B8400614CD2 /* EmpleadoManager */,
-				FB9DED0124499AFB00614CD2 /* TipoServicioManager */,
-				FB9DECFE24499A4A00614CD2 /* NotificationManager */,
-				FB9DECFB2449993700614CD2 /* ServiceManager */,
-				FB9DECF8244997EA00614CD2 /* ClientManager */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		FB9DECF8244997EA00614CD2 /* ClientManager */ = {
-			isa = PBXGroup;
-			children = (
-				FBB4F83624599D8900278161 /* Protocols */,
-				FB9DECF92449980700614CD2 /* CloudClientManager.swift */,
-			);
-			path = ClientManager;
-			sourceTree = "<group>";
-		};
-		FB9DECFB2449993700614CD2 /* ServiceManager */ = {
-			isa = PBXGroup;
-			children = (
-				FB9EED98244DC5CA00B04E49 /* Protocols */,
-				FB9DECFC2449995000614CD2 /* CloudServiceManager.swift */,
-			);
-			path = ServiceManager;
-			sourceTree = "<group>";
-		};
-		FB9DECFE24499A4A00614CD2 /* NotificationManager */ = {
-			isa = PBXGroup;
-			children = (
-				FB8B4F0C2455A9C100A8097D /* Protocols */,
-				FB9DECFF24499A6400614CD2 /* CloudNotificationManager.swift */,
-			);
-			path = NotificationManager;
-			sourceTree = "<group>";
-		};
-		FB9DED0124499AFB00614CD2 /* TipoServicioManager */ = {
-			isa = PBXGroup;
-			children = (
-				FB9EED95244DC29800B04E49 /* TipoServiciosProtocol */,
-				FB9DED0224499B1400614CD2 /* CloudTipoServicioManager.swift */,
-			);
-			path = TipoServicioManager;
-			sourceTree = "<group>";
-		};
-		FB9DED0424499B8400614CD2 /* EmpleadoManager */ = {
-			isa = PBXGroup;
-			children = (
-				FB9EED92244DC0C900B04E49 /* CloudEmpleadoProtocol */,
-				FB9DED0524499B9800614CD2 /* CloudEmpleadoManager.swift */,
-			);
-			path = EmpleadoManager;
-			sourceTree = "<group>";
-		};
 		FB9EA5072433A8E0005B9F52 /* DatabaseManagers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1142,31 +1039,6 @@
 				FB57F2F6243481EF00192230 /* DatabaseManager.swift */,
 			);
 			path = DatabaseManagers;
-			sourceTree = "<group>";
-		};
-		FB9EED92244DC0C900B04E49 /* CloudEmpleadoProtocol */ = {
-			isa = PBXGroup;
-			children = (
-				FB9EED93244DC0E500B04E49 /* CloudEmpleadoProtocol.swift */,
-			);
-			path = CloudEmpleadoProtocol;
-			sourceTree = "<group>";
-		};
-		FB9EED95244DC29800B04E49 /* TipoServiciosProtocol */ = {
-			isa = PBXGroup;
-			children = (
-				FB9EED96244DC2AE00B04E49 /* CloudTipoServiciosProtocol.swift */,
-			);
-			path = TipoServiciosProtocol;
-			sourceTree = "<group>";
-		};
-		FB9EED98244DC5CA00B04E49 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				FB9EED99244DC5E200B04E49 /* CloudServiceManagerProtocol.swift */,
-				FBEA8503245AE263004E96FC /* CloudEliminarServiceProtocol.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		FBA783FB245C357500FDF557 /* Protocols */ = {
@@ -1234,14 +1106,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		FBB4F83624599D8900278161 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				FBB4F83724599DA400278161 /* CloudClientManagerProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		FBB59DF02450427D005E5EB0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1265,16 +1129,6 @@
 				FBB59DF724509A64005E5EB0 /* StadisticasFunctions.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		FBBC448A2448843E0016431E /* CloudDatabase */ = {
-			isa = PBXGroup;
-			children = (
-				FB9DECF7244997E100614CD2 /* Managers */,
-				FBBC448B2448845A0016431E /* CloudDatabaseManager.swift */,
-				FBBC448D2448850F0016431E /* CloudDatabaseHelper.swift */,
-			);
-			path = CloudDatabase;
 			sourceTree = "<group>";
 		};
 		FBC164C1243C6C14003C631D /* Views */ = {
@@ -1320,15 +1174,6 @@
 			path = Caja;
 			sourceTree = "<group>";
 		};
-		FBDF1BB9244F5A4D004DDD3F /* CloudCierreCajaManager */ = {
-			isa = PBXGroup;
-			children = (
-				FBEA8505245AE5CF004E96FC /* Protocols */,
-				FBDF1BBA244F5A68004DDD3F /* CloudCierreCajaManager.swift */,
-			);
-			path = CloudCierreCajaManager;
-			sourceTree = "<group>";
-		};
 		FBDF1BBE244F6FD7004DDD3F /* StadisticasCaja */ = {
 			isa = PBXGroup;
 			children = (
@@ -1369,14 +1214,6 @@
 				FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */,
 				FB5002A12497D881004D278F /* AddCierreCajaProtocol.swift */,
 				FB5002A32497DA04004D278F /* DeleteNotificacionProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		FBEA8505245AE5CF004E96FC /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				FBEA8506245AE5DE004E96FC /* CloudCierreCajaProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1551,7 +1388,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBC164C5243C7E08003C631D /* AgendaItemView.swift in Sources */,
-				FB9DED0024499A6400614CD2 /* CloudNotificationManager.swift in Sources */,
 				FB88AE632443939F00B21648 /* EmpleadosViewController.swift in Sources */,
 				FB3E4B5824363FF0009DB88B /* ServiceModel.swift in Sources */,
 				FB8185AB24432D9F004697D3 /* EmpleadosManager.swift in Sources */,
@@ -1562,8 +1398,6 @@
 				FBAB77D12451D594001C5F4E /* BirthdayModel.swift in Sources */,
 				FB1FFF0B24953F8800AD9B17 /* GetNotificacionesProtocol.swift in Sources */,
 				FB8185B124434400004697D3 /* TipoServiciosManager.swift in Sources */,
-				FBEA8507245AE5DE004E96FC /* CloudCierreCajaProtocol.swift in Sources */,
-				FB9DED0624499B9800614CD2 /* CloudEmpleadoManager.swift in Sources */,
 				FB5F7D6F243F1DBE00503E9B /* NotificationCell.swift in Sources */,
 				FBFB5F85244A0251000DC77F /* PickerSelectorProtocol.swift in Sources */,
 				FB17F0562493846F00F0BC39 /* ClientMasServicios.swift in Sources */,
@@ -1572,7 +1406,6 @@
 				FB43BF252494FBF60035BA87 /* UpdateNotificacionPersonalizadaProtocol.swift in Sources */,
 				FB57F2FC2434857E00192230 /* ClientCell.swift in Sources */,
 				FB2B26D52456EC790017D9CA /* ClientesJsonManager.swift in Sources */,
-				FBEA8504245AE263004E96FC /* CloudEliminarServiceProtocol.swift in Sources */,
 				FBAB77CE2451C99C001C5F4E /* StadisticaDetailCell.swift in Sources */,
 				FB8185AE24433B6A004697D3 /* TipoServicioModel.swift in Sources */,
 				FBAA2A8A243B45EF009DE78B /* MonthDayModel.swift in Sources */,
@@ -1585,11 +1418,8 @@
 				FB3E4B4A2435D20C009DB88B /* DatePickerSelectorViewController.swift in Sources */,
 				FB3E4B532435EEC9009DB88B /* ClientDetailViewController.swift in Sources */,
 				FB53D697245462BE00331817 /* CadenciaNotificationCell.swift in Sources */,
-				FBBC448C2448845A0016431E /* CloudDatabaseManager.swift in Sources */,
 				FB6493FC24338C0900503627 /* RootViewController.swift in Sources */,
 				FBAA2A90243B4956009DE78B /* AgendaFunctions.swift in Sources */,
-				FBBC448E2448850F0016431E /* CloudDatabaseHelper.swift in Sources */,
-				FBB4F83824599DA400278161 /* CloudClientManagerProtocol.swift in Sources */,
 				FB3E4B4D2435D3D0009DB88B /* DatePickerSelectorProtocol.swift in Sources */,
 				FB43BF192494D9610035BA87 /* GetTipoServiciosProtocol.swift in Sources */,
 				FB57F30524349DDD00192230 /* FieldViewController.swift in Sources */,
@@ -1603,9 +1433,6 @@
 				FB43BF212494F4310035BA87 /* UpdateClientProtocol.swift in Sources */,
 				FB57F2F7243481EF00192230 /* DatabaseManager.swift in Sources */,
 				FBE58D3D249036410060004E /* LoginProtocol.swift in Sources */,
-				FBEA8502245AC657004E96FC /* CloudNotificacionPersonalizadaProtocol.swift in Sources */,
-				FB9DED0324499B1400614CD2 /* CloudTipoServicioManager.swift in Sources */,
-				FB8B4F0E2455A9DC00A8097D /* CloudNotificationProtocol.swift in Sources */,
 				FB9EA5092433A9CF005B9F52 /* ClientesManager.swift in Sources */,
 				FB5002A22497D881004D278F /* AddCierreCajaProtocol.swift in Sources */,
 				FBAB77CB2451C478001C5F4E /* StadisticaDetailViewController.swift in Sources */,
@@ -1615,9 +1442,7 @@
 				FBDF1BB8244F5669004DDD3F /* CierreCajaModel.swift in Sources */,
 				FB1FFF092495350A00AD9B17 /* DeleteServiceProtocol.swift in Sources */,
 				FBB59DF22450429E005E5EB0 /* StadisticaView.swift in Sources */,
-				FB9DECFA2449980700614CD2 /* CloudClientManager.swift in Sources */,
 				FB9A8E252444911C00E0A9E4 /* AddTipoServicioViewController.swift in Sources */,
-				FB9EED9A244DC5E200B04E49 /* CloudServiceManagerProtocol.swift in Sources */,
 				FB43BF1B2494DBA80035BA87 /* AddTipoServicioProtocol.swift in Sources */,
 				FB5F7D72243F1EAC00503E9B /* NotificationsManager.swift in Sources */,
 				FB43BF1F2494E92B0035BA87 /* UpdateServicioProtocol.swift in Sources */,
@@ -1633,8 +1458,6 @@
 				FBFB5F82244A01D7000DC77F /* PickerSelectorViewController.swift in Sources */,
 				FB486E46243DC7D4009EBF26 /* ClientItemViewProtocol.swift in Sources */,
 				FB3E4B5D2436456F009DB88B /* ListSelectorViewController.swift in Sources */,
-				FB9EED97244DC2AE00B04E49 /* CloudTipoServiciosProtocol.swift in Sources */,
-				FB9EED94244DC0E500B04E49 /* CloudEmpleadoProtocol.swift in Sources */,
 				FB8329DD2490F32D003B8009 /* DeviceExtension.swift in Sources */,
 				FB57F2F324347F2100192230 /* ClientModel.swift in Sources */,
 				FB8185A224432167004697D3 /* EmpleadoModel.swift in Sources */,
@@ -1648,7 +1471,6 @@
 				FBC164C8243CFE99003C631D /* AgendaItemViewProtocol.swift in Sources */,
 				FB64940224338C0900503627 /* GestorHeme.xcdatamodeld in Sources */,
 				FB5F7D75243F1F4700503E9B /* NotificationModel.swift in Sources */,
-				FBDF1BBB244F5A68004DDD3F /* CloudCierreCajaManager.swift in Sources */,
 				FB88AE662443A0C100B21648 /* AddEmpleadoViewController.swift in Sources */,
 				FB2D05A5243791FB008B5A01 /* AgendaViewController.swift in Sources */,
 				FB43BF232494F8C80035BA87 /* GetServiciosProtocol.swift in Sources */,
@@ -1661,11 +1483,9 @@
 				FB3E4B6824364E60009DB88B /* AddServicioProtocol.swift in Sources */,
 				FB5F7D8A243F9D5A00503E9B /* HemeViewController.swift in Sources */,
 				FB9A8E1F24448CC400E0A9E4 /* ServiciosViewController.swift in Sources */,
-				FB9DECFD2449995000614CD2 /* CloudServiceManager.swift in Sources */,
 				FB4C4450248FA86100C5CFE9 /* LoginViewController.swift in Sources */,
 				FB3E4B502435DF2D009DB88B /* AddServicioViewController.swift in Sources */,
 				FB3E4B6B24364EFD009DB88B /* ServicesManager.swift in Sources */,
-				FBEA850A245AF476004E96FC /* CloudEliminarNotificationsProtocol.swift in Sources */,
 				FBB59DFA2450B1E4005E5EB0 /* AxisFormatter.swift in Sources */,
 				FB2C21C0243A37C40055F4E6 /* ServicioViewProtocol.swift in Sources */,
 				FB3AFC21245328C300267A4D /* CadenciaNotificationDetailViewController.swift in Sources */,

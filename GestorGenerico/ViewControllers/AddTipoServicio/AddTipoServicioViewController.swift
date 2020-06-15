@@ -79,39 +79,3 @@ extension AddTipoServicioViewController: AddTipoServicioProtocol {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-extension AddTipoServicioViewController: CloudTipoServiciosProtocol {
-    func tipoServiciosSincronizationFinished() {
-        print("EXITO GUARDANDO TIPO SERVICIO")
-        Constants.databaseManager.tipoServiciosManager.addTipoServicioToDatabase(servicio: servicio)
-        DispatchQueue.main.async {
-            CommonFunctions.hideLoadingStateView()
-            self.navigationController!.popViewController(animated: true)
-        }
-    }
-    
-    func tipoServiciosSincronizationError(error: String) {
-        print("ERROR GUARDANDO TIPO SERVICIO")
-        DispatchQueue.main.async {
-            CommonFunctions.hideLoadingStateView()
-            CommonFunctions.showGenericAlertMessage(mensaje: "Error guardando servicio", viewController: self)
-        }
-    }
-}

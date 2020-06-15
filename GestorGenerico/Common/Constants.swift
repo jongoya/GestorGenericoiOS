@@ -37,7 +37,6 @@ class Constants: NSObject {
     
     static let databaseManager: DatabaseManager = DatabaseManager()
     static var rootController: RootViewController!
-    static let cloudDatabaseManager: CloudDatabaseManager = CloudDatabaseManager()
     
     static let preferencesPasswordKey: String = "password"
     static let preferencesTokenKey: String = "token"

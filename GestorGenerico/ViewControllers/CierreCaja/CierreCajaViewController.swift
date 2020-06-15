@@ -15,13 +15,12 @@ class CierreCajaViewController: UIViewController {
     @IBOutlet weak var efectivoLabel: UILabel!
     @IBOutlet weak var tarjetaLabel: UILabel!
     
-    let cierreCaja: CierreCajaModel = CierreCajaModel()
+    var cierreCaja: CierreCajaModel = CierreCajaModel()
     var presentDate: Date!
     var notification: NotificationModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "Cierre Caja"
         
         addSaveCierreCajaButton()
@@ -36,9 +35,15 @@ class CierreCajaViewController: UIViewController {
     func fillFields() {
         let services: [ServiceModel] = Constants.databaseManager.servicesManager.getServicesForDay(date: presentDate)
         numeroServiciosLabel.text = String(services.count)
-        totalCajaLabel.text = String(format: "%.2f", getTotalCajaFromServicios(servicios: services)) + " €"
         cierreCaja.numeroServicios = services.count
+        totalCajaLabel.text = String(format: "%.2f", getTotalCajaFromServicios(servicios: services)) + " €"
         cierreCaja.totalCaja = getTotalCajaFromServicios(servicios: services)
+        totalProductosLabel.text = String(format: "%.2f", getTotalProductosFromServicios(servicios: services)) + " €"
+        cierreCaja.totalProductos = getTotalProductosFromServicios(servicios: services)
+        efectivoLabel.text = String(format: "%.2f", getTotalEfectivoFromServicios(servicios: services)) + " €"
+        cierreCaja.efectivo = getTotalEfectivoFromServicios(servicios: services)
+        tarjetaLabel.text = String(format: "%.2f", getTotalTarjetaFromServicios(servicios: services)) + " €"
+        cierreCaja.tarjeta = getTotalTarjetaFromServicios(servicios: services)
     }
     
     func getTotalCajaFromServicios(servicios: [ServiceModel]) -> Double {
@@ -50,6 +55,51 @@ class CierreCajaViewController: UIViewController {
         return totalCaja
     }
     
+    func getTotalProductosFromServicios(servicios: [ServiceModel]) -> Double {
+        let ventaProductoId: Int64 = getVentaProductoId()
+        var totalProductos = 0.0
+        for servicio: ServiceModel in servicios {
+            if servicio.servicios.contains(ventaProductoId) {
+                totalProductos = totalProductos + servicio.precio
+            }
+        }
+        
+        return totalProductos
+    }
+    
+    func getTotalEfectivoFromServicios(servicios: [ServiceModel]) -> Double {
+        var totalEfectivo = 0.0
+        for servicio: ServiceModel in servicios {
+            if servicio.isEfectivo {
+                totalEfectivo = totalEfectivo + servicio.precio
+            }
+        }
+        
+        return totalEfectivo
+    }
+    
+    func getTotalTarjetaFromServicios(servicios: [ServiceModel]) -> Double {
+        var totalTarjeta = 0.0
+        for servicio: ServiceModel in servicios {
+            if !servicio.isEfectivo {
+                totalTarjeta = totalTarjeta + servicio.precio
+            }
+        }
+        
+        return totalTarjeta
+    }
+    
+    func getVentaProductoId() -> Int64 {
+        let tipoServicios: [TipoServicioModel] = Constants.databaseManager.tipoServiciosManager.getAllServiciosFromDatabase()
+        for servicio: TipoServicioModel in tipoServicios {
+            if servicio.nombre == "Venta producto" {
+                return servicio.servicioId
+            }
+        }
+        
+        return 0
+    }
+    
     func getKeyboardTypeForField(inputReference: Int) -> UIKeyboardType {
         switch inputReference {
         case 1:
@@ -58,6 +108,7 @@ class CierreCajaViewController: UIViewController {
             return .decimalPad
         }
     }
+    
     func getInputTextForField(inputReference: Int) -> String {
         switch inputReference {
         case 1:
@@ -120,8 +171,7 @@ class CierreCajaViewController: UIViewController {
     func saveCierreCaja() {
         cierreCaja.fecha = Int64(presentDate.timeIntervalSince1970)
         CommonFunctions.showLoadingStateView(descriptionText: "Guardando el cierre de caja")
-        //TODO
-        //Constants.cloudDatabaseManager.cierreCajaManager.saveCierreCaja(cierreCaja: cierreCaja, delegate: self)
+        WebServices.saveCierreCaja(caja: cierreCaja, delegate: self)
     }
 }
 
@@ -187,65 +237,46 @@ extension CierreCajaViewController: AddClientInputFieldProtocol {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-extension CierreCajaViewController: CloudCierreCajaProtocol {
-    func cierreCajaSaved() {
+extension CierreCajaViewController: AddCierreCajaProtocol {
+    func successAddingCierreCaja(caja: CierreCajaModel) {
         if notification == nil {
-            print("EXITO GUARDANDO EL CIERRE DE CAJA")
-            _ = Constants.databaseManager.cierreCajaManager.addCierreCajaToDatabase(newCierreCaja: cierreCaja)
+            Constants.databaseManager.cierreCajaManager.addCierreCajaToDatabase(newCierreCaja: caja)
             DispatchQueue.main.async {
                 CommonFunctions.hideLoadingStateView()
                 self.navigationController!.popViewController(animated: true)
             }
         } else {
+            cierreCaja = caja
             notification.leido = true
-            Constants.cloudDatabaseManager.notificationManager.updateNotification(notification: notification, delegate: self)
+            WebServices.deleteNotificacion(notificacion: notification, delegate: self)
         }
     }
     
-    func errorSavingCierreCaja() {
-        print("ERROR GUARDANDO EL CIERRE DE CAJA")
+    func errorAddingCierreCaja() {
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()
             CommonFunctions.showGenericAlertMessage(mensaje: "Error guardando el cierre de caja", viewController: self)
         }
     }
+    
+    
 }
 
-extension CierreCajaViewController: CloudNotificationProtocol {
-    func notificacionSincronizationFinished() {
-        _ = Constants.databaseManager.cierreCajaManager.addCierreCajaToDatabase(newCierreCaja: cierreCaja)
-        _ = Constants.databaseManager.notificationsManager.markNotificationAsRead(notification: notification)
+extension CierreCajaViewController: DeleteNotificacionProtocol {
+    func successDeletingNotificacion() {
+        Constants.databaseManager.cierreCajaManager.addCierreCajaToDatabase(newCierreCaja: cierreCaja)
+        Constants.databaseManager.notificationsManager.eliminarNotificacion(notificationId: notification.notificationId)
         DispatchQueue.main.async {
-            print("EXITO GUARDANDO EL CIERRE DE CAJA")
             CommonFunctions.hideLoadingStateView()
             Constants.rootController.setNotificationBarItemBadge()
             self.navigationController!.popViewController(animated: true)
         }
     }
     
-    func notificacionSincronizationError(error: String) {
+    func errorDeletingNotificacion() {
         DispatchQueue.main.async {
-            print("ERROR GUARDANDO EL CIERRE DE CAJA")
             CommonFunctions.hideLoadingStateView()
             CommonFunctions.showGenericAlertMessage(mensaje: "Error guardando el cierre de caja", viewController: self)
         }
     }
-    
-    
 }

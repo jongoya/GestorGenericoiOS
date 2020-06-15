@@ -254,11 +254,13 @@ class CommonFunctions: NSObject {
     }
     
     static func sincronizarBaseDeDatos() {
-        Constants.cloudDatabaseManager.empleadoManager.getEmpleados(delegate: nil)
-        Constants.cloudDatabaseManager.tipoServicioManager.getTipoServicios(delegate: nil)
-        Constants.cloudDatabaseManager.notificationManager.getNotificaciones(delegate: nil)
-        Constants.cloudDatabaseManager.serviceManager.getServicios()
-        Constants.cloudDatabaseManager.cierreCajaManager.getCierreCajas()
+        let comercioId: Int64 = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        WebServices.getClientes(comercioId: comercioId, delegate: nil)
+        WebServices.getEmpleados(comercioId: comercioId, delegate: nil)
+        WebServices.getTipoServicios(comercioId: comercioId, delegate: nil)
+        WebServices.getNotificaciones(comercioId: comercioId, delegate: nil)
+        WebServices.getServices(comercioId: comercioId, delegate: nil)
+        WebServices.getCierreCajas(comercioId: comercioId)
     }
     
     static func checkBackupState() {

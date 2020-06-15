@@ -233,8 +233,13 @@ extension EmpleadosViewController {
     }
     
     @objc func didClickCrossView(sender: EmpleadoTapGesture) {
-        CommonFunctions.showLoadingStateView(descriptionText: "Eliminando empleado")
         let empleado: EmpleadoModel = sender.empleadoView.empleado
+        if empleado.is_empleado_jefe {
+            CommonFunctions.showGenericAlertMessage(mensaje: "No puede eliminar un empleado que es jefe", viewController: self)
+            return
+        }
+        
+        CommonFunctions.showLoadingStateView(descriptionText: "Eliminando empleado")
         WebServices.deleteEmpleado(empleado: empleado, delegate: self)
     }
     

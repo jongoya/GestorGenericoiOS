@@ -68,7 +68,7 @@ public class WebServices {
         }
     }
     
-    static func getClientes(comercioId: Int64, delegate: ListaClientesProtocol) {
+    static func getClientes(comercioId: Int64, delegate: ListaClientesProtocol?) {
         let url: String = baseUrl + "get_clientes/" + String(comercioId)
         AF.request(url, method: .get, headers: createHeaders()).responseJSON { (response) in
             if response.error == nil {
@@ -82,12 +82,13 @@ public class WebServices {
                         }
                         
                     }
-                    delegate.successGettingClients()
+                    
+                    delegate?.successGettingClients()
                     return
                 }
             }
             
-            delegate.errorGettingClients()
+            delegate?.errorGettingClients()
         }
     }
     
@@ -126,7 +127,7 @@ public class WebServices {
         }
     }
     
-    static func getServices(comercioId: Int64, delegate: GetServiciosProtocol) {
+    static func getServices(comercioId: Int64, delegate: GetServiciosProtocol?) {
         let url: String = baseUrl + "get_servicios/" + String(comercioId)
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers:  createHeaders()).responseJSON { (response) in
             if response.error == nil {
@@ -141,12 +142,13 @@ public class WebServices {
                     }
                     
                     deleteLocalServicesIfNeeded(serverServices: servicios)
-                    delegate.successGettingServicios()
+                    
+                    delegate?.successGettingServicios()
                     return
                 }
             }
             
-            delegate.errorGettingServicios()
+            delegate?.errorGettingServicios()
         }
     }
     
@@ -226,7 +228,7 @@ public class WebServices {
         }
     }
     
-    static func getEmpleados(comercioId: Int64, delegate: GetEmpleadosProtocol) {
+    static func getEmpleados(comercioId: Int64, delegate: GetEmpleadosProtocol?) {
         let url: String = baseUrl + "get_empleados/" + String(comercioId)
         AF.request(url, method: .get, headers: createHeaders()).responseJSON { (response) in
             if response.error == nil {
@@ -241,13 +243,12 @@ public class WebServices {
                     }
                     
                     compareLocalEmpleadosWithServerEmpleados(serverEmpleados: empleados)
-                    
-                    delegate.succesGettingEmpleados(empleados: empleados)
+                    delegate?.succesGettingEmpleados(empleados: empleados)
                     return
                 }
             }
             
-            delegate.errorGettingEmpleados()
+            delegate?.errorGettingEmpleados()
         }
     }
     
@@ -314,7 +315,7 @@ public class WebServices {
         }
     }
     
-    static func getTipoServicios(comercioId: Int64, delegate: GetTipoServiciosProtocol) {
+    static func getTipoServicios(comercioId: Int64, delegate: GetTipoServiciosProtocol?) {
         let url: String = baseUrl + "get_tipo_servicios/" + String(comercioId)
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
             if response.error == nil {
@@ -324,12 +325,12 @@ public class WebServices {
                         Constants.databaseManager.tipoServiciosManager.addTipoServicioToDatabase(servicio: tipoServicio)
                     }
                     
-                    delegate.successGettingServicios()
+                    delegate?.successGettingServicios()
                     return
                 }
             }
             
-            delegate.errorGettingServicios()
+            delegate?.errorGettingServicios()
         }
     }
     
@@ -349,7 +350,7 @@ public class WebServices {
         }
     }
     
-    static func getNotificaciones(comercioId: Int64, delegate: GetNotificacionesProtocol) {
+    static func getNotificaciones(comercioId: Int64, delegate: GetNotificacionesProtocol?) {
         let url: String = baseUrl + "get_notifications/" + String(comercioId)
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
             if response.error == nil {
@@ -364,12 +365,12 @@ public class WebServices {
                     }
                     
                     deleteNotificationsIfNeeded(serveNotificaciones: notificaciones)
-                    delegate.successGettingNotificaciones()
+                    delegate?.successGettingNotificaciones()
                     return
                 }
             }
             
-            delegate.errorGettingNotificaciones()
+            delegate?.errorGettingNotificaciones()
         }
     }
     
@@ -386,6 +387,78 @@ public class WebServices {
             if !notificationExists {
                 Constants.databaseManager.notificationsManager.eliminarNotificacion(notificationId: localNoti.notificationId)
             }
+        }
+    }
+    
+    static func deleteNotificacion(notificacion: NotificationModel, delegate: DeleteNotificacionProtocol) {
+        let url: String = baseUrl + "delete_notification"
+        AF.request(url, method: .post, parameters: notificacion.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).response { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    delegate.successDeletingNotificacion()
+                    return
+                }
+            }
+            
+            delegate.errorDeletingNotificacion()
+        }
+    }
+    
+    static func addNotifications(notifications: [NotificationModel]) {
+        let urlString: String = baseUrl + "save_notifications"
+        var json: [[String: Any]] = []
+        for notificacion: NotificationModel in notifications {
+            json.append(notificacion.createJson())
+        }
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        request.headers = createHeaders()
+        request.method = .post
+        request.httpBody = try! JSONSerialization.data(withJSONObject: json, options: [])
+        
+        AF.request(request).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 201 {
+                    let notificaciones: [NotificationModel] = try! JSONDecoder().decode([NotificationModel].self, from: response.data!)
+                    for notification: NotificationModel in notificaciones {
+                        Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notification)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        Constants.rootController.setNotificationBarItemBadge()
+                    }
+                }
+            }
+        }
+    }
+    
+    static func getCierreCajas(comercioId: Int64) {
+        let url: String = baseUrl + "get_cierre_cajas/" + String(comercioId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let cierreCajas: [CierreCajaModel] = try! JSONDecoder().decode([CierreCajaModel].self, from: response.data!)
+                    for cierreCaja: CierreCajaModel in cierreCajas {
+                        Constants.databaseManager.cierreCajaManager.addCierreCajaToDatabase(newCierreCaja: cierreCaja)
+                    }
+                }
+            }
+        }
+    }
+    
+    static func saveCierreCaja(caja: CierreCajaModel, delegate: AddCierreCajaProtocol) {
+        let url: String = baseUrl + "save_cierre_caja"
+        caja.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        AF.request(url, method: .post, parameters: caja.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 201 {
+                    let cierreCaja: CierreCajaModel = try! JSONDecoder().decode(CierreCajaModel.self, from: response.data!)
+                    delegate.successAddingCierreCaja(caja: cierreCaja)
+                    return
+                }
+            }
+            
+            delegate.errorAddingCierreCaja()
         }
     }
 }

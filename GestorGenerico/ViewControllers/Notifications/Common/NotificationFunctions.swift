@@ -11,41 +11,41 @@ import Foundation
 class NotificationFunctions: NSObject {
     
     static func checkBirthdays() {
-        let birthdayUsers: [BirthdayModel] = getTodayBirthdayUsers()
+        let birthdayClients: [ClientModel] = getTodayBirthdayClients()
         let todayNotifications: [NotificationModel] = getTodayNotifications()
-        var todayBirthdayUsers: [BirthdayModel] = []
+        var todayBirthdayClients: [ClientModel] = []
         
-        if birthdayUsers.count == 0 {
+        if birthdayClients.count == 0 {
             return
         }
         
-        for user in birthdayUsers {
+        for client in birthdayClients {
             var notificationExists = false
             for notification in todayNotifications {
-                //TODO
-                /*if notification.clientId.contains(user.userId) {
+                if notification.clientId == client.id {
                     notificationExists = true
-                }*/
+                }
             }
             
             if !notificationExists {
-                todayBirthdayUsers.append(user)
+                todayBirthdayClients.append(client)
             }
         }
         
-        if todayBirthdayUsers.count > 0 {
-            createBirthdayNotification(users: todayBirthdayUsers)
+        var newNotifications: [NotificationModel] = []
+        for client: ClientModel in todayBirthdayClients {
+            newNotifications.append(createBirthdayNotification(client: client))
         }
         
-        DispatchQueue.main.async {
-            Constants.rootController.setNotificationBarItemBadge()
+        if newNotifications.count > 0 {
+            print("AÑADIDOS NOTIFICACIONES CUMPLEAÑOS")
+            WebServices.addNotifications(notifications: newNotifications)
         }
     }
     
-    private static func getTodayBirthdayUsers() -> [BirthdayModel] {
+    private static func getTodayBirthdayClients() -> [ClientModel] {
         let clients: [ClientModel] = Constants.databaseManager.clientsManager.getAllClientsFromDatabase()
-        let empleados: [EmpleadoModel] = Constants.databaseManager.empleadosManager.getAllEmpleadosFromDatabase()
-        var birthdayUsers: [BirthdayModel] = []
+        var birthdayClients: [ClientModel] = []
         let todayDay: Int = Calendar.current.component(.day, from: Date())
         let todayMonth: Int = Calendar.current.component(.month, from: Date())
         
@@ -54,19 +54,11 @@ class NotificationFunctions: NSObject {
             let clientMonth: Int = Calendar.current.component(.month, from: Date(timeIntervalSince1970: TimeInterval(client.fecha)))
             
             if clientDay == todayDay && clientMonth == todayMonth {
-                birthdayUsers.append(BirthdayModel(userId: client.id, nombre: client.nombre, apellidos: client.apellidos))
+                birthdayClients.append(client)
             }
         }
         
-        for empleado in empleados {
-            let empleadoDay: Int = Calendar.current.component(.day, from: Date(timeIntervalSince1970: TimeInterval(empleado.fecha)))
-            let empleadoMonth: Int = Calendar.current.component(.month, from: Date(timeIntervalSince1970: TimeInterval(empleado.fecha)))
-            if empleadoDay == todayDay && empleadoMonth == todayMonth {
-                birthdayUsers.append(BirthdayModel(userId: empleado.empleadoId, nombre: empleado.nombre, apellidos: empleado.apellidos))
-            }
-        }
-        
-        return birthdayUsers
+        return birthdayClients
     }
     
     private static func getTodayNotifications() -> [NotificationModel] {
@@ -104,17 +96,14 @@ class NotificationFunctions: NSObject {
         return calendar.date(from: components)!
     }
     
-    static func createBirthdayNotification(users: [BirthdayModel]) {
+    static func createBirthdayNotification(client: ClientModel) -> NotificationModel {
         let notification: NotificationModel = NotificationModel()
-        notification.notificationId = Int64(Date().timeIntervalSince1970)
+        notification.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
         notification.fecha = Int64(Date().timeIntervalSince1970)
-        //TODO
-        //notification.clientId = getUserIdsFromBirthdayModels(users: users)
+        notification.clientId = client.id
         notification.leido = false
         notification.type = Constants.notificacionCumpleIdentifier
-        _ = Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notification)
-        print("NOTIFICACION CUMPLEAÑOS CREADO")
-        //Constants.cloudDatabaseManager.notificationManager.saveNotification(notification: notification, delegate: nil)
+        return notification
     }
     
     private static func getUserIdsFromBirthdayModels(users: [BirthdayModel]) -> [Int64] {
@@ -148,23 +137,21 @@ class NotificationFunctions: NSObject {
             return
         }
         
+        var cierreCajaNotifications: [NotificationModel] = []
         if !cierreCajaExist && serviciosExist {
-            createCierreCajaNotification(fecha: yesterday)
-        }
-        
-        DispatchQueue.main.async {
-            Constants.rootController.setNotificationBarItemBadge()
+            print("AÑADIDOS NOTIFICACIONES CIERRE CAJA")
+            cierreCajaNotifications.append(createCierreCajaNotification(fecha: yesterday))
+            WebServices.addNotifications(notifications: cierreCajaNotifications)
         }
     }
     
-    private static func createCierreCajaNotification(fecha: Date) {
+    private static func createCierreCajaNotification(fecha: Date) -> NotificationModel {
         let notification: NotificationModel = NotificationModel()
-        notification.notificationId = Int64(Date().timeIntervalSince1970)
+        notification.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
         notification.fecha = Int64(fecha.timeIntervalSince1970)
         notification.leido = false
         notification.type = Constants.notificacionCajaCierreIdentifier
-        _ = Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notification)
-        Constants.cloudDatabaseManager.notificationManager.saveNotification(notification: notification, delegate: nil)
+        return notification
     }
     
     private static func checkCierreCajasInRange(beginingOfDay: Date, endOfDay: Date) -> Bool {
@@ -211,12 +198,14 @@ class NotificationFunctions: NSObject {
             }
         }
         
-        if clientesConCadenciaSuperada.count > 0 {
-            createCadenciaNotification(clientArray: clientesConCadenciaSuperada)
+        var newNotifications: [NotificationModel] = []
+        for cliente: ClientModel in clientesConCadenciaSuperada {
+            newNotifications.append(createCadenciaNotification(cliente: cliente))
         }
         
-        DispatchQueue.main.async {
-            Constants.rootController.setNotificationBarItemBadge()
+        if newNotifications.count > 0 {
+            print("AÑADIDOS NOTIFICACIONES CADENCIA")
+            WebServices.addNotifications(notifications: newNotifications)
         }
     }
     
@@ -238,32 +227,30 @@ class NotificationFunctions: NSObject {
     private static func hasClientANotification(notifications: [NotificationModel], clientId: Int64) -> Bool {
         var notificationExists = false
         for notification in notifications {
-            //TODO
-            /*if notification.clientId.contains(clientId) {
+            if notification.clientId == clientId {
                 notificationExists = true
-            }*/
+            }
         }
         
         return notificationExists
     }
     
-    private static func createCadenciaNotification(clientArray: [ClientModel]) {
+    private static func createCadenciaNotification(cliente: ClientModel) -> NotificationModel {
         let notification: NotificationModel = NotificationModel()
-        notification.notificationId = Int64(Date().timeIntervalSince1970)
+        notification.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
         notification.fecha = Int64(Date().timeIntervalSince1970)
-        //TODO
-        //notification.clientId = getClientIds(clients: clientArray)
+        notification.clientId = cliente.id
         notification.leido = false
         notification.type = Constants.notificacionCadenciaIdentifier
-        _ = Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notification)
-        //Constants.cloudDatabaseManager.notificationManager.saveNotification(notification: notification, delegate: nil)
+        
+        return notification
     }
     
     static func createNotificacionPersonalizada(fecha: Int64, clientId: Int64, descripcion: String) -> NotificationModel {
         let notification: NotificationModel = NotificationModel()
-        notification.notificationId = Int64(Date().timeIntervalSince1970)
+        notification.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
         notification.fecha = fecha
-        //notification.clientId = [clientId]
+        notification.clientId = clientId
         notification.leido = false
         notification.descripcion = descripcion
         notification.type = Constants.notificacionPersonalizadaIdentifier
@@ -275,29 +262,27 @@ class NotificationFunctions: NSObject {
         let clientes: [ClientModel] = Constants.databaseManager.clientsManager.getAllClientsFromDatabase()
         let beginingOfDay: Int64 = Int64(AgendaFunctions.getBeginningOfDayFromDate(date: Date()).timeIntervalSince1970)
         let endOfDay: Int64 = Int64(AgendaFunctions.getEndOfDayFromDate(date: Date()).timeIntervalSince1970)
+        
         var notificaciones: [NotificationModel] = []
         for cliente in clientes {
             if cliente.fechaNotificacionPersonalizada > beginingOfDay && cliente.fechaNotificacionPersonalizada < endOfDay && !existsNotificacionPersonalizada(clientId: cliente.id) {
                 let notificacion: NotificationModel = createNotificacionPersonalizada(fecha: cliente.fechaNotificacionPersonalizada, clientId: cliente.id, descripcion: cliente.observaciones)
                 notificaciones.append(notificacion)
-                _ = Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notificacion)
             }
         }
         
-        //Constants.cloudDatabaseManager.notificationManager.saveNotifications(notifications: notificaciones, delegate: nil)
-        
-        DispatchQueue.main.async {
-            Constants.rootController.setNotificationBarItemBadge()
+        if notificaciones.count > 0 {
+            print("AÑADIDOS NOTIFICACIONES PERSONALIZADAS")
+            WebServices.addNotifications(notifications: notificaciones)
         }
     }
     
     private static func existsNotificacionPersonalizada(clientId: Int64) -> Bool {
         let notificaciones: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsForType(type: Constants.notificacionPersonalizadaIdentifier)
         for notificacion in notificaciones {
-            //TODO
-            /*if notificacion.clientId.contains(clientId) {
+            if notificacion.clientId == clientId {
                 return true
-            }*/
+            }
         }
         
         return false

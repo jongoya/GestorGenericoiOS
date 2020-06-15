@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let storyboard = UIStoryboard(name: "Login", bundle: nil)
                 vc = storyboard.instantiateInitialViewController()
             } else {
+                CommonFunctions.sincronizarBaseDeDatos()
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 vc = storyboard.instantiateInitialViewController()
                 

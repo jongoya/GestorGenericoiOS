@@ -21,14 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-            let vc: UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+            let vc: UINavigationController!
+            if (!UserPreferences.checkValueInUserDefaults(key: Constants.preferencesTokenKey) || (UserPreferences.getValueFromUserDefaults(key: Constants.preferencesTokenKey) as! String).count == 0) {
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                vc = storyboard.instantiateInitialViewController()
+            } else {
+                CommonFunctions.sincronizarBaseDeDatos()
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                vc = storyboard.instantiateInitialViewController()
+                
+            }
             self.window!.rootViewController = vc
             self.window!.makeKeyAndVisible()
             return true
         }
-
-        //CommonFunctions.sincronizarBaseDeDatos()
     }
 
     // MARK: UISceneSession Lifecycle

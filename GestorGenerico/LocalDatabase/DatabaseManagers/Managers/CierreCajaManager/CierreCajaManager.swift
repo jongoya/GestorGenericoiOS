@@ -70,24 +70,18 @@ class CierreCajaManager: NSObject {
         return cierreCajas
     }
     
-    func addCierreCajaToDatabase(newCierreCaja: CierreCajaModel) -> Bool {
+    func addCierreCajaToDatabase(newCierreCaja: CierreCajaModel) {
         let entity = NSEntityDescription.entity(forEntityName: CAJA_ENTITY_NAME, in: backgroundContext)
         
         if getCoreCierreCajaFromDatabase(cajaId: newCierreCaja.cajaId).count == 0 {
             let cierreCaja = NSManagedObject(entity: entity!, insertInto: backgroundContext)
             databaseHelper.setCoreDataObjectDataFromCierreCaja(coreDataObject: cierreCaja, newCierreCaja: newCierreCaja)
-            var result: Bool = false
             backgroundContext.performAndWait {
                 do {
                     try backgroundContext.save()
-                    result = true
                 } catch {
                 }
             }
-            
-            return result
-        } else {
-            return false
         }
     }
     

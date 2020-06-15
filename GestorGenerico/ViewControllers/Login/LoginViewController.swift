@@ -205,6 +205,7 @@ extension LoginViewController: LoginProtocol {
     func succesLogingIn(login: LoginModel) {
         CommonFunctions.hideLoadingStateView()
         saveLoginDataAndChangeController(login: login)
+        CommonFunctions.sincronizarBaseDeDatos()
     }
     
     func errorLoginIn() {

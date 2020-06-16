@@ -12,4 +12,5 @@ import Foundation
 protocol DeleteEmpleadoProtocol {
     func successDeletingEmpleado(empleadoMasServicios: EmpleadoMasServicios)
     func errorDeletingEmpleado()
+    func logoutResponse()
 }

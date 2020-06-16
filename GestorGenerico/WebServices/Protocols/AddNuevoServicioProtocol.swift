@@ -12,4 +12,5 @@ import Foundation
 protocol AddNuevoServicioProtocol {
     func successSavingService(servicio: ServiceModel)
     func errorSavingServicio()
+    func logoutResponse()
 }

@@ -259,6 +259,10 @@ extension AgendaServiceViewController: AddClientProtocol {
 }
 
 extension AgendaServiceViewController: AddNuevoServicioProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func successSavingService(servicio: ServiceModel) {
         Constants.databaseManager.servicesManager.addServiceInDatabase(newService: servicio)
         let notifications: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsForClientAndNotificationType(notificationType: Constants.notificacionCadenciaIdentifier, clientId: servicio.clientId)

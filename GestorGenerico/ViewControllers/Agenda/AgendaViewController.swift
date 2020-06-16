@@ -472,6 +472,10 @@ extension AgendaViewController: GetServiciosProtocol {
 }
 
 extension AgendaViewController: DeleteServiceProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func successDeletingService(service: ServiceModel) {
         Constants.databaseManager.servicesManager.deleteService(service: service)
         DispatchQueue.main.async {

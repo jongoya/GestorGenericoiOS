@@ -126,4 +126,20 @@ class EmpleadosManager: NSObject {
             }
         }
     }
+    
+    func deleteAllEmpleados() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: EMPLEADOS_ENTITY_NAME)
+                var results: [NSManagedObject] = []
+        backgroundContext.performAndWait {
+            do {
+                results = try backgroundContext.fetch(fetchRequest)
+                for object in results {
+                    backgroundContext.delete(object)
+                }
+                
+                try backgroundContext.save()
+            } catch {
+            }
+        }
+    }
 }

@@ -12,4 +12,5 @@ import Foundation
 protocol UpdateNotificacionPersonalizadaProtocol {
     func successUpdatingNotificacion(cliente: ClientModel)
     func errorUpdatingNotificacion()
+    func logoutResponse()
 }

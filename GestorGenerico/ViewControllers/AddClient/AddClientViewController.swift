@@ -287,6 +287,10 @@ extension AddClientViewController: UIImagePickerControllerDelegate, UINavigation
 }
 
 extension AddClientViewController: AddClientAndServicesProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func succesSavingClient(model: ClientMasServicios) {
         Constants.databaseManager.clientsManager.addClientToDatabase(newClient: model.cliente)
         for servicio: ServiceModel in servicios {

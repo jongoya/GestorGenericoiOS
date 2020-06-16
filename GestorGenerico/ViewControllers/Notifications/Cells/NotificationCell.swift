@@ -14,17 +14,17 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var clientName: UILabel!
     @IBOutlet weak var notificationDescriptionLabel: UILabel!
     
-    func setupCell(notification: NotificationModel) {
-        customizeContentView(notification: notification)
+    func setupCell(notificationModel: NotificationDayModel) {
+        customizeContentView(notification: notificationModel.notificaciones[0])
         
-        if notification.type == Constants.notificacionCumpleIdentifier {
-            setBirthdayContent(notification: notification)
-        } else if notification.type == Constants.notificacionCajaCierreIdentifier {
-            setCierreCajaContent(notification: notification)
-        } else if notification.type == Constants.notificacionCadenciaIdentifier {
-            setCadenciacontent(notification: notification)
-        } else if notification.type == Constants.notificacionPersonalizadaIdentifier {
-            setPersonalizadaContent(notification: notification)
+        if notificationModel.notificaciones[0].type == Constants.notificacionCumpleIdentifier {
+            setBirthdayContent(notificationModel: notificationModel)
+        } else if notificationModel.notificaciones[0].type == Constants.notificacionCajaCierreIdentifier {
+            setCierreCajaContent(notificationModel: notificationModel)
+        } else if notificationModel.notificaciones[0].type == Constants.notificacionCadenciaIdentifier {
+            setCadenciacontent(notificationModel: notificationModel)
+        } else if notificationModel.notificaciones[0].type == Constants.notificacionPersonalizadaIdentifier {
+            setPersonalizadaContent(notificationModel: notificationModel)
         }
     }
     
@@ -40,16 +40,16 @@ class NotificationCell: UITableViewCell {
         }
     }
     
-    private func setBirthdayContent(notification: NotificationModel) {
+    private func setBirthdayContent(notificationModel: NotificationDayModel) {
         notificationImage.image = UIImage(named: "cumple")!.withRenderingMode(.alwaysTemplate)
         clientName.text = "¡Felicitaciones!"
-        //TODO
-        /*let nextText: String = notification.clientId.count > 1 ? " personas, felicitalos!" : " persona, felicitalo!"
-        notificationDescriptionLabel.text = "¡Hoy cumplen años " + String(notification.clientId.count) +  nextText*/
+        let nextText: String = notificationModel.notificaciones.count > 1 ? " personas, felicitalos!" : " persona, felicitalo!"
+        notificationDescriptionLabel.text = "¡Hoy cumplen años " + String(notificationModel.notificaciones.count) +  nextText
     }
     
-    private func setCierreCajaContent(notification: NotificationModel) {
+    private func setCierreCajaContent(notificationModel: NotificationDayModel) {
         notificationImage.image = UIImage(named: "cash")!.withRenderingMode(.alwaysTemplate)
+        let notification: NotificationModel = notificationModel.notificaciones[0]
         
         let year: Int = AgendaFunctions.getYearNumberFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha)))
         let month: String = AgendaFunctions.getMonthNameFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha))).capitalized
@@ -59,26 +59,25 @@ class NotificationCell: UITableViewCell {
         notificationDescriptionLabel.text = "¡El cierre de caja está pendiente de realizar!"
     }
     
-    private func setCadenciacontent(notification: NotificationModel) {
+    private func setCadenciacontent(notificationModel: NotificationDayModel) {
         notificationImage.image = UIImage(named: "cadencia")!.withRenderingMode(.alwaysTemplate)
         clientName.text = "¡Cadencia!"
-        //TODO
-        /*var text: String = String(notification.clientId.count)
-        text.append(notification.clientId.count > 1 ? " clientes llevan tiempo sin venir" : " cliente lleva tiempo sin venir")
+        var text: String = String(notificationModel.notificaciones.count)
+        text.append(notificationModel.notificaciones.count > 1 ? " clientes llevan tiempo sin venir" : " cliente lleva tiempo sin venir")
         
-        notificationDescriptionLabel.text = text*/
+        notificationDescriptionLabel.text = text
     }
     
-    private func setPersonalizadaContent(notification: NotificationModel) {
+    private func setPersonalizadaContent(notificationModel: NotificationDayModel) {
         notificationImage.image = UIImage(named: "campana")!.withRenderingMode(.alwaysTemplate)
-        //TODO
-        /*let cliente: ClientModel = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId.first!)!
+        let notification: NotificationModel = notificationModel.notificaciones[0]
+        let cliente: ClientModel = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId)!
         
         let year: Int = AgendaFunctions.getYearNumberFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha)))
         let month: String = AgendaFunctions.getMonthNameFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha))).capitalized
         let day: Int = Calendar.current.component(.day, from: Date(timeIntervalSince1970: TimeInterval(notification.fecha)))
         
         clientName.text = String(day) + " de " + String(month) + " de " + String(year)
-        notificationDescriptionLabel.text = "Notificación de " + cliente.nombre + " " + cliente.apellidos*/
+        notificationDescriptionLabel.text = "Notificación de " + cliente.nombre + " " + cliente.apellidos
     }
 }

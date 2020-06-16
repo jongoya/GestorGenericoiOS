@@ -306,6 +306,10 @@ extension EmpleadosViewController: GetEmpleadosProtocol {
 }
 
 extension EmpleadosViewController: DeleteEmpleadoProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func successDeletingEmpleado(empleadoMasServicios: EmpleadoMasServicios) {
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()

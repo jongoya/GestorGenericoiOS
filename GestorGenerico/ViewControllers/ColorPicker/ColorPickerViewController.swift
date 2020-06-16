@@ -87,6 +87,10 @@ extension ColorPickerViewController: ChromaColorPickerDelegate {
 }
 
 extension ColorPickerViewController: UpdateEmpleadoProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func successUpdatingEmpleado(empleado: EmpleadoModel) {
         Constants.databaseManager.empleadosManager.updateEmpleado(empleado: self.empleado)
         DispatchQueue.main.async {

@@ -471,6 +471,10 @@ extension ClientDetailViewController: UIImagePickerControllerDelegate, UINavigat
 }
 
 extension ClientDetailViewController: UpdateClientProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func successUpdatingClient(cliente: ClientModel) {
         Constants.databaseManager.clientsManager.updateClientInDatabase(client: self.client)
         DispatchQueue.main.async {

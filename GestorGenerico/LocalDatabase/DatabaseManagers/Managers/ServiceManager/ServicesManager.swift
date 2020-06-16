@@ -157,6 +157,22 @@ class ServicesManager: NSObject {
         }
     }
     
+    func deleteAllServices() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: SERVICES_ENTITY_NAME)
+                var results: [NSManagedObject] = []
+        backgroundContext.performAndWait {
+            do {
+                results = try backgroundContext.fetch(fetchRequest)
+                for object in results {
+                    backgroundContext.delete(object)
+                }
+                
+                try backgroundContext.save()
+            } catch {
+            }
+        }
+    }
+    
     func updateEmpleadoIdForServices(oldEmpleadoId: Int64, newEmpleadoId: Int64) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: SERVICES_ENTITY_NAME)
         fetchRequest.predicate = NSPredicate(format: "profesional = %f", argumentArray: [oldEmpleadoId])

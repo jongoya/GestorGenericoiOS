@@ -18,13 +18,13 @@ class NotificationDetailViewController: UIViewController {
     @IBOutlet weak var sendEmailButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
     
-    var notification: NotificationModel!
+    var noticationDayModel: NotificationDayModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Notificación"
         
-        if !notification.leido  {
+        if !noticationDayModel.notificaciones[0].leido  {
             markNotificationAsRead()
         }
         
@@ -35,22 +35,25 @@ class NotificationDetailViewController: UIViewController {
     }
     
     func markNotificationAsRead() {
-        notification.leido = true
+        for notification: NotificationModel in noticationDayModel.notificaciones {
+            notification.leido = true
+        }
+        
         CommonFunctions.showLoadingStateView(descriptionText: "Actualizando notificación")
-        //Constants.cloudDatabaseManager.notificationManager.updateNotification(notification: notification, delegate: self)
+        WebServices.updateNotifications(notifications: noticationDayModel.notificaciones, delegate: self)
     }
     
     func setContentView() {
-        if notification.type == Constants.notificacionCumpleIdentifier {
+        if noticationDayModel.notificaciones[0].type == Constants.notificacionCumpleIdentifier {
             backgroundImageView.image = UIImage(named: "confetti")
             notificationReasonLabel.text = "¡Cumpleaños!"
             shortDescriptionLabel.text = createBirthdayDescription()
-            longDescriptionLabel.text = notification.descripcion
-        } else if notification.type == Constants.notificacionPersonalizadaIdentifier {
+            longDescriptionLabel.text = noticationDayModel.notificaciones[0].descripcion
+        } else if noticationDayModel.notificaciones[0].type == Constants.notificacionPersonalizadaIdentifier {
             backgroundImageView.image = UIImage(named: "personalizada")
             notificationReasonLabel.text = "Notificación personalizada"
             shortDescriptionLabel.text = createNotificacionPersonalizadaDescription()
-            longDescriptionLabel.text = notification.descripcion
+            longDescriptionLabel.text = noticationDayModel.notificaciones[0].descripcion
         }
     }
     
@@ -62,26 +65,18 @@ class NotificationDetailViewController: UIViewController {
     }
     
     func createBirthdayDescription() -> String {
-        //TODO
-        /*let users: [Int64] = notification.clientId
         var text: String = ""
-        for user in users {
-            if let client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: user) {
-                text.append(client.nombre + " " + client.apellidos)
-            }
-            if let empleado = Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: user) {
-                text.append(empleado.nombre + " " + empleado.apellidos)
-            }
-            
-            text.append(", ")
+        
+        for notification: NotificationModel in noticationDayModel.notificaciones {
+            let client: ClientModel = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId)!
+            text.append(client.nombre + " " + client.apellidos + ", ")
         }
         
-        return text + (users.count > 1 ? "felicitalos!" : "felicitalo!")*/
-        
-        return ""
+        return text + (noticationDayModel.notificaciones.count > 1 ? "felicitalos!" : "felicitalo!")
     }
     
     func createNotificacionPersonalizadaDescription() -> String {
+        let notification: NotificationModel = noticationDayModel.notificaciones[0]
         let year: Int = AgendaFunctions.getYearNumberFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha)))
         let month: String = AgendaFunctions.getMonthNameFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha))).capitalized
         let day: Int = Calendar.current.component(.day, from: Date(timeIntervalSince1970: TimeInterval(notification.fecha)))
@@ -91,12 +86,11 @@ class NotificationDetailViewController: UIViewController {
     
     func showActionsheet(comunicationCase: Int) {
         let alert = UIAlertController(title: "Elige", message: "Debe elegir una de las opciones", preferredStyle: .actionSheet)
-        //TODO
-        /*for index in 0...notification.clientId.count - 1 {
-            alert.addAction(UIAlertAction(title: getNombreApellidosFromUser(userId: notification.clientId[index]), style: .default , handler:{ (UIAlertAction) in
+        for index in 0...noticationDayModel.notificaciones.count - 1 {
+            alert.addAction(UIAlertAction(title: getNombreApellidosFromUser(clientId: noticationDayModel.notificaciones[index].clientId), style: .default , handler:{ (UIAlertAction) in
                 self.openComunicationForCase(comunicationCase: comunicationCase, userPosition: index)
             }))
-        }*/
+        }
 
         alert.addAction(UIAlertAction(title: "cancelar", style: .cancel, handler:{ (UIAlertAction)in
             print("User click Dismiss button")
@@ -105,29 +99,14 @@ class NotificationDetailViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func getTelefonoFromUser(userId: Int64) -> String {
-        //TODO
-        /*if let client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId.first!) {
-            return client.telefono.replacingOccurrences(of: " ", with: "")
-         }
-         
-         if let empleado = Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: notification.clientId.first!) {
-            return empleado.telefono.replacingOccurrences(of: " ", with: "")
-         }*/
-        
-        return " "
+    func getTelefonoFromUser(clientId: Int64) -> String {
+        let client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: clientId)!
+        return client.telefono.replacingOccurrences(of: " ", with: "")
     }
     
-    func getNombreApellidosFromUser(userId: Int64) -> String {
-        if let client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: userId) {
-            return client.nombre + " " + client.apellidos
-         }
-         
-         if let empleado = Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: userId) {
-            return empleado.nombre + " " + empleado.apellidos
-         }
-        
-        return " "
+    func getNombreApellidosFromUser(clientId: Int64) -> String {
+        let client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: clientId)!
+        return client.nombre + " " + client.apellidos
     }
     
     func composeLetter(telefono: String) {
@@ -143,16 +122,15 @@ class NotificationDetailViewController: UIViewController {
     }
     
     func openComunicationForCase(comunicationCase: Int, userPosition: Int) {
-        //TODO
         switch comunicationCase {
         case 1:
-            //CommonFunctions.callPhone(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
+            CommonFunctions.callPhone(telefono: getTelefonoFromUser(clientId: noticationDayModel.notificaciones[userPosition].clientId))
             break
         case 2:
-            //composeLetter(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
+            composeLetter(telefono: getTelefonoFromUser(clientId: noticationDayModel.notificaciones[userPosition].clientId))
             break
         default:
-            //CommonFunctions.openWhatsapp(telefono: getTelefonoFromUser(userId: notification.clientId[userPosition]))
+            CommonFunctions.openWhatsapp(telefono: getTelefonoFromUser(clientId: noticationDayModel.notificaciones[userPosition].clientId))
             break
         }
     }
@@ -160,30 +138,27 @@ class NotificationDetailViewController: UIViewController {
 
 extension NotificationDetailViewController {
     @IBAction func didClickCallButton(_ sender: Any) {
-        //TODO
-        /*if notification.clientId.count > 1 {
+        if noticationDayModel.notificaciones.count > 1 {
             showActionsheet(comunicationCase: 1)
         } else {
-            CommonFunctions.callPhone(telefono: getTelefonoFromUser(userId: notification.clientId.first!))
-        }*/
+            CommonFunctions.callPhone(telefono: getTelefonoFromUser(clientId: noticationDayModel.notificaciones.first!.clientId))
+        }
     }
     
     @IBAction func didClickSendEmailButton(_ sender: Any) {
-        //TODO
-        /*if notification.clientId.count > 1 {
+        if noticationDayModel.notificaciones.count > 1 {
             showActionsheet(comunicationCase: 2)
         } else {
-            composeLetter(telefono: getTelefonoFromUser(userId: notification.clientId.first!))
-        }*/
+            composeLetter(telefono: getTelefonoFromUser(clientId: noticationDayModel.notificaciones.first!.clientId))
+        }
     }
     
     @IBAction func didClickChatButton(_ sender: Any) {
-        //TODO
-        /*if notification.clientId.count > 1 {
+        if noticationDayModel.notificaciones.count > 1 {
             showActionsheet(comunicationCase: 3)
         } else {
-            CommonFunctions.openWhatsapp(telefono: getTelefonoFromUser(userId: notification.clientId.first!))
-        }*/
+            CommonFunctions.openWhatsapp(telefono: getTelefonoFromUser(clientId: noticationDayModel.notificaciones.first!.clientId))
+        }
     }
 }
 
@@ -193,20 +168,26 @@ extension NotificationDetailViewController: MFMessageComposeViewControllerDelega
     }
 }
 
-//TODO
-/*extension NotificationDetailViewController: CloudNotificationProtocol {
-    func notificacionSincronizationFinished() {
-        _ = Constants.databaseManager.notificationsManager.markNotificationAsRead(notification: notification)
+extension NotificationDetailViewController: UpdateNotificationsProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
+    func successUpdatingNotifications(notifications: [NotificationModel]) {
+        for notification: NotificationModel in notifications {
+            Constants.databaseManager.notificationsManager.markNotificationAsRead(notification: notification)
+        }
+        
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()
             Constants.rootController.setNotificationBarItemBadge()
         }
     }
     
-    func notificacionSincronizationError(error: String) {
+    func errorUpdatingNotifications() {
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()
             CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando notificación", viewController: self)
         }
     }
-}*/
+}

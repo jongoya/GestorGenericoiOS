@@ -21,4 +21,16 @@ class UserPreferences: NSObject {
     static func getValueFromUserDefaults(key: String) -> Any {
         return UserDefaults.standard.value(forKey: key)!
     }
+    
+    static func deleteAllValues() {
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesTokenKey)
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesPasswordKey)
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesComercioIdKey)
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesLoginBackgroundKey)
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesLoginIconoKey)
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesLoginPrimaryTextColorKey)
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesLoginSecondaryTextColorKey)
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesLoginPrimaryColorKey)
+        UserDefaults.standard.removeObject(forKey: Constants.preferencesLoginNombreAppKey)
+    }
 }

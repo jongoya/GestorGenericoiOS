@@ -12,4 +12,5 @@ import Foundation
 protocol AddEmpleadoProtocol {
     func successSavingEmpleado(empleado: EmpleadoModel)
     func errorSavingEmpleado()
+    func logoutResponse()
 }

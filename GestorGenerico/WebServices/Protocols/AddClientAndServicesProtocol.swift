@@ -12,4 +12,5 @@ import Foundation
 protocol AddClientAndServicesProtocol {
     func succesSavingClient(model: ClientMasServicios)
     func errorSavignClient()
+    func logoutResponse()
 }

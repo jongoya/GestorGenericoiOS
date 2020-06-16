@@ -77,4 +77,20 @@ class TipoServiciosManager: NSObject {
         
         return databaseHelper.parseTipoServiciosCoreObjectToTipoServicioModel(coreObject: coreTipoServicios.first!)
     }
+    
+    func deleteAllTipoServicios() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: TIPOSERVICIOS_ENTITY_NAME)
+                var results: [NSManagedObject] = []
+        backgroundContext.performAndWait {
+            do {
+                results = try backgroundContext.fetch(fetchRequest)
+                for object in results {
+                    backgroundContext.delete(object)
+                }
+                
+                try backgroundContext.save()
+            } catch {
+            }
+        }
+    }
 }

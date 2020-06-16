@@ -121,12 +121,10 @@
 		FB9EA5092433A9CF005B9F52 /* ClientesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9EA5082433A9CF005B9F52 /* ClientesManager.swift */; };
 		FBA3008E246D5DEA000F1B86 /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA3008D246D5DEA000F1B86 /* add_image.png */; };
 		FBA783FD245C359000FDF557 /* AddClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA783FC245C359000FDF557 /* AddClientProtocol.swift */; };
-		FBAA2A8A243B45EF009DE78B /* MonthDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2A89243B45EF009DE78B /* MonthDayModel.swift */; };
 		FBAA2A90243B4956009DE78B /* AgendaFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2A8F243B4956009DE78B /* AgendaFunctions.swift */; };
 		FBAB77C82451C2FB001C5F4E /* StadisticaViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB77C72451C2FB001C5F4E /* StadisticaViewProtocol.swift */; };
 		FBAB77CB2451C478001C5F4E /* StadisticaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB77CA2451C478001C5F4E /* StadisticaDetailViewController.swift */; };
 		FBAB77CE2451C99C001C5F4E /* StadisticaDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB77CD2451C99C001C5F4E /* StadisticaDetailCell.swift */; };
-		FBAB77D12451D594001C5F4E /* BirthdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB77D02451D594001C5F4E /* BirthdayModel.swift */; };
 		FBAB77D324520477001C5F4E /* notification_cumple.png in Resources */ = {isa = PBXBuildFile; fileRef = FBAB77D224520477001C5F4E /* notification_cumple.png */; };
 		FBB4F832245992EA00278161 /* AgendaServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4F831245992EA00278161 /* AgendaServiceProtocol.swift */; };
 		FBB59DF22450429E005E5EB0 /* StadisticaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF12450429E005E5EB0 /* StadisticaView.swift */; };
@@ -134,6 +132,8 @@
 		FBB59DF824509A64005E5EB0 /* StadisticasFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF724509A64005E5EB0 /* StadisticasFunctions.swift */; };
 		FBB59DFA2450B1E4005E5EB0 /* AxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF92450B1E4005E5EB0 /* AxisFormatter.swift */; };
 		FBB84FB72445B18B0004CE5F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB84FB62445B18A0004CE5F /* CloudKit.framework */; };
+		FBB9F68F2498BD6B00A91F0C /* NotificationDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB9F68E2498BD6B00A91F0C /* NotificationDayModel.swift */; };
+		FBB9F6912498CC2800A91F0C /* UpdateNotificationsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB9F6902498CC2800A91F0C /* UpdateNotificationsProtocol.swift */; };
 		FBC164C5243C7E08003C631D /* AgendaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC164C4243C7E08003C631D /* AgendaItemView.swift */; };
 		FBC164C8243CFE99003C631D /* AgendaItemViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC164C7243CFE99003C631D /* AgendaItemViewProtocol.swift */; };
 		FBD88E102447127900BC51DB /* CarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD88E0F2447127900BC51DB /* CarouselItem.swift */; };
@@ -274,12 +274,10 @@
 		FB9EA5082433A9CF005B9F52 /* ClientesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientesManager.swift; sourceTree = "<group>"; };
 		FBA3008D246D5DEA000F1B86 /* add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_image.png; sourceTree = "<group>"; };
 		FBA783FC245C359000FDF557 /* AddClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClientProtocol.swift; sourceTree = "<group>"; };
-		FBAA2A89243B45EF009DE78B /* MonthDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDayModel.swift; sourceTree = "<group>"; };
 		FBAA2A8F243B4956009DE78B /* AgendaFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFunctions.swift; sourceTree = "<group>"; };
 		FBAB77C72451C2FB001C5F4E /* StadisticaViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaViewProtocol.swift; sourceTree = "<group>"; };
 		FBAB77CA2451C478001C5F4E /* StadisticaDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaDetailViewController.swift; sourceTree = "<group>"; };
 		FBAB77CD2451C99C001C5F4E /* StadisticaDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaDetailCell.swift; sourceTree = "<group>"; };
-		FBAB77D02451D594001C5F4E /* BirthdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayModel.swift; sourceTree = "<group>"; };
 		FBAB77D224520477001C5F4E /* notification_cumple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_cumple.png; sourceTree = "<group>"; };
 		FBB4F831245992EA00278161 /* AgendaServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaServiceProtocol.swift; sourceTree = "<group>"; };
 		FBB59DF12450429E005E5EB0 /* StadisticaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaView.swift; sourceTree = "<group>"; };
@@ -287,6 +285,8 @@
 		FBB59DF724509A64005E5EB0 /* StadisticasFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticasFunctions.swift; sourceTree = "<group>"; };
 		FBB59DF92450B1E4005E5EB0 /* AxisFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisFormatter.swift; sourceTree = "<group>"; };
 		FBB84FB62445B18A0004CE5F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		FBB9F68E2498BD6B00A91F0C /* NotificationDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDayModel.swift; sourceTree = "<group>"; };
+		FBB9F6902498CC2800A91F0C /* UpdateNotificationsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationsProtocol.swift; sourceTree = "<group>"; };
 		FBC164C4243C7E08003C631D /* AgendaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItemView.swift; sourceTree = "<group>"; };
 		FBC164C7243CFE99003C631D /* AgendaItemViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItemViewProtocol.swift; sourceTree = "<group>"; };
 		FBD88E0F2447127900BC51DB /* CarouselItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselItem.swift; sourceTree = "<group>"; };
@@ -454,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				FB3AFC1B2453052A00267A4D /* CadenciaModel.swift */,
+				FBB9F68E2498BD6B00A91F0C /* NotificationDayModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -632,7 +633,6 @@
 				FB8185AC24433B5D004697D3 /* Servicio */,
 				FB8185A024432157004697D3 /* Empleado */,
 				FB5F7D73243F1F3500503E9B /* Notification */,
-				FBAA2A88243B45E1009DE78B /* MonthDay */,
 				FB3E4B5624363FE0009DB88B /* Service */,
 				FB57F2F124347F0E00192230 /* Client */,
 			);
@@ -769,7 +769,6 @@
 		FB5F7D78243F28E800503E9B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				FBAB77CF2451D583001C5F4E /* Models */,
 				FB5F7D79243F290300503E9B /* NotificationFunctions.swift */,
 			);
 			path = Common;
@@ -1049,14 +1048,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		FBAA2A88243B45E1009DE78B /* MonthDay */ = {
-			isa = PBXGroup;
-			children = (
-				FBAA2A89243B45EF009DE78B /* MonthDayModel.swift */,
-			);
-			path = MonthDay;
-			sourceTree = "<group>";
-		};
 		FBAA2A8E243B4937009DE78B /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1088,14 +1079,6 @@
 				FBAB77CD2451C99C001C5F4E /* StadisticaDetailCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		FBAB77CF2451D583001C5F4E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				FBAB77D02451D594001C5F4E /* BirthdayModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		FBB4F830245992DD00278161 /* Protocols */ = {
@@ -1214,6 +1197,7 @@
 				FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */,
 				FB5002A12497D881004D278F /* AddCierreCajaProtocol.swift */,
 				FB5002A32497DA04004D278F /* DeleteNotificacionProtocol.swift */,
+				FBB9F6902498CC2800A91F0C /* UpdateNotificationsProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1395,7 +1379,6 @@
 				FB3E4B5A24364300009DB88B /* CommonFunctions.swift in Sources */,
 				FB5002A42497DA04004D278F /* DeleteNotificacionProtocol.swift in Sources */,
 				FB14CECD24409AA9000CBE77 /* HemeTableViewCell.swift in Sources */,
-				FBAB77D12451D594001C5F4E /* BirthdayModel.swift in Sources */,
 				FB1FFF0B24953F8800AD9B17 /* GetNotificacionesProtocol.swift in Sources */,
 				FB8185B124434400004697D3 /* TipoServiciosManager.swift in Sources */,
 				FB5F7D6F243F1DBE00503E9B /* NotificationCell.swift in Sources */,
@@ -1408,7 +1391,6 @@
 				FB2B26D52456EC790017D9CA /* ClientesJsonManager.swift in Sources */,
 				FBAB77CE2451C99C001C5F4E /* StadisticaDetailCell.swift in Sources */,
 				FB8185AE24433B6A004697D3 /* TipoServicioModel.swift in Sources */,
-				FBAA2A8A243B45EF009DE78B /* MonthDayModel.swift in Sources */,
 				FB2D05A224379185008B5A01 /* ServicioView.swift in Sources */,
 				FB9A8E2224448D8F00E0A9E4 /* ServicioTableViewCell.swift in Sources */,
 				FBDF1BB2244F2887004DDD3F /* CierreCajaViewController.swift in Sources */,
@@ -1420,10 +1402,12 @@
 				FB53D697245462BE00331817 /* CadenciaNotificationCell.swift in Sources */,
 				FB6493FC24338C0900503627 /* RootViewController.swift in Sources */,
 				FBAA2A90243B4956009DE78B /* AgendaFunctions.swift in Sources */,
+				FBB9F6912498CC2800A91F0C /* UpdateNotificationsProtocol.swift in Sources */,
 				FB3E4B4D2435D3D0009DB88B /* DatePickerSelectorProtocol.swift in Sources */,
 				FB43BF192494D9610035BA87 /* GetTipoServiciosProtocol.swift in Sources */,
 				FB57F30524349DDD00192230 /* FieldViewController.swift in Sources */,
 				FB6493F824338C0900503627 /* AppDelegate.swift in Sources */,
+				FBB9F68F2498BD6B00A91F0C /* NotificationDayModel.swift in Sources */,
 				FBF3DF55244256890015BD32 /* AgendaSettingsViewController.swift in Sources */,
 				FBDF1BB5244F55E8004DDD3F /* CierreCajaManager.swift in Sources */,
 				FB17F05824938D0300F0BC39 /* AddClientAndServicesProtocol.swift in Sources */,

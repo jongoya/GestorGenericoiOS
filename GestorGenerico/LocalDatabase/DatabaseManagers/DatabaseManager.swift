@@ -27,4 +27,13 @@ class DatabaseManager: NSObject {
         tipoServiciosManager = TipoServiciosManager()
         cierreCajaManager = CierreCajaManager()
     }
+    
+    func clearAllDatabase() {
+        clientsManager.deleteAllClients()
+        servicesManager.deleteAllServices()
+        notificationsManager.deleteAllNotifications()
+        empleadosManager.deleteAllEmpleados()
+        tipoServiciosManager.deleteAllTipoServicios()
+        cierreCajaManager.deleteAllCierreCajas()
+    }
 }

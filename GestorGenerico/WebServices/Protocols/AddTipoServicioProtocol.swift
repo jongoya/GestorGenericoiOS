@@ -11,4 +11,5 @@ import Foundation
 protocol AddTipoServicioProtocol {
     func successSavingServicio(tipoServicio: TipoServicioModel)
     func errorSavingServicio()
+    func logoutResponse()
 }

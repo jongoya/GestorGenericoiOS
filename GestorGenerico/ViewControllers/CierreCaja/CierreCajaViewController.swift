@@ -238,6 +238,10 @@ extension CierreCajaViewController: AddClientInputFieldProtocol {
 }
 
 extension CierreCajaViewController: AddCierreCajaProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func successAddingCierreCaja(caja: CierreCajaModel) {
         if notification == nil {
             Constants.databaseManager.cierreCajaManager.addCierreCajaToDatabase(newCierreCaja: caja)

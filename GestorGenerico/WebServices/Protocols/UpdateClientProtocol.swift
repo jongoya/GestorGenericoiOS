@@ -11,4 +11,5 @@ import Foundation
 protocol UpdateClientProtocol {
     func successUpdatingClient(cliente: ClientModel)
     func errorUpdatingClient()
+    func logoutResponse()
 }

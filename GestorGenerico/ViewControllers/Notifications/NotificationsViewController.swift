@@ -22,6 +22,8 @@ class NotificationsViewController: UIViewController {
     var allNotifications: [NotificationModel] = []
     var todayNotifications: [NotificationModel] = []
     var oldNotifications: [NotificationModel] = []
+    var groupedTodayNotifications: [NotificationDayModel] = []
+    var groupedOldNotifications: [NotificationDayModel] = []
     var emptyStateLabel: UILabel!
     var tableRefreshControl: UIRefreshControl = UIRefreshControl()
     
@@ -46,6 +48,8 @@ class NotificationsViewController: UIViewController {
     func showNotifications() {
         todayNotifications.removeAll()
         oldNotifications.removeAll()
+        groupedTodayNotifications.removeAll()
+        groupedOldNotifications.removeAll()
         if emptyStateLabel != nil {
             emptyStateLabel.removeFromSuperview()
             emptyStateLabel = nil
@@ -54,6 +58,7 @@ class NotificationsViewController: UIViewController {
         
         if allNotifications.count > 0 {
             filterNotifications()
+            groupNotificaitons()
         } else {
             emptyStateLabel = CommonFunctions.createEmptyState(emptyText: "No hay notificaciones disponibles", parentView: self.view)
         }
@@ -79,12 +84,68 @@ class NotificationsViewController: UIViewController {
         }
     }
     
-    func getNotificationModelForIndexPath(indexPath: IndexPath) -> NotificationModel {
-        if indexPath.section == 0 && todayNotifications.count > 0 {
-            return todayNotifications[indexPath.row]
+    func groupNotificaitons() {
+        switch tapSelected {
+        case 1:
+            groupNotificationsPerDay(isOldNotifications: false)
+            groupNotificationsPerDay(isOldNotifications: true)
+        case 2:
+            groupNotificationsPerDay(isOldNotifications: false)
+            groupNotificationsPerDay(isOldNotifications: true)
+        case 3:
+            createIndividualNotifications()
+        default:
+            createIndividualNotifications()
+        }
+    }
+    
+    func groupNotificationsPerDay(isOldNotifications: Bool) {
+        var fechas: [Int64] = []
+        var notificacionesAgrupadas: [NotificationDayModel] = []
+        let notifications: [NotificationModel] = isOldNotifications ? oldNotifications : todayNotifications
+        for notification: NotificationModel in notifications {
+            let begininOfDay: Int64 = Int64(AgendaFunctions.getBeginningOfDayFromDate(date: Date(timeIntervalSince1970: TimeInterval(notification.fecha))).timeIntervalSince1970)
+            if !fechas.contains(begininOfDay) {
+                fechas.append(begininOfDay)
+                notificacionesAgrupadas.append(NotificationDayModel(fecha: notification.fecha, notificaciones: []))
+            }
         }
         
-        return oldNotifications[indexPath.row]
+        for model: NotificationDayModel in notificacionesAgrupadas {
+            let begininOfDay: Int64 = Int64(AgendaFunctions.getBeginningOfDayFromDate(date: Date(timeIntervalSince1970: TimeInterval(model.fecha))).timeIntervalSince1970)
+            let endOfDay: Int64 = Int64(AgendaFunctions.getEndOfDayFromDate(date: Date(timeIntervalSince1970: TimeInterval(model.fecha))).timeIntervalSince1970)
+            for notification: NotificationModel in notifications {
+                if notification.fecha > begininOfDay && notification.fecha < endOfDay {
+                    model.notificaciones.append(notification)
+                }
+            }
+        }
+        
+        if isOldNotifications {
+            groupedOldNotifications = notificacionesAgrupadas
+        } else {
+            groupedTodayNotifications = notificacionesAgrupadas
+        }
+    }
+    
+    func createIndividualNotifications() {
+        for notification: NotificationModel in todayNotifications {
+            let notificationModel: NotificationDayModel = NotificationDayModel(fecha: notification.fecha, notificaciones: [notification])
+            groupedTodayNotifications.append(notificationModel)
+        }
+        
+        for notification: NotificationModel in oldNotifications {
+            let notificationModel: NotificationDayModel = NotificationDayModel(fecha: notification.fecha, notificaciones: [notification])
+            groupedOldNotifications.append(notificationModel)
+        }
+    }
+    
+    func getNotificationModelForIndexPath(indexPath: IndexPath) -> NotificationDayModel {
+        if indexPath.section == 0 && groupedTodayNotifications.count > 0 {
+            return groupedTodayNotifications[indexPath.row]
+        }
+        
+        return groupedOldNotifications[indexPath.row]
     }
     
     func paintWholeButton(view: UIView, label: UILabel) {
@@ -116,10 +177,10 @@ class NotificationsViewController: UIViewController {
         }
     }
     
-    func openBirthdayDetail(notification: NotificationModel) {
+    func openBirthdayDetail(notificationDayModel: NotificationDayModel) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Notification", bundle:nil)
         let controller: NotificationDetailViewController = storyBoard.instantiateViewController(withIdentifier: "NotificationDetailViewController") as! NotificationDetailViewController
-        controller.notification = notification
+        controller.noticationDayModel = notificationDayModel
         self.navigationController!.pushViewController(controller, animated: true)
     }
     
@@ -132,31 +193,30 @@ class NotificationsViewController: UIViewController {
         performSegue(withIdentifier: "cierreCajaIdentifier", sender: notificacion)
     }
     
-    func openCadenciaDetail(notification: NotificationModel) {
+    func openCadenciaDetail(notificationDayModel: NotificationDayModel) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Notification", bundle:nil)
         let controller: CadenciaNotificationDetailViewController = storyBoard.instantiateViewController(withIdentifier: "CadenciaNotificationDetailViewController") as! CadenciaNotificationDetailViewController
-        controller.notification = notification
+        controller.notificationDayModel = notificationDayModel
         self.navigationController!.pushViewController(controller, animated: true)
-        
     }
 }
 
 extension NotificationsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 && todayNotifications.count > 0 {
-            return todayNotifications.count
+            return groupedTodayNotifications.count
         } else {
-            return oldNotifications.count
+            return groupedOldNotifications.count
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         var numberOfSections = 0
-        if todayNotifications.count > 0 {
+        if groupedTodayNotifications.count > 0 {
             numberOfSections = numberOfSections + 1
         }
         
-        if oldNotifications.count > 0 {
+        if groupedOldNotifications.count > 0 {
             numberOfSections = numberOfSections + 1
         }
         
@@ -166,20 +226,23 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: NotificationCell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! NotificationCell
         cell.selectionStyle = .none
-        cell.setupCell(notification: getNotificationModelForIndexPath(indexPath: indexPath))
+        cell.setupCell(notificationModel: getNotificationModelForIndexPath(indexPath: indexPath))
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch tapSelected {
         case 1:
-            openBirthdayDetail(notification: getNotificationModelForIndexPath(indexPath: indexPath))
+            openBirthdayDetail(notificationDayModel: getNotificationModelForIndexPath(indexPath: indexPath))
+            break
         case 2:
-            openCadenciaDetail(notification: getNotificationModelForIndexPath(indexPath: indexPath))
+            openCadenciaDetail(notificationDayModel: getNotificationModelForIndexPath(indexPath: indexPath))
+            break
         case 3:
-            openCierreCaja(notificacion: getNotificationModelForIndexPath(indexPath: indexPath))
+            openCierreCaja(notificacion: getNotificationModelForIndexPath(indexPath: indexPath).notificaciones[0])
+            break
         default:
-            openBirthdayDetail(notification: getNotificationModelForIndexPath(indexPath: indexPath))
+            openBirthdayDetail(notificationDayModel: getNotificationModelForIndexPath(indexPath: indexPath))
             break
         }
     }
@@ -189,7 +252,7 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0  && todayNotifications.count > 0 {
+        if section == 0  && groupedTodayNotifications.count > 0 {
             return "Hoy"
         } else {
             return "Antiguas"

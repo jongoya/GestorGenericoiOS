@@ -11,4 +11,5 @@ import Foundation
 protocol AddCierreCajaProtocol {
     func successAddingCierreCaja(caja: CierreCajaModel)
     func errorAddingCierreCaja()
+    func logoutResponse()
 }

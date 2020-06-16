@@ -115,4 +115,20 @@ class CierreCajaManager: NSObject {
         
         return results.count > 0
     }
+    
+    func deleteAllCierreCajas() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CAJA_ENTITY_NAME)
+                var results: [NSManagedObject] = []
+        backgroundContext.performAndWait {
+            do {
+                results = try backgroundContext.fetch(fetchRequest)
+                for object in results {
+                    backgroundContext.delete(object)
+                }
+                
+                try backgroundContext.save()
+            } catch {
+            }
+        }
+    }
 }

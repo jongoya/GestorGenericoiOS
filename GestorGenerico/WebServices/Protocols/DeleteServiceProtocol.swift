@@ -11,4 +11,5 @@ import Foundation
 protocol DeleteServiceProtocol {
     func successDeletingService(service: ServiceModel)
     func errorDeletingService()
+    func logoutResponse()
 }

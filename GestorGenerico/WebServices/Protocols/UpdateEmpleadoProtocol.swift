@@ -12,4 +12,5 @@ import Foundation
 protocol UpdateEmpleadoProtocol {
     func successUpdatingEmpleado(empleado: EmpleadoModel)
     func errorUpdatingEmpleado()
+    func logoutResponse()
 }

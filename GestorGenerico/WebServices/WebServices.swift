@@ -108,6 +108,11 @@ public class WebServices {
                 }
             }
             
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
             delegate.errorSavignClient()
         }
     }
@@ -121,6 +126,11 @@ public class WebServices {
                     delegate.successUpdatingClient(cliente: model.cliente)
                     return
                 }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
             }
             
             delegate.errorUpdatingClient()
@@ -180,6 +190,11 @@ public class WebServices {
                 }
             }
             
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
             delegate.errorSavingServicio()
         }
     }
@@ -193,6 +208,11 @@ public class WebServices {
                     delegate.successUpdatingService(service: servicio)
                     return
                 }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
             }
             
             delegate.errorUpdatingService()
@@ -209,6 +229,11 @@ public class WebServices {
                 }
             }
             
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
             delegate.errorDeletingService()
         }
     }
@@ -222,6 +247,11 @@ public class WebServices {
                     delegate.successUpdatingNotificacion(cliente: cliente)
                     return
                 }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
             }
             
             delegate.errorUpdatingNotificacion()
@@ -271,7 +301,6 @@ public class WebServices {
     static func addEmpleado(empleado: EmpleadoModel, delegate: AddEmpleadoProtocol) {
         let url: String = baseUrl + "save_empleado"
         empleado.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
-        print("")
         AF.request(url, method: .post, parameters: empleado.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
             if response.error == nil {
                 if response.response!.statusCode == 201 {
@@ -279,6 +308,11 @@ public class WebServices {
                     delegate.successSavingEmpleado(empleado: empleado)
                     return
                 }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
             }
             
             delegate.errorSavingEmpleado()
@@ -296,6 +330,11 @@ public class WebServices {
                 }
             }
             
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
             delegate.errorUpdatingEmpleado()
         }
     }
@@ -309,6 +348,11 @@ public class WebServices {
                     delegate.successDeletingEmpleado(empleadoMasServicios: empleadoMasServicios)
                     return
                 }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
             }
             
             delegate.errorDeletingEmpleado()
@@ -344,6 +388,11 @@ public class WebServices {
                     delegate.successSavingServicio(tipoServicio: tipoServicio)
                     return
                 }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
             }
             
             delegate.errorSavingServicio()
@@ -432,6 +481,60 @@ public class WebServices {
         }
     }
     
+    static func updateNotifications(notifications: [NotificationModel], delegate: UpdateNotificationsProtocol) {
+        let urlString: String = baseUrl + "update_notifications"
+        var json: [[String: Any]] = []
+        for notificacion: NotificationModel in notifications {
+            json.append(notificacion.createJson())
+        }
+        
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        request.headers = createHeaders()
+        request.method = .put
+        request.httpBody = try! JSONSerialization.data(withJSONObject: json, options: [])
+        
+        AF.request(request).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let notificaciones: [NotificationModel] = try! JSONDecoder().decode([NotificationModel].self, from: response.data!)
+                    delegate.successUpdatingNotifications(notifications: notificaciones)
+                    return
+                }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
+            delegate.errorUpdatingNotifications()
+        }
+    }
+    
+    static func deleteNotifications(notifications: [NotificationModel]) {
+        let urlString: String = baseUrl + "delete_notifications"
+        var json: [[String: Any]] = []
+        for notificacion: NotificationModel in notifications {
+            json.append(notificacion.createJson())
+        }
+        
+        let url = URL(string: urlString)
+        var request = URLRequest(url: url!)
+        request.headers = createHeaders()
+        request.method = .post
+        request.httpBody = try! JSONSerialization.data(withJSONObject: json, options: [])
+        
+        AF.request(request).response { (response) in
+            if response.error == nil {
+                debugPrint(response)
+                if response.response!.statusCode == 200 {
+                    print("NOTIFICACIONES ANTIGUA ELIMINADAS")
+                }
+            }
+        }
+    }
+    
     static func getCierreCajas(comercioId: Int64) {
         let url: String = baseUrl + "get_cierre_cajas/" + String(comercioId)
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
@@ -456,6 +559,11 @@ public class WebServices {
                     delegate.successAddingCierreCaja(caja: cierreCaja)
                     return
                 }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
             }
             
             delegate.errorAddingCierreCaja()

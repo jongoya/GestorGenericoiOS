@@ -12,4 +12,5 @@ import Foundation
 protocol UpdateServicioProtocol {
     func successUpdatingService(service: ServiceModel)
     func errorUpdatingService()
+    func logoutResponse()
 }

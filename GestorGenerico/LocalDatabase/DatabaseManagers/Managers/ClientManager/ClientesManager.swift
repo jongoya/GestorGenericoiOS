@@ -110,4 +110,20 @@ class ClientesManager: NSObject {
             }
         }
     }
+    
+    func deleteAllClients() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CLIENTES_ENTITY_NAME)
+                var results: [NSManagedObject] = []
+        backgroundContext.performAndWait {
+            do {
+                results = try backgroundContext.fetch(fetchRequest)
+                for object in results {
+                    backgroundContext.delete(object)
+                }
+                
+                try backgroundContext.save()
+            } catch {
+            }
+        }
+    }
 }

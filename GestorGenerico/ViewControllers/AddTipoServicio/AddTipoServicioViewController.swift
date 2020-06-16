@@ -64,6 +64,10 @@ extension AddTipoServicioViewController: AddClientInputFieldProtocol {
 }
 
 extension AddTipoServicioViewController: AddTipoServicioProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func successSavingServicio(tipoServicio: TipoServicioModel) {
         Constants.databaseManager.tipoServiciosManager.addTipoServicioToDatabase(servicio: tipoServicio)
         DispatchQueue.main.async {

@@ -55,6 +55,29 @@ class CommonFunctions: NSObject {
             viewController.present(alert, animated: true, completion: nil)
         }
     }
+    
+    static func showLogoutAlert(viewController: UIViewController) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: "Has sido deslogueado de la aplicación, inicie sesión de nuevo", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { (action) in
+                Constants.databaseManager.clearAllDatabase()
+                UserPreferences.deleteAllValues()
+
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let controller: UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+                
+                if #available(iOS 13, *) {
+                    let sceneDelegate = UIApplication.shared.connectedScenes
+                    .first!.delegate as! SceneDelegate
+                    sceneDelegate.window!.rootViewController = controller
+                } else {
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.window!.rootViewController = controller
+                }
+            }))
+            viewController.present(alert, animated: true, completion: nil)
+        }
+    }
 
     static func customizeButton(button: UIView) {
         button.layer.cornerRadius = 10
@@ -64,12 +87,6 @@ class CommonFunctions: NSObject {
     
     static func getClientsTableIndexValues() -> [String] {
         return ["A","B","C","D", "E", "F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z", "Vacio"]
-    }
-    
-    static func getNumberOfYearsBetweenDates(startDate: Date, endDate: Date) -> Int {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year], from: startDate, to: endDate)
-        return components.year!
     }
 
     static func getIdentiferForListSelectorCell(row: Int, array: [Any]) -> Int64 {

@@ -176,6 +176,10 @@ extension AddEmpleadoViewController: DatePickerSelectorProtocol {
 }
 
 extension AddEmpleadoViewController: AddEmpleadoProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
     func successSavingEmpleado(empleado: EmpleadoModel) {
         Constants.databaseManager.empleadosManager.addEmpleadoToDatabase(newEmpleado: empleado)
         

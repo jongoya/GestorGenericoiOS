@@ -106,24 +106,6 @@ class NotificationFunctions: NSObject {
         return notification
     }
     
-    private static func getUserIdsFromBirthdayModels(users: [BirthdayModel]) -> [Int64] {
-        var userIds: [Int64] = []
-        for user in users {
-            userIds.append(user.userId)
-        }
-        
-        return userIds
-    }
-    
-    private static func getClientIds(clients: [ClientModel]) -> [Int64] {
-        var clientIds: [Int64] = []
-        for client in clients {
-            clientIds.append(client.id)
-        }
-        
-        return clientIds
-    }
-    
     static func checkCierreCajas() {
         let yesterday: Date = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
         let beginingOfDay: Date = AgendaFunctions.getBeginningOfDayFromDate(date: yesterday)
@@ -293,6 +275,26 @@ class NotificationFunctions: NSObject {
         NotificationFunctions.checkCierreCajas()
         NotificationFunctions.checkClientCadencias()
         NotificationFunctions.checkNotificacionesPersonalizadas()
-        Constants.databaseManager.notificationsManager.deleteOldNotifications()
+        deleteOldNotifications()
+    }
+    
+    static func deleteOldNotifications() {
+        let fechaTimeStamp: Int64 = Int64(Calendar.current.date(byAdding: .day, value: -7, to: Date())!.timeIntervalSince1970)
+        let notifications: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsFromDatabase()
+        var oldNotifications: [NotificationModel] = []
+        for notification in notifications {
+            if notification.fecha < fechaTimeStamp {
+                oldNotifications.append(notification)
+                Constants.databaseManager.notificationsManager.eliminarNotificacion(notificationId: notification.notificationId)
+            }
+        }
+        
+        if oldNotifications.count > 0 {
+            WebServices.deleteNotifications(notifications: oldNotifications)
+        }
+        
+        DispatchQueue.main.async {
+            Constants.rootController.setNotificationBarItemBadge()
+        }
     }
 }

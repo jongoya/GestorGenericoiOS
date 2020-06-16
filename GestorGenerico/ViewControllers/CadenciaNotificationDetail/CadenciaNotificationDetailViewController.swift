@@ -13,7 +13,7 @@ class CadenciaNotificationDetailViewController: UIViewController {
     @IBOutlet weak var cadenciaTextLabel: UILabel!
     @IBOutlet weak var clientTableView: UITableView!
     
-    var notification: NotificationModel!
+    var notificationDayModel: NotificationDayModel!
     var clientes: [ClientModel] = []
 
     override func viewDidLoad() {
@@ -27,30 +27,30 @@ class CadenciaNotificationDetailViewController: UIViewController {
         getClientes()
         setCadenciaLabel()
         
-        if !notification.leido {
+        if !notificationDayModel.notificaciones[0].leido {
             markNotificationAsRead()
         }
     }
     
     func setCadenciaLabel() {
-        //TODO
-        //cadenciaTextLabel.text = notification.clientId.count > 1 ? "Hay " + String(notification.clientId.count) + " clientes que llevan tiémpo sin venir" : "Hay 1 Cliente que lleva tiémpo sin venir"
+        cadenciaTextLabel.text = notificationDayModel.notificaciones.count > 1 ? "Hay " + String(notificationDayModel.notificaciones.count) + " clientes que llevan tiémpo sin venir" : "Hay 1 Cliente que lleva tiémpo sin venir"
     }
     
     func getClientes() {
-        //TODO
-        /*for clientId: Int64 in notification.clientId {
-            clientes.append(Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: clientId)!)
+        for notification: NotificationModel in notificationDayModel.notificaciones {
+            clientes.append(Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: notification.clientId)!)
         }
         
-        clientTableView.reloadData()*/
+        clientTableView.reloadData()
     }
     
     func markNotificationAsRead() {
-        notification.leido = true
+        for notification: NotificationModel in notificationDayModel.notificaciones {
+            notification.leido = true
+        }
+        
         CommonFunctions.showLoadingStateView(descriptionText: "Actualizando notificación")
-        //TODO
-        //Constants.cloudDatabaseManager.notificationManager.updateNotification(notification: notification, delegate: self)
+        WebServices.updateNotifications(notifications: notificationDayModel.notificaciones, delegate: self)
     }
 }
 
@@ -71,21 +71,26 @@ extension CadenciaNotificationDetailViewController: UITableViewDelegate, UITable
     }
 }
 
-
-//TODO
-/*extension CadenciaNotificationDetailViewController: CloudNotificationProtocol {
-    func notificacionSincronizationFinished() {
-        _ = Constants.databaseManager.notificationsManager.markNotificationAsRead(notification: notification)
+extension CadenciaNotificationDetailViewController: UpdateNotificationsProtocol {
+    func logoutResponse() {
+        CommonFunctions.showLogoutAlert(viewController: self)
+    }
+    
+    func successUpdatingNotifications(notifications: [NotificationModel]) {
+        for notification: NotificationModel in notifications {
+            Constants.databaseManager.notificationsManager.markNotificationAsRead(notification: notification)
+        }
+        
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()
             Constants.rootController.setNotificationBarItemBadge()
         }
     }
     
-    func notificacionSincronizationError(error: String) {
+    func errorUpdatingNotifications() {
         DispatchQueue.main.async {
             CommonFunctions.hideLoadingStateView()
             CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando notificación", viewController: self)
         }
     }
-}*/
+}

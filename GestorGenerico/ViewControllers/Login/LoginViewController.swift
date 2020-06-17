@@ -80,9 +80,9 @@ class LoginViewController: UIViewController {
             setImageWithString(stringData: icono, imageView: iconoImage)
         }
         
-        let primaryTextColor: String = AppStyle.getPrimaryTextColor()
-        let secondaryTextColor: String = AppStyle.getSecondaryTextColor()
-        let primaryColor: String = AppStyle.getPrimaryColor()
+        let primaryTextColor: String = AppStyle.getLoginPrimaryTextColor()
+        let secondaryTextColor: String = AppStyle.getLoginSecondaryTextColor()
+        let primaryColor: String = AppStyle.getLoginPrimaryColor()
         
         customizeTextFieldWithValues(primaryColor: primaryColor, secondaryTextColor: secondaryTextColor, primaryTextColor: primaryTextColor, textField: userField, placeHolderText: "Usuario")
         customizeTextFieldWithValues(primaryColor: primaryTextColor, secondaryTextColor: secondaryTextColor, primaryTextColor: primaryTextColor, textField: passwordField, placeHolderText: "Contraseña")
@@ -141,10 +141,11 @@ class LoginViewController: UIViewController {
         loginText.textColor = CommonFunctions.hexStringToUIColor(hex: primaryTextColor)
     }
     
-    private func saveLoginDataAndChangeController(login: LoginModel) {
-        UserPreferences.saveValueInUserDefaults(value: login.password, key: Constants.preferencesPasswordKey)
-        UserPreferences.saveValueInUserDefaults(value: login.token, key: Constants.preferencesTokenKey)
-        UserPreferences.saveValueInUserDefaults(value: login.comercioId, key: Constants.preferencesComercioIdKey)
+    private func saveLoginDataAndChangeController(loginCompleto: LoginMasDispositivosModel) {
+        UserPreferences.saveValueInUserDefaults(value: loginCompleto.login.password, key: Constants.preferencesPasswordKey)
+        UserPreferences.saveValueInUserDefaults(value: loginCompleto.login.token, key: Constants.preferencesTokenKey)
+        UserPreferences.saveValueInUserDefaults(value: loginCompleto.login.comercioId, key: Constants.preferencesComercioIdKey)
+        Constants.databaseManager.estiloAppManager.addEstiloToDatabase(estilo: loginCompleto.estiloApp)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "navigationController") as! UINavigationController
@@ -202,9 +203,9 @@ extension LoginViewController: LoginProtocol {
         CommonFunctions.showGenericAlertMessage(mensaje: "Error cargando estilo login", viewController: self)
     }
     
-    func succesLogingIn(login: LoginModel) {
+    func succesLogingIn(loginCompleto: LoginMasDispositivosModel) {
         CommonFunctions.hideLoadingStateView()
-        saveLoginDataAndChangeController(login: login)
+        saveLoginDataAndChangeController(loginCompleto: loginCompleto)
         CommonFunctions.sincronizarBaseDeDatos()
     }
     

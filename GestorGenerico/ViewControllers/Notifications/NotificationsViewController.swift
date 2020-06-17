@@ -149,9 +149,9 @@ class NotificationsViewController: UIViewController {
     }
     
     func paintWholeButton(view: UIView, label: UILabel) {
-        view.backgroundColor = .red
+        view.backgroundColor = AppStyle.getPrimaryColor()
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.red.cgColor
+        view.layer.borderColor = AppStyle.getPrimaryColor().cgColor
         view.layer.cornerRadius = 10
         label.textColor = .white
     }
@@ -159,9 +159,9 @@ class NotificationsViewController: UIViewController {
     func paintBorderButton(view: UIView, label: UILabel) {
         view.backgroundColor = .white
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.red.cgColor
+        view.layer.borderColor = AppStyle.getPrimaryColor().cgColor
         view.layer.cornerRadius = 10
-        label.textColor = .red
+        label.textColor = AppStyle.getPrimaryColor()
     }
     
     func getNotificationType() -> String {
@@ -257,6 +257,12 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
         } else {
             return "Antiguas"
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let view: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        view.tintColor = AppStyle.getBackgroundColor()
+        view.textLabel!.textColor = AppStyle.getPrimaryTextColor()
     }
 }
 

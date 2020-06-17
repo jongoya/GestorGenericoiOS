@@ -81,7 +81,7 @@ class CommonFunctions: NSObject {
 
     static func customizeButton(button: UIView) {
         button.layer.cornerRadius = 10
-        button.layer.borderColor = UIColor.systemGray4.cgColor
+        button.layer.borderColor = AppStyle.getSecondaryColor().cgColor
         button.layer.borderWidth = 1
     }
     
@@ -145,7 +145,7 @@ class CommonFunctions: NSObject {
         let emptyState: UILabel = UILabel()
         emptyState.translatesAutoresizingMaskIntoConstraints = false
         emptyState.text = emptyText
-        emptyState.textColor = .black
+        emptyState.textColor = AppStyle.getPrimaryTextColor()
         emptyState.font = UIFont.systemFont(ofSize: 15)
         emptyState.textAlignment = .center
         emptyState.numberOfLines = 5

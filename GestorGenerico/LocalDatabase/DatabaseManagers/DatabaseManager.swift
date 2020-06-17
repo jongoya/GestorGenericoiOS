@@ -17,6 +17,7 @@ class DatabaseManager: NSObject {
     var empleadosManager: EmpleadosManager!
     var tipoServiciosManager: TipoServiciosManager!
     var cierreCajaManager: CierreCajaManager!
+    var estiloAppManager: AppStyleManager!
     
     override init() {
         super.init()
@@ -26,6 +27,7 @@ class DatabaseManager: NSObject {
         empleadosManager = EmpleadosManager()
         tipoServiciosManager = TipoServiciosManager()
         cierreCajaManager = CierreCajaManager()
+        estiloAppManager = AppStyleManager()
     }
     
     func clearAllDatabase() {
@@ -35,5 +37,6 @@ class DatabaseManager: NSObject {
         empleadosManager.deleteAllEmpleados()
         tipoServiciosManager.deleteAllTipoServicios()
         cierreCajaManager.deleteAllCierreCajas()
+        estiloAppManager.deleteStyle()
     }
 }

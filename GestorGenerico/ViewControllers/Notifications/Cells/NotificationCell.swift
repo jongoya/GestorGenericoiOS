@@ -32,11 +32,11 @@ class NotificationCell: UITableViewCell {
         notificationContentView.layer.cornerRadius = 10
         notificationContentView.layer.borderWidth = 1
         if notification.leido {
-            notificationImage.tintColor = .black
-            notificationContentView.layer.borderColor = UIColor.systemGray4.cgColor
+            notificationImage.tintColor = AppStyle.getPrimaryTextColor()
+            notificationContentView.layer.borderColor = AppStyle.getSecondaryColor().cgColor
         } else {
-            notificationContentView.layer.borderColor = UIColor.link.cgColor
-            notificationImage.tintColor = UIColor.link
+            notificationContentView.layer.borderColor = AppStyle.getPrimaryColor().cgColor
+            notificationImage.tintColor = AppStyle.getPrimaryColor()
         }
     }
     

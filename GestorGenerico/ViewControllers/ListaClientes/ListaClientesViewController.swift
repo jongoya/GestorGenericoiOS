@@ -11,6 +11,7 @@ import UIKit
 class ListaClientesViewController: UIViewController {
     @IBOutlet weak var clientesTextField: UITextField!
     @IBOutlet weak var clientsTableView: UITableView!
+    @IBOutlet weak var clearButton: UIButton!
     
     var filteredClients: [[ClientModel]] = []
     var arrayIndexSection: [String]!
@@ -21,6 +22,8 @@ class ListaClientesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextFieldProperties()
+        customizeTableView()
+        customizeClearButton()
         arrayIndexSection = CommonFunctions.getClientsTableIndexValues()
         
         addRefreshControl()
@@ -42,7 +45,20 @@ class ListaClientesViewController: UIViewController {
     func setTextFieldProperties() {
         clientesTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         clientesTextField.returnKeyType = .done
+        clientesTextField.layer.borderColor = AppStyle.getSecondaryColor().cgColor
+        clientesTextField.textColor = AppStyle.getPrimaryTextColor()
+        clientesTextField.attributedPlaceholder = NSAttributedString(string: "Nombre", attributes: [NSAttributedString.Key.foregroundColor: AppStyle.getSecondaryColor()])
         clientesTextField.delegate = self
+    }
+    
+    func customizeTableView() {
+        clientsTableView.backgroundColor = AppStyle.getBackgroundColor()
+        clientsTableView.sectionIndexColor = AppStyle.getPrimaryColor()
+    }
+    
+    func customizeClearButton() {
+        clearButton.imageView?.image = UIImage(systemName: "delete.left")?.withRenderingMode(.alwaysTemplate)
+        clearButton.tintColor = AppStyle.getPrimaryColor()
     }
     
     func getClients() {
@@ -159,6 +175,12 @@ extension ListaClientesViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let view: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        view.tintColor = AppStyle.getBackgroundColor()
+        view.textLabel!.textColor = AppStyle.getPrimaryTextColor()
     }
 }
 

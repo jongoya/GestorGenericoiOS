@@ -36,6 +36,18 @@
         <attribute name="redColorValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="telefono" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="EstiloApp" representedClassName="EstiloApp" syncable="YES" codeGenerationType="class">
+        <attribute name="appName" optional="YES" attributeType="String"/>
+        <attribute name="appSmallIcon" optional="YES" attributeType="String"/>
+        <attribute name="backgroundColor" optional="YES" attributeType="String"/>
+        <attribute name="comercioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="estiloId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="navigationColor" optional="YES" attributeType="String"/>
+        <attribute name="primaryColor" optional="YES" attributeType="String"/>
+        <attribute name="primaryTextColor" optional="YES" attributeType="String"/>
+        <attribute name="secondaryColor" optional="YES" attributeType="String"/>
+        <attribute name="secondaryTextColor" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Notifications" representedClassName="Notifications" syncable="YES" codeGenerationType="class">
         <attribute name="clientId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="comercioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -68,5 +80,6 @@
         <element name="Notifications" positionX="-54" positionY="81" width="128" height="148"/>
         <element name="Servicio" positionX="-45" positionY="63" width="128" height="178"/>
         <element name="TipoServicios" positionX="-45" positionY="90" width="128" height="88"/>
+        <element name="EstiloApp" positionX="-54" positionY="117" width="128" height="193"/>
     </elements>
 </model>

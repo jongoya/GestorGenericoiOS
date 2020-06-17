@@ -80,6 +80,8 @@
 		FB57F3022434953500192230 /* AddClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB57F3012434953500192230 /* AddClientViewController.swift */; };
 		FB57F30524349DDD00192230 /* FieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB57F30424349DDD00192230 /* FieldViewController.swift */; };
 		FB58968D2434A40B000683D4 /* AddClientInputFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB58968C2434A40B000683D4 /* AddClientInputFieldProtocol.swift */; };
+		FB59496524991FD000BE14C8 /* EstiloAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB59496424991FD000BE14C8 /* EstiloAppModel.swift */; };
+		FB5949682499214000BE14C8 /* AppStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5949672499214000BE14C8 /* AppStyleManager.swift */; };
 		FB5F7D6C243F193900503E9B /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F7D6B243F193900503E9B /* NotificationsViewController.swift */; };
 		FB5F7D6F243F1DBE00503E9B /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F7D6E243F1DBE00503E9B /* NotificationCell.swift */; };
 		FB5F7D72243F1EAC00503E9B /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F7D71243F1EAC00503E9B /* NotificationsManager.swift */; };
@@ -231,6 +233,8 @@
 		FB57F3012434953500192230 /* AddClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClientViewController.swift; sourceTree = "<group>"; };
 		FB57F30424349DDD00192230 /* FieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldViewController.swift; sourceTree = "<group>"; };
 		FB58968C2434A40B000683D4 /* AddClientInputFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClientInputFieldProtocol.swift; sourceTree = "<group>"; };
+		FB59496424991FD000BE14C8 /* EstiloAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstiloAppModel.swift; sourceTree = "<group>"; };
+		FB5949672499214000BE14C8 /* AppStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyleManager.swift; sourceTree = "<group>"; };
 		FB5F7D6B243F193900503E9B /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		FB5F7D6E243F1DBE00503E9B /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		FB5F7D71243F1EAC00503E9B /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
@@ -623,6 +627,7 @@
 		FB57F2F024347F0500192230 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FB59496324991FBE00BE14C8 /* EstiloApp */,
 				FB17F0612493D76200F0BC39 /* EmpleadoMasServicios */,
 				FB17F0542493845D00F0BC39 /* ClientMasServicios */,
 				FB8329E12490F9E8003B8009 /* LoginMasDispositivos */,
@@ -650,6 +655,7 @@
 		FB57F2F82434832F00192230 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				FB5949662499212B00BE14C8 /* AppStyleManager */,
 				FBDF1BB3244F55D5004DDD3F /* CierreCajaManager */,
 				FB8185AF244343E5004697D3 /* TipoServiciosManager */,
 				FB8185A924432D92004697D3 /* EmpleadosManager */,
@@ -729,6 +735,22 @@
 				FB58968C2434A40B000683D4 /* AddClientInputFieldProtocol.swift */,
 			);
 			path = protocol;
+			sourceTree = "<group>";
+		};
+		FB59496324991FBE00BE14C8 /* EstiloApp */ = {
+			isa = PBXGroup;
+			children = (
+				FB59496424991FD000BE14C8 /* EstiloAppModel.swift */,
+			);
+			path = EstiloApp;
+			sourceTree = "<group>";
+		};
+		FB5949662499212B00BE14C8 /* AppStyleManager */ = {
+			isa = PBXGroup;
+			children = (
+				FB5949672499214000BE14C8 /* AppStyleManager.swift */,
+			);
+			path = AppStyleManager;
 			sourceTree = "<group>";
 		};
 		FB5F7D6A243F191E00503E9B /* Notifications */ = {
@@ -1399,6 +1421,8 @@
 				FB43BF1D2494E5180035BA87 /* AddNuevoServicioProtocol.swift in Sources */,
 				FB3E4B4A2435D20C009DB88B /* DatePickerSelectorViewController.swift in Sources */,
 				FB3E4B532435EEC9009DB88B /* ClientDetailViewController.swift in Sources */,
+				FB59496524991FD000BE14C8 /* EstiloAppModel.swift in Sources */,
+				FB5949682499214000BE14C8 /* AppStyleManager.swift in Sources */,
 				FB53D697245462BE00331817 /* CadenciaNotificationCell.swift in Sources */,
 				FB6493FC24338C0900503627 /* RootViewController.swift in Sources */,
 				FBAA2A90243B4956009DE78B /* AgendaFunctions.swift in Sources */,

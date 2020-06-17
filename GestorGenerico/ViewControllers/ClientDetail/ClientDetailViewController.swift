@@ -25,6 +25,25 @@ class ClientDetailViewController: UIViewController {
     @IBOutlet weak var alarmView: UIView!
     @IBOutlet weak var alarmImageView: UIImageView!
     @IBOutlet weak var clientImageView: UIImageView!
+    @IBOutlet weak var plusImage: UIImageView!
+    
+    @IBOutlet weak var informacionField: UILabel!
+    @IBOutlet weak var nombreField: UILabel!
+    @IBOutlet weak var apellidosField: UILabel!
+    @IBOutlet weak var fechaField: UILabel!
+    @IBOutlet weak var telefonoField: UILabel!
+    @IBOutlet weak var emailField: UILabel!
+    @IBOutlet weak var direccionField: UILabel!
+    @IBOutlet weak var cadenciaField: UILabel!
+    @IBOutlet weak var addServicioField: UILabel!
+    
+    @IBOutlet weak var nombreArrow: UIImageView!
+    @IBOutlet weak var apellidosArrow: UIImageView!
+    @IBOutlet weak var fechaArrow: UIImageView!
+    @IBOutlet weak var telefonoArrow: UIImageView!
+    @IBOutlet weak var emailArrow: UIImageView!
+    @IBOutlet weak var direccionArrow: UIImageView!
+    @IBOutlet weak var cadenciaArrow: UIImageView!
     
     var client: ClientModel!
     var services: [ServiceModel] = []
@@ -35,6 +54,11 @@ class ClientDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeLabels()
+        customizeFields()
+        customizeScrollView()
+        customizeArrows()
+        customizeAddServiceButton()
         
         title = "Detalle Cliente"
         addBackButton()
@@ -53,6 +77,55 @@ class ClientDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Constants.rootController.setNotificationBarItemBadge()
+    }
+    
+    func customizeLabels() {
+        nombreLabel.textColor = AppStyle.getSecondaryTextColor()
+        apellidosLabel.textColor = AppStyle.getSecondaryTextColor()
+        fechaLabel.textColor = AppStyle.getSecondaryTextColor()
+        telefonoLabel.textColor = AppStyle.getSecondaryTextColor()
+        emailLabel.textColor = AppStyle.getSecondaryTextColor()
+        direccionLabel.textColor = AppStyle.getSecondaryTextColor()
+        cadenciaLabel.textColor = AppStyle.getSecondaryTextColor()
+    }
+    
+    func customizeFields() {
+        nombreField.textColor = AppStyle.getPrimaryTextColor()
+        informacionField.textColor = AppStyle.getPrimaryTextColor()
+        apellidosField.textColor = AppStyle.getPrimaryTextColor()
+        fechaField.textColor = AppStyle.getPrimaryTextColor()
+        telefonoField.textColor = AppStyle.getPrimaryTextColor()
+        emailField.textColor = AppStyle.getPrimaryTextColor()
+        direccionField.textColor = AppStyle.getPrimaryTextColor()
+        cadenciaField.textColor = AppStyle.getPrimaryTextColor()
+        observacionesLabel.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeArrows() {
+        nombreArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        apellidosArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        fechaArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        telefonoArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        emailArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        direccionArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        cadenciaArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        nombreArrow.tintColor = AppStyle.getSecondaryColor()
+        apellidosArrow.tintColor = AppStyle.getSecondaryColor()
+        fechaArrow.tintColor = AppStyle.getSecondaryColor()
+        telefonoArrow.tintColor = AppStyle.getSecondaryColor()
+        emailArrow.tintColor = AppStyle.getSecondaryColor()
+        direccionArrow.tintColor = AppStyle.getSecondaryColor()
+        cadenciaArrow.tintColor = AppStyle.getSecondaryColor()
+    }
+    
+    func customizeAddServiceButton() {
+        plusImage.image = UIImage(systemName: "plus")!.withRenderingMode(.alwaysTemplate)
+        plusImage.tintColor = AppStyle.getPrimaryColor()
+        addServicioField.textColor = AppStyle.getPrimaryColor()
+    }
+    
+    func customizeScrollView() {
+        srollView.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func getClientDetails() {
@@ -82,7 +155,8 @@ class ClientDetailViewController: UIViewController {
             clientImageView.image = UIImage(data: dataDecoded)
             clientImageView.layer.cornerRadius = 75
         } else {
-            clientImageView.image = UIImage(named: "add_image")
+            clientImageView.image = UIImage(named: "add_image")?.withRenderingMode(.alwaysTemplate)
+            clientImageView.tintColor = AppStyle.getPrimaryTextColor()
         }
     }
     
@@ -132,7 +206,7 @@ class ClientDetailViewController: UIViewController {
         let headerLabel: UILabel = UILabel()
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.text = text
-        headerLabel.textColor = .black
+        headerLabel.textColor = AppStyle.getPrimaryTextColor()
         headerLabel.font = .systemFont(ofSize: 15)
         scrollContentView.addSubview(headerLabel)
         serviceViewsArray.append(headerLabel)
@@ -223,14 +297,14 @@ class ClientDetailViewController: UIViewController {
     
     func activateAlarmButton() {
         alarmImageView.image = UIImage(named: "campana")?.withRenderingMode(.alwaysTemplate)
-        alarmImageView.tintColor = .link
-        alarmView.layer.borderColor = UIColor.link.cgColor
+        alarmImageView.tintColor = AppStyle.getPrimaryColor()
+        alarmView.layer.borderColor = AppStyle.getPrimaryColor().cgColor
     }
     
     func deactivateAlarmButton() {
         alarmImageView.image = UIImage(named: "campana")?.withRenderingMode(.alwaysTemplate)
-        alarmImageView.tintColor = .systemGray4
-        alarmView.layer.borderColor = UIColor.systemGray4.cgColor
+        alarmImageView.tintColor = AppStyle.getSecondaryColor()
+        alarmView.layer.borderColor = AppStyle.getSecondaryColor().cgColor
     }
     
     func updateClientForNotificacionPersonalizada() {

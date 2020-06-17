@@ -32,12 +32,19 @@ class FieldViewController: UIViewController {
         inpuField.keyboardType = keyboardType
         inpuField.text = inputText
         
+        customizeInputField()
+        
         addMicrophoneButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.delegate.textSaved(text: inpuField.text, inputReference: self.inputReference)
+    }
+    
+    func customizeInputField() {
+        inpuField.textColor = AppStyle.getPrimaryTextColor()
+        inpuField.tintColor = AppStyle.getPrimaryColor()
     }
     
     func addMicrophoneButton() {
@@ -52,7 +59,7 @@ class FieldViewController: UIViewController {
         
         let alphaView: UIView = UIView()
         alphaView.translatesAutoresizingMaskIntoConstraints = false
-        alphaView.backgroundColor = .black
+        alphaView.backgroundColor = AppStyle.getBackgroundColor()
         alphaView.alpha = 0.4
         centeredText.addSubview(alphaView)
         

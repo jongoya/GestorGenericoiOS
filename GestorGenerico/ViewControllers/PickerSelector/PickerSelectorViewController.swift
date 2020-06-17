@@ -16,11 +16,16 @@ class PickerSelectorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizePickerView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         delegate.cadenciaSelected(cadencia: options[pickerView.selectedRow(inComponent: 0)].cadencia)
+    }
+    
+    func customizePickerView() {
+        pickerView.setValue(AppStyle.getPrimaryTextColor(), forKey: "textColor")
     }
 }
 

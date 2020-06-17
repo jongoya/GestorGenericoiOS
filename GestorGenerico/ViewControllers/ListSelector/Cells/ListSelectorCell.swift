@@ -10,8 +10,13 @@ import UIKit
 
 class ListSelectorCell: UITableViewCell {
     @IBOutlet weak var optionTextLabel: UILabel!
-
+    @IBOutlet weak var listImage: UIImageView!
+    
     func setupCell(option: String) {
+        listImage.image = UIImage(named: "list_icon")!.withRenderingMode(.alwaysTemplate)
+        listImage.tintColor = AppStyle.getPrimaryTextColor()
+        optionTextLabel.textColor = AppStyle.getPrimaryTextColor()
+        
         optionTextLabel.text = option
     }
 }

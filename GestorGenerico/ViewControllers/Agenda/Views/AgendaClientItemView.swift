@@ -37,7 +37,7 @@ class AgendaClientItemView: UIView {
     
     func customizeContentView() {
         layer.cornerRadius = 10
-        layer.borderColor = UIColor.systemGray4.cgColor
+        layer.borderColor = AppStyle.getSecondaryColor().cgColor
         layer.borderWidth = 1
     }
     
@@ -62,7 +62,7 @@ class AgendaClientItemView: UIView {
         nombreCliente = UILabel()
         nombreCliente.translatesAutoresizingMaskIntoConstraints = false
         nombreCliente.text = cliente.nombre + " " + cliente.apellidos
-        nombreCliente.textColor = .black
+        nombreCliente.textColor = AppStyle.getPrimaryTextColor()
         nombreCliente.font = .systemFont(ofSize: 16, weight: .semibold)
         addSubview(nombreCliente)
     }
@@ -71,7 +71,7 @@ class AgendaClientItemView: UIView {
         horaServicio = UILabel()
         horaServicio.translatesAutoresizingMaskIntoConstraints = false
         horaServicio.text = "Servicios: " + collectHorasCliente()
-        horaServicio.textColor = .systemGray3
+        horaServicio.textColor = AppStyle.getSecondaryTextColor()
         horaServicio.font = UIFont.systemFont(ofSize: 14)
         addSubview(horaServicio)
     }

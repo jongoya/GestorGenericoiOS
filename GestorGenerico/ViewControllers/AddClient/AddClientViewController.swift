@@ -29,6 +29,26 @@ class AddClientViewController: UIViewController {
     @IBOutlet weak var direccionLabel: UILabel!
     @IBOutlet weak var cadenciaLabel: UILabel!
     @IBOutlet weak var observacionesLabel: UILabel!
+    
+    @IBOutlet weak var nombreField: UILabel!
+    @IBOutlet weak var apellidosField: UILabel!
+    @IBOutlet weak var fechaField: UILabel!
+    @IBOutlet weak var telefonoField: UILabel!
+    @IBOutlet weak var emailField: UILabel!
+    @IBOutlet weak var direccionField: UILabel!
+    @IBOutlet weak var cadenciaField: UILabel!
+    @IBOutlet weak var informacionField: UILabel!
+    @IBOutlet weak var plusButtonField: UILabel!
+    
+    @IBOutlet weak var nombreArrow: UIImageView!
+    @IBOutlet weak var apellidosArrow: UIImageView!
+    @IBOutlet weak var fechaArrow: UIImageView!
+    @IBOutlet weak var telefonoArrow: UIImageView!
+    @IBOutlet weak var emailArrow: UIImageView!
+    @IBOutlet weak var dirrecionArrow: UIImageView!
+    @IBOutlet weak var cadenciaArrow: UIImageView!
+    @IBOutlet weak var plusButtonImage: UIImageView!
+    
     @IBOutlet weak var addServicioTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var clientImageView: UIImageView!
     @IBOutlet weak var clientImageContainer: UIView!
@@ -41,6 +61,12 @@ class AddClientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CommonFunctions.customizeButton(button: addServicioView)
+        customizeScrollView()
+        customizePlaceholder()
+        customizeLabels()
+        customizeFields()
+        customizeArrows()
+        customizePlusButton()
         title = "Añadir Cliente"
         addServicioPreviousView = observacionesView
     }
@@ -52,8 +78,62 @@ class AddClientViewController: UIViewController {
         }
     }
     
+    func customizePlaceholder() {
+        clientImageView.image = UIImage(named: "add_image")?.withRenderingMode(.alwaysTemplate)
+        clientImageView.tintColor = AppStyle.getPrimaryTextColor()
+    }
+    
     func customizeImageView() {
         clientImageView.layer.cornerRadius = 75
+    }
+    
+    func customizeScrollView() {
+        scrollView.backgroundColor = AppStyle.getBackgroundColor()
+    }
+    
+    func customizeLabels() {
+        nombreLabel.textColor = AppStyle.getSecondaryTextColor()
+        apellidosLabel.textColor = AppStyle.getSecondaryTextColor()
+        fechaLabel.textColor = AppStyle.getSecondaryTextColor()
+        telefonoLabel.textColor = AppStyle.getSecondaryTextColor()
+        emailLabel.textColor = AppStyle.getSecondaryTextColor()
+        direccionLabel.textColor = AppStyle.getSecondaryTextColor()
+        cadenciaLabel.textColor = AppStyle.getSecondaryTextColor()
+        observacionesLabel.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeFields() {
+        informacionField.textColor = AppStyle.getPrimaryTextColor()
+        nombreField.textColor = AppStyle.getPrimaryTextColor()
+        apellidosField.textColor = AppStyle.getPrimaryTextColor()
+        fechaField.textColor = AppStyle.getPrimaryTextColor()
+        telefonoField.textColor = AppStyle.getPrimaryTextColor()
+        emailField.textColor = AppStyle.getPrimaryTextColor()
+        direccionField.textColor = AppStyle.getPrimaryTextColor()
+        cadenciaField.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeArrows() {
+        nombreArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        apellidosArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        fechaArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        telefonoArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        emailArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        dirrecionArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        cadenciaArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        nombreArrow.tintColor = AppStyle.getSecondaryColor()
+        apellidosArrow.tintColor = AppStyle.getSecondaryColor()
+        fechaArrow.tintColor = AppStyle.getSecondaryColor()
+        telefonoArrow.tintColor = AppStyle.getSecondaryColor()
+        emailArrow.tintColor = AppStyle.getSecondaryColor()
+        dirrecionArrow.tintColor = AppStyle.getSecondaryColor()
+        cadenciaArrow.tintColor = AppStyle.getSecondaryColor()
+    }
+    
+    func customizePlusButton() {
+        plusButtonImage.image = UIImage(systemName: "plus")!.withRenderingMode(.alwaysTemplate)
+        plusButtonImage.tintColor = AppStyle.getPrimaryColor()
+        plusButtonField.textColor = AppStyle.getPrimaryColor()
     }
     
     func showServicio(servicio: ServiceModel) {

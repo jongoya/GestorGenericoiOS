@@ -17,6 +17,21 @@ class AgendaServiceViewController: UIViewController {
     @IBOutlet weak var precioLabel: UILabel!
     @IBOutlet weak var efectivoSwicth: UISwitch!
     
+    @IBOutlet weak var informacionField: UILabel!
+    @IBOutlet weak var nombreField: UILabel!
+    @IBOutlet weak var fechaField: UILabel!
+    @IBOutlet weak var profesionalField: UILabel!
+    @IBOutlet weak var servicioField: UILabel!
+    @IBOutlet weak var precioField: UILabel!
+    @IBOutlet weak var efectiovField: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var nombreArrow: UIImageView!
+    @IBOutlet weak var fechaArrow: UIImageView!
+    @IBOutlet weak var profesionalArrow: UIImageView!
+    @IBOutlet weak var servicioArrow: UIImageView!
+    @IBOutlet weak var precioArrow: UIImageView!
+    
     var newService: ServiceModel = ServiceModel()
     var clientSeleced: ClientModel!
     var newDate: Date!
@@ -26,9 +41,54 @@ class AgendaServiceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Servicio"
+        customizeLabels()
+        customizeFields()
+        customizeArrows()
+        customizeSwitch()
+        customizeBackground()
         efectivoSwicth.addTarget(self, action: #selector(switchClicked), for: UIControl.Event.valueChanged)
         addBackButton()
         setInitialDate()
+    }
+    
+    func customizeLabels() {
+        nombreLabel.textColor = AppStyle.getSecondaryTextColor()
+        fechaLabel.textColor = AppStyle.getSecondaryTextColor()
+        profesionalLabel.textColor = AppStyle.getSecondaryTextColor()
+        servicioLabel.textColor = AppStyle.getSecondaryTextColor()
+        precioLabel.textColor = AppStyle.getSecondaryTextColor()
+    }
+    
+    func customizeFields() {
+        nombreField.textColor = AppStyle.getPrimaryTextColor()
+        informacionField.textColor = AppStyle.getPrimaryTextColor()
+        fechaField.textColor = AppStyle.getPrimaryTextColor()
+        profesionalField.textColor = AppStyle.getPrimaryTextColor()
+        servicioField.textColor = AppStyle.getPrimaryTextColor()
+        precioField.textColor = AppStyle.getPrimaryTextColor()
+        efectiovField.textColor = AppStyle.getPrimaryTextColor()
+        observacionesLabel.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeArrows() {
+        nombreArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        fechaArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        profesionalArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        servicioArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        precioArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        nombreArrow.tintColor = AppStyle.getSecondaryColor()
+        fechaArrow.tintColor = AppStyle.getSecondaryColor()
+        profesionalArrow.tintColor = AppStyle.getSecondaryColor()
+        servicioArrow.tintColor = AppStyle.getSecondaryColor()
+        precioArrow.tintColor = AppStyle.getSecondaryColor()
+    }
+    
+    func customizeBackground() {
+        scrollView.backgroundColor = AppStyle.getBackgroundColor()
+    }
+    
+    func customizeSwitch() {
+        efectivoSwicth.onTintColor = AppStyle.getPrimaryColor()
     }
     
     func setInitialDate() {

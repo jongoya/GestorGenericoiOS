@@ -15,6 +15,9 @@ class ClientCell: UITableViewCell {
     @IBOutlet weak var phoneLabel: UILabel!
     
     func setupCell(client: ClientModel) {
+        nameLabel.textColor = AppStyle.getPrimaryTextColor()
+        phoneLabel.textColor = AppStyle.getSecondaryTextColor()
+        
         nameLabel.text = client.apellidos + ", " + client.nombre
         phoneLabel.text = "Telefono: " + client.telefono
         
@@ -24,7 +27,8 @@ class ClientCell: UITableViewCell {
             imageCellView.layer.cornerRadius = 30
             imageCellView.contentMode = .scaleAspectFill
         } else {
-            imageCellView.image = UIImage(named: "user_placeholder")
+            imageCellView.image = UIImage(named: "user_placeholder")?.withRenderingMode(.alwaysTemplate)
+            imageCellView.tintColor = AppStyle.getPrimaryTextColor()
             imageCellView.layer.cornerRadius = 0
             imageCellView.contentMode = .scaleAspectFit
         }

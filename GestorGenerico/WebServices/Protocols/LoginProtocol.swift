@@ -11,7 +11,7 @@ import Foundation
 protocol LoginProtocol {
     func successGettingLoginStyle(estiloLogin: EstiloLoginModel)
     func errorGettingLoginStyle()
-    func succesLogingIn(login: LoginModel)
+    func succesLogingIn(loginCompleto: LoginMasDispositivosModel)
     func errorLoginIn()
     func tooMuchDevicesLogingIn(loginMasDispositivosModel: LoginMasDispositivosModel)
 }

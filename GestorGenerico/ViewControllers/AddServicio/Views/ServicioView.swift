@@ -55,7 +55,7 @@ class ServicioView: UIView {
     
     func customizeView() {
         layer.cornerRadius = 15
-        layer.borderColor = UIColor.systemGray4.cgColor
+        layer.borderColor = AppStyle.getSecondaryColor().cgColor
         layer.borderWidth = 1
         backgroundColor = .white
     }
@@ -65,7 +65,7 @@ class ServicioView: UIView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "SERVICIO"
         titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        titleLabel.textColor = .black
+        titleLabel.textColor = AppStyle.getPrimaryTextColor()
         addSubview(titleLabel)
     }
     
@@ -78,21 +78,21 @@ class ServicioView: UIView {
         let serviceFieldLabel: UILabel = UILabel()
         serviceFieldLabel.translatesAutoresizingMaskIntoConstraints = false
         serviceFieldLabel.text = serviceField
-        serviceFieldLabel.textColor = .black
+        serviceFieldLabel.textColor = AppStyle.getPrimaryTextColor()
         serviceFieldLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         view.addSubview(serviceFieldLabel)
         
         let serviceValueLabel: UILabel = UILabel()
         serviceValueLabel.translatesAutoresizingMaskIntoConstraints = false
         serviceValueLabel.text = serviceValue
-        serviceValueLabel.textColor = .gray
+        serviceValueLabel.textColor = AppStyle.getSecondaryTextColor()
         serviceValueLabel.textAlignment = .right
         serviceValueLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         view.addSubview(serviceValueLabel)
         
         let divisory: UIView = UIView()
         divisory.translatesAutoresizingMaskIntoConstraints = false
-        divisory.backgroundColor = .systemGray4
+        divisory.backgroundColor = AppStyle.getSecondaryColor()
         view.addSubview(divisory)
         
         fieldArray.append(view)
@@ -120,7 +120,7 @@ class ServicioView: UIView {
         observacionesLabel.translatesAutoresizingMaskIntoConstraints = false
         observacionesLabel.text = observacionText
         observacionesLabel.numberOfLines = 100
-        observacionesLabel.textColor = .black
+        observacionesLabel.textColor = AppStyle.getPrimaryTextColor()
         observacionesLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         addSubview(observacionesLabel)
     }

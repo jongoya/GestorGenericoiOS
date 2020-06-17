@@ -18,6 +18,7 @@ class DatePickerSelectorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Fecha"
+        customizeDatePicker()
         
         datePicker.datePickerMode = datePickerMode
         
@@ -29,5 +30,9 @@ class DatePickerSelectorViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         delegate.dateSelected(date: datePicker.date)
+    }
+    
+    func customizeDatePicker() {
+        datePicker.setValue(AppStyle.getPrimaryTextColor(), forKey: "textColor")
     }
 }

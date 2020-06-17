@@ -37,7 +37,7 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let loginCompleto: LoginMasDispositivosModel = try! JSONDecoder().decode(LoginMasDispositivosModel.self, from: response.data!)
-                    delegate.succesLogingIn(login: loginCompleto.login)
+                    delegate.succesLogingIn(loginCompleto: loginCompleto)
                 } else if response.response!.statusCode == 413 {
                     let loginCompleto: LoginMasDispositivosModel = try! JSONDecoder().decode(LoginMasDispositivosModel.self, from: response.data!)
                     delegate.tooMuchDevicesLogingIn(loginMasDispositivosModel: loginCompleto)
@@ -58,7 +58,7 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let loginCompleto: LoginMasDispositivosModel = try! JSONDecoder().decode(LoginMasDispositivosModel.self, from: response.data!)
-                    delegate.succesLogingIn(login: loginCompleto.login)
+                    delegate.succesLogingIn(loginCompleto: loginCompleto)
                 } else {
                     delegate.errorLoginIn()
                 }

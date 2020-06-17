@@ -11,6 +11,7 @@ import Foundation
 class LoginMasDispositivosModel: Codable {
     var login: LoginModel!
     var dispositivos: [DispositivoModel] = []
+    var estiloApp: EstiloAppModel!
     
     init() {
     }
@@ -23,6 +24,7 @@ class LoginMasDispositivosModel: Codable {
     private enum CodingKeys: String, CodingKey {
         case login = "login"
         case dispositivos = "dispositivos"
+        case estiloApp = "estiloPrivado"
     }
 }
 

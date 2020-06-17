@@ -774,10 +774,21 @@
                     </view>
                     <navigationItem key="navigationItem" id="3Qj-Q8-irX"/>
                     <connections>
+                        <outlet property="background" destination="y0p-PS-eqa" id="Yc7-N7-wNQ"/>
+                        <outlet property="efectivoArrow" destination="vjw-v4-4GQ" id="MCe-L2-4d3"/>
+                        <outlet property="efectivoField" destination="fOL-JB-XeE" id="CQd-FH-hrl"/>
                         <outlet property="efectivoLabel" destination="Z04-hI-ZXh" id="Jg7-2l-RFq"/>
+                        <outlet property="numeroServiciosArrow" destination="glN-Eo-55f" id="bce-OE-gso"/>
+                        <outlet property="numeroServiciosField" destination="q1Y-CY-evJ" id="Jir-fx-tVy"/>
                         <outlet property="numeroServiciosLabel" destination="gel-1N-s9o" id="XlK-wB-uAL"/>
+                        <outlet property="tarjetaArrow" destination="1ym-Kh-dj7" id="yeg-HY-DDC"/>
+                        <outlet property="tarjetaField" destination="CDv-3b-wbi" id="9mg-z5-8zi"/>
                         <outlet property="tarjetaLabel" destination="Kmg-yt-YpC" id="ahr-Hn-Yca"/>
+                        <outlet property="totalCajaArrow" destination="JvX-uY-X8v" id="fu6-8j-aD0"/>
+                        <outlet property="totalCajaField" destination="hsX-8M-G4g" id="fgC-Vw-VcQ"/>
                         <outlet property="totalCajaLabel" destination="A5v-kc-QzN" id="q8s-w0-OKP"/>
+                        <outlet property="totalProductosArrow" destination="lWl-M4-H2w" id="7bz-We-icv"/>
+                        <outlet property="totalProductosField" destination="mDd-74-81h" id="PWg-6X-I9X"/>
                         <outlet property="totalProductosLabel" destination="1UI-6c-msu" id="wfh-Xc-jN3"/>
                         <segue destination="n2g-Uq-96L" kind="show" identifier="inputFieldIdentifier" id="P8F-Km-7aA"/>
                     </connections>
@@ -1261,7 +1272,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="oZG-TB-Ca8" firstAttribute="leading" secondItem="QPd-0f-iRG" secondAttribute="leading" id="4U0-0r-Wgn"/>
                                             <constraint firstAttribute="trailing" secondItem="0mB-cw-bNM" secondAttribute="trailing" id="5OP-b8-H7Q"/>
@@ -1324,12 +1334,25 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="efectiovField" destination="ltV-Rn-Dkb" id="Bkr-q3-uva"/>
                         <outlet property="efectivoSwicth" destination="FIx-F6-blS" id="97x-YE-E2s"/>
+                        <outlet property="fechaArrow" destination="oaI-7T-CxP" id="IVs-Yf-Db5"/>
+                        <outlet property="fechaField" destination="BWI-kd-CBj" id="Qkp-zJ-smW"/>
                         <outlet property="fechaLabel" destination="YgK-8R-Xez" id="btS-sv-4jO"/>
-                        <outlet property="nombreLabel" destination="FSh-Qw-8qZ" id="aZk-tA-s45"/>
+                        <outlet property="informacionField" destination="jcI-5u-9LI" id="Yqh-V6-5P3"/>
+                        <outlet property="nombreArrow" destination="p4p-KH-ahg" id="vkr-te-vUQ"/>
+                        <outlet property="nombreField" destination="I2u-sU-jLY" id="diY-HF-T3I"/>
+                        <outlet property="nombreLabel" destination="FSh-Qw-8qZ" id="Fej-LQ-6de"/>
                         <outlet property="observacionesLabel" destination="bJE-f5-NSA" id="CBG-g8-Sd1"/>
+                        <outlet property="precioArrow" destination="RkO-VR-nfR" id="2Ho-wE-3UQ"/>
+                        <outlet property="precioField" destination="A7z-an-czU" id="CBK-ZK-8fZ"/>
                         <outlet property="precioLabel" destination="avB-fb-PxQ" id="r6U-mc-cjX"/>
+                        <outlet property="profesionalArrow" destination="4TM-iq-EEx" id="s5j-Ma-hLn"/>
+                        <outlet property="profesionalField" destination="nzI-9W-V3U" id="rNH-HW-eXd"/>
                         <outlet property="profesionalLabel" destination="IpB-Fq-oRp" id="vvP-0e-BOf"/>
+                        <outlet property="scrollView" destination="yvp-qA-kUo" id="PSy-ks-Rkq"/>
+                        <outlet property="servicioArrow" destination="XUZ-nz-19Z" id="BjE-QZ-LFt"/>
+                        <outlet property="servicioField" destination="jqT-GB-hA9" id="Qrh-ea-6rv"/>
                         <outlet property="servicioLabel" destination="7JA-R2-tue" id="qIx-WJ-Ldc"/>
                         <segue destination="IxC-FK-yL8" kind="show" identifier="DatePickerSelectorIdentifier" id="flB-J2-Sg8"/>
                         <segue destination="idu-WZ-GS2" kind="show" identifier="ListSelectorIdentifier" id="eoI-MQ-e1M"/>
@@ -1482,6 +1505,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="clearButton" destination="I6S-Nn-gbD" id="XPw-dZ-qyA"/>
                         <outlet property="clientesTextField" destination="clZ-UW-GLB" id="mjk-ga-bWY"/>
                         <outlet property="clientsTableView" destination="rBg-QM-sCq" id="63z-nf-A8I"/>
                         <segue destination="8uD-hk-Sce" kind="show" identifier="ClientDetailIdentifier" id="9Oh-Jo-arT"/>
@@ -2112,24 +2136,41 @@
                     <connections>
                         <outlet property="addServicioTopConstraint" destination="vuT-dH-GRd" id="hKr-YE-S66"/>
                         <outlet property="addServicioView" destination="3xg-FS-aRI" id="Uic-EB-3I0"/>
+                        <outlet property="apellidosArrow" destination="Hzx-9e-DQL" id="UrK-dq-KhP"/>
+                        <outlet property="apellidosField" destination="BZ5-7C-HIi" id="sPg-7L-HCE"/>
                         <outlet property="apellidosLabel" destination="tO2-Qz-Ark" id="BKE-Uw-9Yv"/>
                         <outlet property="apellidosView" destination="Sla-gH-hFv" id="w9U-4g-fSf"/>
+                        <outlet property="cadenciaArrow" destination="KJh-px-sev" id="kPz-Zm-e3p"/>
+                        <outlet property="cadenciaField" destination="e1g-pC-W9t" id="iz9-x9-vFe"/>
                         <outlet property="cadenciaLabel" destination="e3K-pe-TME" id="flF-Or-cAJ"/>
                         <outlet property="cadenciaView" destination="0ka-43-PUA" id="25a-Fs-DIV"/>
                         <outlet property="clientImageContainer" destination="sqB-gs-6TP" id="J1C-uJ-SUI"/>
                         <outlet property="clientImageView" destination="Q0V-Pi-64J" id="2r3-Lh-LOo"/>
+                        <outlet property="direccionField" destination="l3W-Ck-0Ht" id="uke-Nt-TQh"/>
                         <outlet property="direccionLabel" destination="2XU-aV-KnN" id="Yld-Qp-huJ"/>
                         <outlet property="direccionView" destination="7TW-6a-Ho1" id="Qqp-OG-mUY"/>
+                        <outlet property="dirrecionArrow" destination="8JI-uR-ZXV" id="Yja-af-muV"/>
+                        <outlet property="emailArrow" destination="1cG-4D-BFI" id="Jb8-Ps-zsC"/>
+                        <outlet property="emailField" destination="747-3d-ybq" id="VOT-n0-VzO"/>
                         <outlet property="emailLabel" destination="PuG-6z-ReV" id="rqi-CV-WIO"/>
                         <outlet property="emailView" destination="TFJ-uE-qpg" id="6iH-F3-oIB"/>
+                        <outlet property="fechaArrow" destination="2GW-mC-onw" id="bvl-sE-w9X"/>
+                        <outlet property="fechaField" destination="ZG8-JT-Fjd" id="e2X-bB-hTK"/>
                         <outlet property="fechaLabel" destination="39E-Dr-TAg" id="bpN-e6-XCn"/>
                         <outlet property="fechaView" destination="Qbb-d0-N61" id="U1y-jD-qNE"/>
+                        <outlet property="informacionField" destination="EiJ-PP-zxp" id="KuS-Dh-Tfr"/>
+                        <outlet property="nombreArrow" destination="QGi-Ik-27y" id="7GR-oU-AXY"/>
+                        <outlet property="nombreField" destination="P7T-yv-asw" id="pjF-if-T0q"/>
                         <outlet property="nombreLabel" destination="hxI-VS-Trg" id="Yew-Zs-pCH"/>
                         <outlet property="nombreView" destination="6qs-bR-9d3" id="nxB-P2-2eB"/>
                         <outlet property="observacionesLabel" destination="vRD-2m-jnF" id="Bhx-Tq-Hjm"/>
                         <outlet property="observacionesView" destination="pEG-4l-cdZ" id="NiM-WG-Dgw"/>
+                        <outlet property="plusButtonField" destination="EnJ-nA-3B9" id="fnz-c8-hBF"/>
+                        <outlet property="plusButtonImage" destination="ssa-ob-g1T" id="jkI-JR-Eno"/>
                         <outlet property="scrollContentView" destination="jal-lv-X7Q" id="yci-Hl-iNM"/>
                         <outlet property="scrollView" destination="hIu-X1-K5b" id="2QB-U5-JEp"/>
+                        <outlet property="telefonoArrow" destination="V9X-3y-5HW" id="5y3-Wk-gMl"/>
+                        <outlet property="telefonoField" destination="0e5-Y2-588" id="W7U-B0-Tz1"/>
                         <outlet property="telefonoLabel" destination="pUf-c5-wTO" id="hUc-9A-en0"/>
                         <outlet property="telefonoView" destination="Ccu-zV-mMJ" id="hGY-VE-pwl"/>
                         <segue destination="n2g-Uq-96L" kind="show" identifier="FieldIdentifier" id="tae-Ve-zKx"/>
@@ -2151,10 +2192,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aL3-JH-q9o">
-                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWc-ru-hIr">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATOS DEL SERVICIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIr-QX-WlL">
                                                 <rect key="frame" x="10" y="15" width="394" height="18"/>
@@ -2461,7 +2502,6 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xXv-2c-vnt">
                                                         <rect key="frame" x="355" y="9.5" width="51" height="31"/>
-                                                        <color key="onTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </switch>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -2559,14 +2599,25 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="efectivoField" destination="Uvf-b9-Ksy" id="clr-JJ-Wqi"/>
                         <outlet property="efectivoSwitch" destination="xXv-2c-vnt" id="Q97-74-5VP"/>
+                        <outlet property="fechaArrow" destination="B71-Wa-BR8" id="pC9-lG-643"/>
+                        <outlet property="fechaField" destination="pON-h9-C3p" id="9vg-Uk-KT0"/>
                         <outlet property="fechaLabel" destination="BRs-MI-4mM" id="glD-YB-o12"/>
+                        <outlet property="nombreField" destination="Kdu-Ep-yIG" id="tal-pV-gzl"/>
                         <outlet property="nombreLabel" destination="vYV-74-05C" id="wPk-yK-DsR"/>
                         <outlet property="observacionLabel" destination="QNc-mw-Q51" id="mFe-dj-IXs"/>
+                        <outlet property="precioArrow" destination="7kN-ga-GaT" id="Mzo-gE-0iF"/>
+                        <outlet property="precioField" destination="aZr-rP-jtM" id="30z-nI-5xR"/>
                         <outlet property="precioLabel" destination="fpQ-P1-a1N" id="d78-SN-Im6"/>
+                        <outlet property="profesionalArrow" destination="Ovk-ZU-FBo" id="cYH-Xy-dsQ"/>
+                        <outlet property="profesionalField" destination="Qai-wH-7T2" id="4Y0-2p-cPF"/>
                         <outlet property="professionalLabel" destination="bvb-QP-92A" id="zwQ-ld-qHB"/>
                         <outlet property="scrollView" destination="aL3-JH-q9o" id="8xF-gW-n4z"/>
+                        <outlet property="servicioArrow" destination="zie-ol-jVT" id="ft3-up-pPu"/>
+                        <outlet property="servicioField" destination="b1b-GW-Pl3" id="ZaC-ZT-dw3"/>
                         <outlet property="servicioLabel" destination="nOF-Ez-8Jz" id="KQH-w6-rd3"/>
+                        <outlet property="tituloField" destination="MIr-QX-WlL" id="Wl8-yB-a0N"/>
                         <segue destination="IxC-FK-yL8" kind="show" identifier="DatePickerSelectorIdentifier" id="cWv-1V-djP"/>
                         <segue destination="idu-WZ-GS2" kind="show" identifier="ListSelectorIdentifier" id="f8k-sW-FV5"/>
                         <segue destination="n2g-Uq-96L" kind="show" identifier="FieldIdentifier" id="o2x-ar-YKy"/>
@@ -2585,10 +2636,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcY-Qn-hef">
-                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUY-P9-ItI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFORMACIÓN CLIENTE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0H-yN-TYH">
                                                 <rect key="frame" x="10" y="20" width="389" height="18"/>
@@ -3216,20 +3267,37 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addServicioField" destination="Drl-IA-GZC" id="qvm-7R-UE6"/>
                         <outlet property="addServicioView" destination="dIo-TO-1ft" id="Le8-OD-p17"/>
                         <outlet property="alarmImageView" destination="rYC-hx-9RB" id="rSN-ol-B6J"/>
                         <outlet property="alarmView" destination="lik-tp-3kD" id="HdT-y9-z3O"/>
+                        <outlet property="apellidosArrow" destination="tXa-AG-adL" id="TSO-Nz-cFN"/>
+                        <outlet property="apellidosField" destination="5r5-UD-bE6" id="LLc-xZ-yTK"/>
                         <outlet property="apellidosLabel" destination="BI6-EQ-KS6" id="4BI-da-dEo"/>
+                        <outlet property="cadenciaArrow" destination="oXQ-Bp-pGi" id="cNv-1T-8kt"/>
+                        <outlet property="cadenciaField" destination="JHW-V9-VDa" id="eff-si-RaD"/>
                         <outlet property="cadenciaLabel" destination="Lc5-lg-K4b" id="K5V-dS-mfz"/>
                         <outlet property="clientImageView" destination="sRF-sE-YvZ" id="zXG-2x-pkk"/>
+                        <outlet property="direccionArrow" destination="1Up-oj-UdD" id="eXd-eF-UJ9"/>
+                        <outlet property="direccionField" destination="7tr-Yn-MTz" id="RwC-8a-1On"/>
                         <outlet property="direccionLabel" destination="bTw-Aa-d5h" id="vRo-Js-Jv9"/>
+                        <outlet property="emailArrow" destination="x4q-WC-K5t" id="xzv-oi-pww"/>
+                        <outlet property="emailField" destination="I8c-9R-eGz" id="WKb-eW-jV4"/>
                         <outlet property="emailLabel" destination="Fxl-b2-FUc" id="vZc-Ww-2Ge"/>
+                        <outlet property="fechaArrow" destination="njC-63-VgV" id="WMZ-ou-cKg"/>
+                        <outlet property="fechaField" destination="q1s-zf-7Tk" id="a6f-sp-xMN"/>
                         <outlet property="fechaLabel" destination="nhN-GB-Shz" id="77m-cX-REb"/>
+                        <outlet property="informacionField" destination="a0H-yN-TYH" id="DdZ-2m-2ZO"/>
+                        <outlet property="nombreArrow" destination="daW-Qz-Ugc" id="zsl-Qz-mxU"/>
+                        <outlet property="nombreField" destination="Kr0-TE-kYT" id="7Bs-o0-djf"/>
                         <outlet property="nombreLabel" destination="lj6-TS-adW" id="eXp-gb-CbC"/>
                         <outlet property="observacionesLabel" destination="L7h-7y-ccn" id="UHm-me-n5p"/>
                         <outlet property="observacionesView" destination="yJV-UT-95c" id="LLf-Ib-r5z"/>
+                        <outlet property="plusImage" destination="PI1-gR-2td" id="obm-ja-bOS"/>
                         <outlet property="scrollContentView" destination="nUY-P9-ItI" id="ENe-Tf-ncA"/>
                         <outlet property="srollView" destination="tcY-Qn-hef" id="dLB-dN-yZB"/>
+                        <outlet property="telefonoArrow" destination="nGE-9Q-GC5" id="QMy-PC-gle"/>
+                        <outlet property="telefonoField" destination="dpv-4U-7hQ" id="jlD-Gs-3KG"/>
                         <outlet property="telefonoLabel" destination="BpF-cW-psq" id="0Sr-uK-8Nf"/>
                         <segue destination="n2g-Uq-96L" kind="show" identifier="FieldIdentifier" id="e84-Sd-Byj"/>
                         <segue destination="IxC-FK-yL8" kind="show" identifier="DateIdentifier" id="OA7-dY-Js9"/>
@@ -3318,6 +3386,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="listImage" destination="RVS-9D-jYh" id="gUS-3b-ZM2"/>
                                             <outlet property="optionTextLabel" destination="Cfd-e3-BV3" id="ccC-cU-gk5"/>
                                         </connections>
                                     </tableViewCell>
@@ -3502,7 +3571,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xG8-B8-cVe">
-                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdc-xP-eit">
                                         <rect key="frame" x="0.0" y="15" width="414" height="200"/>
@@ -3619,9 +3688,9 @@
         <segue reference="BjK-Pu-OVH"/>
         <segue reference="eoI-MQ-e1M"/>
         <segue reference="flB-J2-Sg8"/>
-        <segue reference="9Oh-Jo-arT"/>
-        <segue reference="J3B-aM-5Lx"/>
-        <segue reference="G0F-tq-SXm"/>
+        <segue reference="0EN-DX-rnx"/>
+        <segue reference="3Mh-Dn-qla"/>
+        <segue reference="BaY-EP-OdM"/>
         <segue reference="DJ4-Zc-b0t"/>
     </inferredMetricsTieBreakers>
     <resources>

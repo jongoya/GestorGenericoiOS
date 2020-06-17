@@ -176,4 +176,33 @@ class DatabaseHelper: NSObject {
         coreDataObject.setValue(newCierreCaja.efectivo, forKey: "efectivo")
         coreDataObject.setValue(newCierreCaja.tarjeta, forKey: "tarjeta")
     }
+    
+    func parseCoreEstiloObjectToEstiloObject(coreEstiloObject: NSManagedObject) -> EstiloAppModel {
+        let estiloApp: EstiloAppModel = EstiloAppModel()
+        estiloApp.estiloId = coreEstiloObject.value(forKey: "estiloId") as! Int64
+        estiloApp.comercioId = coreEstiloObject.value(forKey: "comercioId") as! Int64
+        estiloApp.primaryTextColor = coreEstiloObject.value(forKey: "primaryTextColor") as! String
+        estiloApp.secondaryTextColor = coreEstiloObject.value(forKey: "secondaryTextColor") as! String
+        estiloApp.primaryColor = coreEstiloObject.value(forKey: "primaryColor") as! String
+        estiloApp.secondaryColor = coreEstiloObject.value(forKey: "secondaryColor") as! String
+        estiloApp.backgroundColor = coreEstiloObject.value(forKey: "backgroundColor") as! String
+        estiloApp.navigationColor = coreEstiloObject.value(forKey: "navigationColor") as! String
+        estiloApp.appSmallIcon = coreEstiloObject.value(forKey: "appSmallIcon") as! String
+        estiloApp.appName = coreEstiloObject.value(forKey: "appName") as! String
+        
+        return estiloApp
+    }
+    
+    func setCoreEstiloObjectFromEstiloModel(coreDataObject: NSManagedObject, estiloApp: EstiloAppModel) {
+        coreDataObject.setValue(estiloApp.estiloId, forKey: "estiloId")
+        coreDataObject.setValue(estiloApp.comercioId, forKey: "comercioId")
+        coreDataObject.setValue(estiloApp.primaryTextColor, forKey: "primaryTextColor")
+        coreDataObject.setValue(estiloApp.secondaryTextColor, forKey: "secondaryTextColor")
+        coreDataObject.setValue(estiloApp.primaryColor, forKey: "primaryColor")
+        coreDataObject.setValue(estiloApp.secondaryColor, forKey: "secondaryColor")
+        coreDataObject.setValue(estiloApp.backgroundColor, forKey: "backgroundColor")
+        coreDataObject.setValue(estiloApp.navigationColor, forKey: "navigationColor")
+        coreDataObject.setValue(estiloApp.appSmallIcon, forKey: "appSmallIcon")
+        coreDataObject.setValue(estiloApp.appName, forKey: "appName")
+    }
 }

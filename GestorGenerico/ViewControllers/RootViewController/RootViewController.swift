@@ -18,19 +18,25 @@ class RootViewController: UITabBarController {
         title = "Clientes"
         self.delegate = self
         customizeTabBar()
+        customizeNavBar()
         Constants.rootController = self
         setNotificationBarItemBadge()
         CommonFunctions.checkBackupState()
     }
     
     func customizeTabBar() {
-        tabBar.tintColor = CommonFunctions.hexStringToUIColor(hex: AppStyle.getPrimaryColor())
-        //tabBar.layer.borderColor == color de la linea superior del tabBar
-        //tabBar.tintColor == color de la pestaña seleccionada
-        //tabBar.unselectedItemTintColor = UIColor.red == color de las pestañas NO seleccionadas
+        tabBar.tintColor =  AppStyle.getPrimaryColor()
+        tabBar.layer.borderColor =  AppStyle.getSecondaryColor().cgColor
+        tabBar.unselectedItemTintColor = AppStyle.getPrimaryTextColor()
+        tabBar.items![3].title = AppStyle.getAppName()
+        tabBar.barTintColor = AppStyle.getNavigationColor()
         //tabBar.items![0].image == Modificar la imagen
-        //tabBar.items![0].title == cambiar titulo
-        //tabBar.barTintColor = CommonFunctions.hexStringToUIColor(hex: AppStyle.getSecondaryTextColor()) == cambiar el background del tabbar
+    }
+    
+    func customizeNavBar() {
+        navigationController!.navigationBar.barTintColor = AppStyle.getBackgroundColor()
+        navigationController!.navigationBar.tintColor = AppStyle.getPrimaryColor()
+        navigationController!.navigationBar.titleTextAttributes = [.foregroundColor: AppStyle.getPrimaryTextColor()]
     }
     
     func setNotificationBarItemBadge() {

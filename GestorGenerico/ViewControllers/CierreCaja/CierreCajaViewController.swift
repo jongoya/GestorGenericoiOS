@@ -15,6 +15,21 @@ class CierreCajaViewController: UIViewController {
     @IBOutlet weak var efectivoLabel: UILabel!
     @IBOutlet weak var tarjetaLabel: UILabel!
     
+    @IBOutlet weak var numeroServiciosField: UILabel!
+    @IBOutlet weak var totalCajaField: UILabel!
+    @IBOutlet weak var totalProductosField: UILabel!
+    @IBOutlet weak var efectivoField: UILabel!
+    @IBOutlet weak var tarjetaField: UILabel!
+    
+    
+    @IBOutlet weak var numeroServiciosArrow: UIImageView!
+    @IBOutlet weak var totalCajaArrow: UIImageView!
+    @IBOutlet weak var totalProductosArrow: UIImageView!
+    @IBOutlet weak var efectivoArrow: UIImageView!
+    @IBOutlet weak var tarjetaArrow: UIImageView!
+    @IBOutlet weak var background: UIView!
+    
+    
     var cierreCaja: CierreCajaModel = CierreCajaModel()
     var presentDate: Date!
     var notification: NotificationModel!
@@ -22,10 +37,46 @@ class CierreCajaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Cierre Caja"
-        
+        customizeLabels()
+        customizeFields()
+        customizeArrows()
+        customizeBackground()
         addSaveCierreCajaButton()
         
         fillFields()
+    }
+    
+    func customizeLabels() {
+        numeroServiciosLabel.textColor = AppStyle.getSecondaryTextColor()
+        totalCajaLabel.textColor = AppStyle.getSecondaryTextColor()
+        totalProductosLabel.textColor = AppStyle.getSecondaryTextColor()
+        efectivoLabel.textColor = AppStyle.getSecondaryTextColor()
+        tarjetaLabel.textColor = AppStyle.getSecondaryTextColor()
+    }
+    
+    func customizeFields() {
+        numeroServiciosField.textColor = AppStyle.getPrimaryTextColor()
+        totalCajaField.textColor = AppStyle.getPrimaryTextColor()
+        totalProductosField.textColor = AppStyle.getPrimaryTextColor()
+        efectivoField.textColor = AppStyle.getPrimaryTextColor()
+        tarjetaField.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeArrows() {
+        numeroServiciosArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        totalCajaArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        totalProductosArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        efectivoArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        tarjetaArrow.image = UIImage(systemName: "chevron.right")!.withRenderingMode(.alwaysTemplate)
+        numeroServiciosArrow.tintColor = AppStyle.getSecondaryColor()
+        totalCajaArrow.tintColor = AppStyle.getSecondaryColor()
+        totalProductosArrow.tintColor = AppStyle.getSecondaryColor()
+        efectivoArrow.tintColor = AppStyle.getSecondaryColor()
+        tarjetaArrow.tintColor = AppStyle.getSecondaryColor()
+    }
+    
+    func customizeBackground() {
+        background.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func addSaveCierreCajaButton() {

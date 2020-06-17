@@ -70,7 +70,7 @@ class AgendaItemView: UIView {
         let timeLabel: UILabel = UILabel()
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.text = AgendaFunctions.getHoursAndMinutesFromDate(date: date)
-        timeLabel.textColor = .black
+        timeLabel.textColor = AppStyle.getPrimaryTextColor()
         timeLabel.font = UIFont.systemFont(ofSize: 20)
         fechaView.addSubview(timeLabel)
         
@@ -142,21 +142,21 @@ class AgendaItemView: UIView {
         let clientNameLabel: UILabel = UILabel()
         clientNameLabel.translatesAutoresizingMaskIntoConstraints = false
         clientNameLabel.text = client.nombre + " " + client.apellidos
-        clientNameLabel.textColor = .black
+        clientNameLabel.textColor = AppStyle.getPrimaryTextColor()
         clientNameLabel.font = .systemFont(ofSize: 16, weight: .semibold)
         serviceView.addSubview(clientNameLabel)
         
         let serviceName: UILabel = UILabel()
         serviceName.translatesAutoresizingMaskIntoConstraints = false
         serviceName.text = CommonFunctions.getServiciosString(servicios: getServiciosFromServiciosId(servicios: service.servicios))
-        serviceName.textColor = .black
+        serviceName.textColor = AppStyle.getPrimaryTextColor()
         serviceName.font = .systemFont(ofSize: 15)
         serviceView.addSubview(serviceName)
         
         let profesionalNameLabel: UILabel = UILabel()
         profesionalNameLabel.translatesAutoresizingMaskIntoConstraints = false
         profesionalNameLabel.text = Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: service.empleadoId)?.nombre
-        profesionalNameLabel.textColor = .black
+        profesionalNameLabel.textColor = AppStyle.getPrimaryTextColor()
         profesionalNameLabel.font = UIFont.systemFont(ofSize: 15)
         serviceView.addSubview(profesionalNameLabel)
         
@@ -216,7 +216,7 @@ class AgendaItemView: UIView {
     func addBottomDivisoryLine() {
         let divisory: UIView = UIView()
         divisory.translatesAutoresizingMaskIntoConstraints = false
-        divisory.backgroundColor = .systemGray4
+        divisory.backgroundColor = AppStyle.getSecondaryColor()
         addSubview(divisory)
         
         divisory.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true

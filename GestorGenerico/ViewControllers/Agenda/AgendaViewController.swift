@@ -33,9 +33,11 @@ class AgendaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeScrollView()
         customizeMonthCalendar()
         customizeButtons()
         customizeCarousel()
+        customizeMonthCalendar()
         addRefreshControl()
     }
     
@@ -50,6 +52,10 @@ class AgendaViewController: UIViewController {
             Constants.rootController.fillSecondRightNavigationButtonImage()
             showClients()
         }
+    }
+    
+    func customizeScrollView() {
+        scrollView.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func setDayCarousel() {
@@ -69,9 +75,13 @@ class AgendaViewController: UIViewController {
     
     func customizeMonthCalendar() {
         monthCalendar.locale = Locale(identifier: "es_ES")
+        monthCalendar.appearance.headerTitleColor = AppStyle.getPrimaryColor()
+        monthCalendar.appearance.weekdayTextColor = AppStyle.getPrimaryColor()
+        monthCalendar.appearance.todayColor = AppStyle.getPrimaryColor()
     }
     
     func customizeCarousel() {
+        dayCarousel.backgroundColor = AppStyle.getBackgroundColor()
         dayCarousel.type = .rotary
     }
     
@@ -205,7 +215,7 @@ class AgendaViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
         button.setTitle("Cerrar Caja", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(AppStyle.getPrimaryTextColor(), for: .normal)
         CommonFunctions.customizeButton(button: button)
         button.addTarget(self, action: #selector(didClickCerrarCajaButton), for: .touchUpInside)
         return button

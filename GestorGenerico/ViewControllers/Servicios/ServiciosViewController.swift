@@ -19,6 +19,7 @@ class ServiciosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Servicios"
+        customizeTableView()
         
         addCreateServicioButton()
         addRefreshControl()
@@ -28,6 +29,10 @@ class ServiciosViewController: UIViewController {
         super.viewWillAppear(animated)
         
         showServicios()
+    }
+    
+    func customizeTableView() {
+        serviciosTableView.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func showServicios() {

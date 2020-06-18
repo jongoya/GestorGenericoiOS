@@ -10,7 +10,7 @@
         <!--Stadisticas Caja View Controller-->
         <scene sceneID="Rd2-iz-O3O">
             <objects>
-                <viewController storyboardIdentifier="StadisticasCajaViewController" id="WLY-oy-8PK" customClass="StadisticasCajaViewController" customModule="Heme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StadisticasCajaViewController" id="WLY-oy-8PK" customClass="StadisticasCajaViewController" customModule="GestorGenerico" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kaa-om-qjd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,7 +284,7 @@
         <!--Stadistica Detail View Controller-->
         <scene sceneID="aUW-eC-YqB">
             <objects>
-                <viewController storyboardIdentifier="StadisticaDetailViewController" id="tk4-xk-AG3" customClass="StadisticaDetailViewController" customModule="Heme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StadisticaDetailViewController" id="tk4-xk-AG3" customClass="StadisticaDetailViewController" customModule="GestorGenerico" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uf8-Fs-o81">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -297,7 +297,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQP-Mh-Y8q">
                                                 <rect key="frame" x="10" y="0.0" width="394" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -327,7 +327,7 @@
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </view>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StadisticaDetailCell" rowHeight="60" id="5NI-CK-uDo" customClass="StadisticaDetailCell" customModule="Heme" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StadisticaDetailCell" rowHeight="60" id="5NI-CK-uDo" customClass="StadisticaDetailCell" customModule="GestorGenerico" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5NI-CK-uDo" id="DRg-k8-1JB">

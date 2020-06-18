@@ -37,7 +37,7 @@ class StadisticasCajaViewController: UIViewController {
         monthSelected = AgendaFunctions.getMonthNumberFromDate(date: Date())
         yearSelected = AgendaFunctions.getYearNumberFromDate(date: Date())
         title = "Estadisticas"
-        
+        customizeBackground()
         customizeFilterButton()
         customizeActionSheet()
         setYearArray()
@@ -53,6 +53,12 @@ class StadisticasCajaViewController: UIViewController {
     
     func customizeFilterButton() {
         CommonFunctions.customizeButton(button: filtroButton)
+        filtroLabel.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeBackground() {
+        scrollView.backgroundColor = AppStyle.getBackgroundColor()
+        scrollContentView.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func customizeActionSheet() {

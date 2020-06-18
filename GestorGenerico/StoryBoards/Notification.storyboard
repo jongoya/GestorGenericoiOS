@@ -10,7 +10,7 @@
         <!--Notification Detail View Controller-->
         <scene sceneID="5SJ-jO-lyF">
             <objects>
-                <viewController storyboardIdentifier="NotificationDetailViewController" id="Xke-o2-KhX" customClass="NotificationDetailViewController" customModule="Heme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationDetailViewController" id="Xke-o2-KhX" customClass="NotificationDetailViewController" customModule="GestorGenerico" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="afc-rI-iw8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,6 +131,7 @@
                         <outlet property="callButton" destination="KLu-dd-qVe" id="Ex8-Ve-OMU"/>
                         <outlet property="chatButton" destination="xYe-tI-Osk" id="lJp-x5-9af"/>
                         <outlet property="longDescriptionLabel" destination="kKS-d7-gme" id="5eg-KZ-ITn"/>
+                        <outlet property="notificationImage" destination="if6-Y0-q9s" id="5FN-uO-fnm"/>
                         <outlet property="notificationReasonLabel" destination="Ty9-Re-SWV" id="SnQ-p7-3eh"/>
                         <outlet property="sendEmailButton" destination="YtE-cb-CDw" id="FdA-Aj-tfT"/>
                         <outlet property="shortDescriptionLabel" destination="hX7-80-VAj" id="W2F-Aa-bel"/>
@@ -143,7 +144,7 @@
         <!--Cadencia Notification Detail View Controller-->
         <scene sceneID="1wA-T2-cqU">
             <objects>
-                <viewController storyboardIdentifier="CadenciaNotificationDetailViewController" id="SQn-h6-j0C" customClass="CadenciaNotificationDetailViewController" customModule="Heme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CadenciaNotificationDetailViewController" id="SQn-h6-j0C" customClass="CadenciaNotificationDetailViewController" customModule="GestorGenerico" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dW8-Y6-1qr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,7 +174,7 @@
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </view>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CadenciaNotificationCell" id="Rl2-os-92u" customClass="CadenciaNotificationCell" customModule="Heme" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CadenciaNotificationCell" id="Rl2-os-92u" customClass="CadenciaNotificationCell" customModule="GestorGenerico" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rl2-os-92u" id="TAc-6j-yrt">
@@ -233,6 +234,7 @@
                         <outlet property="cadenciaTextLabel" destination="MM6-Xb-5cH" id="Eex-Ua-enB"/>
                         <outlet property="clientTableView" destination="vEx-Nu-VS6" id="wDQ-CM-ypc"/>
                         <outlet property="imageview" destination="dAQ-Cw-Yqc" id="4dD-sw-bfw"/>
+                        <outlet property="notificationImage" destination="dAQ-Cw-Yqc" id="Hgf-QZ-MF1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXK-ia-tzs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

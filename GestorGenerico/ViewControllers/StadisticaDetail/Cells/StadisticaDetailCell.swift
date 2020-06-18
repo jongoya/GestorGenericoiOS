@@ -13,6 +13,9 @@ class StadisticaDetailCell: UITableViewCell {
     @IBOutlet weak var valorLabel: UILabel!
     
     func setupCell(stadisticaModel: StadisticaModel, isNumeroServicios: Bool, isMensual: Bool, isTotal: Bool) {
+        fechaLabel.textColor = AppStyle.getPrimaryTextColor()
+        valorLabel.textColor = AppStyle.getPrimaryTextColor()
+        
         valorLabel.text = isNumeroServicios ? String(Int(stadisticaModel.valor)) : String(format: "%.2f", stadisticaModel.valor) + " €"
         
         let year: Int = AgendaFunctions.getYearNumberFromDate(date: Date(timeIntervalSince1970: TimeInterval(stadisticaModel.fecha)))

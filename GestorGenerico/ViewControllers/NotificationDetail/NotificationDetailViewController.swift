@@ -17,12 +17,16 @@ class NotificationDetailViewController: UIViewController {
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var sendEmailButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var notificationImage: UIImageView!
     
     var noticationDayModel: NotificationDayModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Notificación"
+        customizeImage()
+        customizeLabels()
+        customizeButtons()
         
         if !noticationDayModel.notificaciones[0].leido  {
             markNotificationAsRead()
@@ -32,6 +36,31 @@ class NotificationDetailViewController: UIViewController {
         customizeButton(button: callButton)
         customizeButton(button: sendEmailButton)
         customizeButton(button: chatButton)
+    }
+    
+    func customizeImage() {
+        notificationImage.image = UIImage(named: "notification_cumple")!.withRenderingMode(.alwaysTemplate)
+        notificationImage.tintColor = AppStyle.getPrimaryColor()
+    }
+    
+    func customizeLabels() {
+        notificationReasonLabel.textColor = AppStyle.getPrimaryTextColor()
+        shortDescriptionLabel.textColor = AppStyle.getPrimaryTextColor()
+        longDescriptionLabel.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeButtons() {
+        let callImage: UIImage = UIImage(named: "telefono")!.withRenderingMode(.alwaysTemplate)
+        callButton.setImage(callImage, for: .normal)
+        callButton.tintColor = AppStyle.getPrimaryColor()
+        
+        let chatImage: UIImage = UIImage(named: "chat")!.withRenderingMode(.alwaysTemplate)
+        chatButton.setImage(chatImage, for: .normal)
+        chatButton.tintColor = AppStyle.getPrimaryColor()
+        
+        let messageImage: UIImage = UIImage(named: "correo")!.withRenderingMode(.alwaysTemplate)
+        sendEmailButton.setImage(messageImage, for: .normal)
+        sendEmailButton.tintColor = AppStyle.getPrimaryColor()
     }
     
     func markNotificationAsRead() {
@@ -60,7 +89,7 @@ class NotificationDetailViewController: UIViewController {
     func customizeButton(button: UIView) {
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.systemGray4.cgColor
+        button.layer.borderColor = AppStyle.getSecondaryColor().cgColor
         button.backgroundColor = .white
     }
     

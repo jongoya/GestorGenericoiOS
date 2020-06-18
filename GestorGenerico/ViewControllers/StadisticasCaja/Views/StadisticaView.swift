@@ -55,7 +55,7 @@ class StadisticaView: UIView {
         titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = title
-        titleLabel.textColor = .systemRed
+        titleLabel.textColor = AppStyle.getPrimaryColor()
         titleLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         titleLabel.numberOfLines = 1
         addSubview(titleLabel)
@@ -71,7 +71,7 @@ class StadisticaView: UIView {
         } else {
             lastValueLabel.text = "No hay valores para este rango"
         }
-        lastValueLabel.textColor = .black
+        lastValueLabel.textColor = AppStyle.getPrimaryTextColor()
         lastValueLabel.font = .systemFont(ofSize: 22, weight: .semibold)
         lastValueLabel.numberOfLines = 1
         addSubview(lastValueLabel)
@@ -128,14 +128,14 @@ class StadisticaView: UIView {
     
     func createDataSet(dataEntries: [BarChartDataEntry]) -> LineChartDataSet {
         let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: title)
-        lineChartDataSet.setColor(.systemRed)
+        lineChartDataSet.setColor(AppStyle.getPrimaryColor())
         lineChartDataSet.lineWidth = 2
-        lineChartDataSet.setCircleColor(.red)
+        lineChartDataSet.setCircleColor(AppStyle.getPrimaryColor())
         lineChartDataSet.circleRadius = 6
-        lineChartDataSet.circleHoleColor = .systemRed
+        lineChartDataSet.circleHoleColor = AppStyle.getPrimaryColor()
         lineChartDataSet.mode = .cubicBezier
         lineChartDataSet.valueFont = .systemFont(ofSize: 10, weight: .semibold)
-        lineChartDataSet.highlightColor = .systemRed
+        lineChartDataSet.highlightColor = AppStyle.getPrimaryColor()
         lineChartDataSet.highlightEnabled = false
         
         return lineChartDataSet

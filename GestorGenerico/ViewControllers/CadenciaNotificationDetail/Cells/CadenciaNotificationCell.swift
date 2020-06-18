@@ -12,6 +12,7 @@ class CadenciaNotificationCell: UITableViewCell {
     @IBOutlet weak var clientText: UILabel!
     
     func setupCell(client: ClientModel) {
+        clientText.textColor = AppStyle.getPrimaryTextColor()
         clientText.text = client.nombre + " " + client.apellidos
     }
 }

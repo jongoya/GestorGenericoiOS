@@ -12,13 +12,15 @@ class CadenciaNotificationDetailViewController: UIViewController {
     @IBOutlet weak var imageview: UIImageView!
     @IBOutlet weak var cadenciaTextLabel: UILabel!
     @IBOutlet weak var clientTableView: UITableView!
+    @IBOutlet weak var notificationImage: UIImageView!
     
     var notificationDayModel: NotificationDayModel!
     var clientes: [ClientModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        customizeImage()
+        customizeLabels()
         title = "Detalle"
     }
     
@@ -30,6 +32,15 @@ class CadenciaNotificationDetailViewController: UIViewController {
         if !notificationDayModel.notificaciones[0].leido {
             markNotificationAsRead()
         }
+    }
+    
+    func customizeImage() {
+        notificationImage.image = UIImage(named: "tiempo")?.withRenderingMode(.alwaysTemplate)
+        notificationImage.tintColor = AppStyle.getPrimaryColor()
+    }
+    
+    func customizeLabels() {
+        cadenciaTextLabel.textColor = AppStyle.getPrimaryTextColor()
     }
     
     func setCadenciaLabel() {

@@ -382,6 +382,7 @@
                                             <outlet property="notificationContentView" destination="A1Q-6j-5qb" id="72Z-aW-qwK"/>
                                             <outlet property="notificationDescriptionLabel" destination="PVx-T0-oZX" id="XSq-Iw-cVF"/>
                                             <outlet property="notificationImage" destination="ogi-TV-vDW" id="i9q-2h-3P2"/>
+                                            <outlet property="wholeContentView" destination="eQG-d3-aMM" id="BNn-uF-yM3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -405,6 +406,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Notificaciones" image="bell.fill" catalog="system" id="2jn-NM-y35"/>
                     <connections>
+                        <outlet property="buttonsContainer" destination="OvV-B4-8Bz" id="fDM-ea-qpI"/>
                         <outlet property="cadenciaLabel" destination="B9k-x9-wg0" id="EoY-Ku-JXz"/>
                         <outlet property="cadenciaView" destination="dFX-iB-PsE" id="6kT-ab-vuy"/>
                         <outlet property="cumpleLabel" destination="KFp-Tm-6YT" id="kIy-7u-GSY"/>
@@ -414,6 +416,7 @@
                         <outlet property="notificationsTableView" destination="Qd8-pA-ejR" id="VQO-Lt-KIS"/>
                         <outlet property="personalizadaLabel" destination="X2z-MC-PlL" id="mgx-11-y1C"/>
                         <outlet property="personalizadaView" destination="hbA-5o-2ZD" id="oKr-mv-JMO"/>
+                        <outlet property="tableSeparatorView" destination="zmj-qE-GE6" id="bfb-zJ-P1X"/>
                         <segue destination="BW1-m4-tdR" kind="show" identifier="cierreCajaIdentifier" id="eyH-au-oZt"/>
                     </connections>
                 </viewController>
@@ -862,6 +865,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="bodyContentView" destination="o7p-lm-Tbf" id="JO0-1J-2V9"/>
                                             <outlet property="cellContentView" destination="TFu-3S-zPo" id="iIa-EY-MnC"/>
                                             <outlet property="cellImageView" destination="lLH-RE-lft" id="uSK-i7-qU6"/>
                                             <outlet property="descripcionLabel" destination="7GF-lV-QRm" id="454-eU-O0z"/>
@@ -1242,7 +1246,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t31-hY-ehc">
-                                                <rect key="frame" x="0.0" y="373" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="373" width="414" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Añade una Observación" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJE-f5-NSA">
                                                         <rect key="frame" x="10" y="15" width="394" height="18"/>
@@ -1251,7 +1255,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZU-NN-0y2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                         <connections>
                                                             <action selector="didClickObservacion:" destination="qVM-vF-Hw2" eventType="touchUpInside" id="B9S-5M-oWN"/>
                                                             <action selector="didClickObservacionesField:" destination="t57-4g-Ljy" eventType="touchUpInside" id="M4M-Np-gT1"/>
@@ -1262,9 +1266,10 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstItem="bJE-f5-NSA" firstAttribute="leading" secondItem="t31-hY-ehc" secondAttribute="leading" constant="10" id="Upj-Gu-n5a"/>
+                                                    <constraint firstAttribute="bottom" secondItem="bJE-f5-NSA" secondAttribute="bottom" constant="17" id="VbB-T4-N7i"/>
                                                     <constraint firstItem="bZU-NN-0y2" firstAttribute="leading" secondItem="t31-hY-ehc" secondAttribute="leading" id="dg9-Pi-kjB"/>
                                                     <constraint firstItem="bJE-f5-NSA" firstAttribute="top" secondItem="t31-hY-ehc" secondAttribute="top" constant="15" id="el4-ZV-kL5"/>
-                                                    <constraint firstAttribute="height" constant="100" id="g0r-cd-M0e"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="g0r-cd-M0e"/>
                                                     <constraint firstItem="bZU-NN-0y2" firstAttribute="top" secondItem="t31-hY-ehc" secondAttribute="top" id="gjX-Tb-aJ7"/>
                                                     <constraint firstAttribute="bottom" secondItem="bZU-NN-0y2" secondAttribute="bottom" id="ntR-Vp-cAd"/>
                                                     <constraint firstAttribute="trailing" secondItem="bJE-f5-NSA" secondAttribute="trailing" constant="10" id="tdG-TF-J6x"/>
@@ -1508,6 +1513,8 @@
                         <outlet property="clearButton" destination="I6S-Nn-gbD" id="XPw-dZ-qyA"/>
                         <outlet property="clientesTextField" destination="clZ-UW-GLB" id="mjk-ga-bWY"/>
                         <outlet property="clientsTableView" destination="rBg-QM-sCq" id="63z-nf-A8I"/>
+                        <outlet property="filterView" destination="rVU-nX-mdJ" id="hGk-gJ-kFl"/>
+                        <outlet property="tableSeparator" destination="bB8-la-nrt" id="kgc-mC-LWz"/>
                         <segue destination="8uD-hk-Sce" kind="show" identifier="ClientDetailIdentifier" id="9Oh-Jo-arT"/>
                         <segue destination="t57-4g-Ljy" kind="show" identifier="EditClientIdentifier" id="bvf-YU-BF3"/>
                     </connections>
@@ -2636,10 +2643,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcY-Qn-hef">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUY-P9-ItI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFORMACIÓN CLIENTE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0H-yN-TYH">
                                                 <rect key="frame" x="10" y="20" width="389" height="18"/>
@@ -3409,6 +3416,7 @@
                     <navigationItem key="navigationItem" id="7LO-x7-Cvs"/>
                     <connections>
                         <outlet property="optionsList" destination="6vx-an-xFY" id="Irg-CD-yoc"/>
+                        <outlet property="tableSeparatorView" destination="PvP-Gu-QI8" id="tBg-M3-8LR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WED-Co-hhe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3443,7 +3451,6 @@
                                         <state key="normal" image="delete.left" catalog="system"/>
                                         <connections>
                                             <action selector="didClickCleanTextfield:" destination="5gj-tG-FCA" eventType="touchUpInside" id="r9Y-t2-siF"/>
-                                            <action selector="didClickclearTextField:" destination="O7Q-V1-Bu7" eventType="touchUpInside" id="LnT-1o-qNN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -3554,8 +3561,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="wfY-Ze-B55"/>
                     <connections>
+                        <outlet property="clearButton" destination="Ks8-3a-Owk" id="Vrl-xP-UWb"/>
                         <outlet property="clientTextField" destination="fxk-ov-CBB" id="a5v-r2-Ke9"/>
                         <outlet property="clientsTableView" destination="0mn-Pe-K50" id="2L4-13-1jt"/>
+                        <outlet property="fieldContentView" destination="zWV-Gl-jeO" id="ekg-gs-xvy"/>
+                        <outlet property="tableSeparator" destination="6xn-sc-DR9" id="INs-MQ-5oQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgU-to-52T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3571,7 +3581,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xG8-B8-cVe">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdc-xP-eit">
                                         <rect key="frame" x="0.0" y="15" width="414" height="200"/>
@@ -3688,10 +3698,10 @@
         <segue reference="BjK-Pu-OVH"/>
         <segue reference="eoI-MQ-e1M"/>
         <segue reference="flB-J2-Sg8"/>
-        <segue reference="0EN-DX-rnx"/>
+        <segue reference="9Oh-Jo-arT"/>
         <segue reference="3Mh-Dn-qla"/>
         <segue reference="BaY-EP-OdM"/>
-        <segue reference="DJ4-Zc-b0t"/>
+        <segue reference="eyH-au-oZt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="add_image.png" width="384" height="384"/>

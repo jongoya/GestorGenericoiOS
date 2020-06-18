@@ -15,15 +15,74 @@ class AddEmpleadoViewController: UIViewController {
     @IBOutlet weak var telefonoLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollContentView: UIView!
+    
+    @IBOutlet weak var informcaionLabel: UILabel!
+    @IBOutlet weak var nombreField: UILabel!
+    @IBOutlet weak var apellidosField: UILabel!
+    @IBOutlet weak var fechaField: UILabel!
+    @IBOutlet weak var telefonoField: UILabel!
+    @IBOutlet weak var emailField: UILabel!
+    
+    @IBOutlet weak var nombreArrow: UIImageView!
+    @IBOutlet weak var emailArrow: UIImageView!
+    @IBOutlet weak var telefonoArrow: UIImageView!
+    @IBOutlet weak var fechaArrow: UIImageView!
+    @IBOutlet weak var apellidosArrow: UIImageView!
+    
     var empleado: EmpleadoModel = EmpleadoModel()
     var updateMode: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Empleado"
+        customizeBackground()
+        customizeLabels()
+        customizeFields()
+        customizeArrows()
         addSaveEmpleadoButton()
         
         setValues()
+    }
+    
+    func customizeBackground() {
+        scrollView.backgroundColor = AppStyle.getBackgroundColor()
+        scrollContentView.backgroundColor = AppStyle.getBackgroundColor()
+    }
+    
+    func customizeLabels() {
+        nombreLabel.textColor = AppStyle.getSecondaryTextColor()
+        apellidosLabel.textColor = AppStyle.getSecondaryTextColor()
+        fechaLabel.textColor = AppStyle.getSecondaryTextColor()
+        telefonoLabel.textColor = AppStyle.getSecondaryTextColor()
+        emailLabel.textColor = AppStyle.getSecondaryTextColor()
+    }
+    
+    func customizeFields() {
+        informcaionLabel.textColor = AppStyle.getPrimaryTextColor()
+        nombreField.textColor = AppStyle.getPrimaryTextColor()
+        apellidosField.textColor = AppStyle.getPrimaryTextColor()
+        fechaField.textColor = AppStyle.getPrimaryTextColor()
+        telefonoField.textColor = AppStyle.getPrimaryTextColor()
+        emailField.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeArrows() {
+        nombreArrow.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
+        nombreArrow.tintColor = AppStyle.getSecondaryColor()
+        
+        apellidosArrow.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
+        apellidosArrow.tintColor = AppStyle.getSecondaryColor()
+        
+        fechaArrow.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
+        fechaArrow.tintColor = AppStyle.getSecondaryColor()
+        
+        telefonoArrow.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
+        telefonoArrow.tintColor = AppStyle.getSecondaryColor()
+        
+        emailArrow.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
+        emailArrow.tintColor = AppStyle.getSecondaryColor()
     }
     
     func addSaveEmpleadoButton() {

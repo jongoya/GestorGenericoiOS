@@ -10,6 +10,7 @@ import UIKit
 
 class ListSelectorViewController: UIViewController {
     @IBOutlet weak var optionsList: UITableView!
+    @IBOutlet weak var tableSeparatorView: UIView!
     
     var delegate: ListSelectorProtocol!
     var inputReference: Int!
@@ -21,6 +22,7 @@ class ListSelectorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Elige"
+        customizeTableView()
         if allowMultiselection {
             optionsList.allowsMultipleSelection = true
         }
@@ -35,6 +37,11 @@ class ListSelectorViewController: UIViewController {
         if allowMultiselection && multiSelectionOptions.count > 0 {
             delegate.multiSelectionOptionsSelected(options: multiSelectionOptions, inputReference: inputReference)
         }
+    }
+    
+    func customizeTableView() {
+        optionsList.backgroundColor = AppStyle.getBackgroundColor()
+        tableSeparatorView.backgroundColor = AppStyle.getBackgroundColor()
     }
 }
 

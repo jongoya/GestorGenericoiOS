@@ -18,6 +18,8 @@ class NotificationsViewController: UIViewController {
     @IBOutlet weak var facturacionLabel: UILabel!
     @IBOutlet weak var personalizadaLabel: UILabel!
     @IBOutlet weak var personalizadaView: UIView!
+    @IBOutlet weak var buttonsContainer: UIView!
+    @IBOutlet weak var tableSeparatorView: UIView!
     
     var allNotifications: [NotificationModel] = []
     var todayNotifications: [NotificationModel] = []
@@ -31,18 +33,28 @@ class NotificationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeTableView()
         didClickcumpleButton("")
         addRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        customizeButtonsContainer()
         showNotifications()
         
         DispatchQueue.global().async {
             NotificationFunctions.checkAllNotifications()
         }
+    }
+    
+    func customizeButtonsContainer() {
+        buttonsContainer.backgroundColor = AppStyle.getBackgroundColor()
+    }
+    
+    func customizeTableView() {
+        notificationsTableView.backgroundColor = AppStyle.getBackgroundColor()
+        tableSeparatorView.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func showNotifications() {

@@ -21,6 +21,7 @@ class EmpleadosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Empleados"
+        customizeScrollView()
         if !showColorView {
             addCreateEmpleadoButton()
         }
@@ -31,6 +32,11 @@ class EmpleadosViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showEmpleados()
+    }
+    
+    func customizeScrollView() {
+        scrollView.backgroundColor = AppStyle.getBackgroundColor()
+        scrollContentView.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func showEmpleados() {
@@ -60,7 +66,7 @@ class EmpleadosViewController: UIViewController {
     func addEmpleadoView(empleado: EmpleadoModel) {
         let empleadoView: EmpleadoView = EmpleadoView()
         empleadoView.translatesAutoresizingMaskIntoConstraints = false
-        empleadoView.backgroundColor = .clear
+        empleadoView.backgroundColor = AppStyle.getBackgroundColor()
         empleadoView.empleado = empleado
         addEmpleadoItemGestures(empleadoView: empleadoView)
         scrollContentView.addSubview(empleadoView)
@@ -94,13 +100,14 @@ class EmpleadosViewController: UIViewController {
         
         let imageView: UIImageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "empleado")
+        imageView.image = UIImage(named: "empleado")!.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = AppStyle.getPrimaryTextColor()
         contentView.addSubview(imageView)
         
         let nombreLabel: UILabel = UILabel()
         nombreLabel.translatesAutoresizingMaskIntoConstraints = false
         nombreLabel.text = empleado.nombre + " " + empleado.apellidos
-        nombreLabel.textColor = .black
+        nombreLabel.textColor = AppStyle.getPrimaryTextColor()
         nombreLabel.font = UIFont.systemFont(ofSize: 15)
         contentView.addSubview(nombreLabel)
         

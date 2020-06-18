@@ -12,6 +12,8 @@ class ListaClientesViewController: UIViewController {
     @IBOutlet weak var clientesTextField: UITextField!
     @IBOutlet weak var clientsTableView: UITableView!
     @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var filterView: UIView!
+    @IBOutlet weak var tableSeparator: UIView!
     
     var filteredClients: [[ClientModel]] = []
     var arrayIndexSection: [String]!
@@ -21,6 +23,7 @@ class ListaClientesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeFilterContainer()
         setTextFieldProperties()
         customizeTableView()
         customizeClearButton()
@@ -42,6 +45,10 @@ class ListaClientesViewController: UIViewController {
         view.endEditing(true)
     }
     
+    func customizeFilterContainer() {
+        filterView.backgroundColor = AppStyle.getBackgroundColor()
+    }
+    
     func setTextFieldProperties() {
         clientesTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         clientesTextField.returnKeyType = .done
@@ -54,6 +61,7 @@ class ListaClientesViewController: UIViewController {
     func customizeTableView() {
         clientsTableView.backgroundColor = AppStyle.getBackgroundColor()
         clientsTableView.sectionIndexColor = AppStyle.getPrimaryColor()
+        tableSeparator.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func customizeClearButton() {

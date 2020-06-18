@@ -13,9 +13,11 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var notificationImage: UIImageView!
     @IBOutlet weak var clientName: UILabel!
     @IBOutlet weak var notificationDescriptionLabel: UILabel!
+    @IBOutlet weak var wholeContentView: UIView!
     
     func setupCell(notificationModel: NotificationDayModel) {
         customizeContentView(notification: notificationModel.notificaciones[0])
+        wholeContentView.backgroundColor = AppStyle.getBackgroundColor()
         
         if notificationModel.notificaciones[0].type == Constants.notificacionCumpleIdentifier {
             setBirthdayContent(notificationModel: notificationModel)

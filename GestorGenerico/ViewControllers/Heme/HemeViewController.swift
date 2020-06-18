@@ -16,6 +16,7 @@ class HemeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,6 +24,10 @@ class HemeViewController: UIViewController {
         
         createObjectsForTableView()
         hemeTableView.reloadData()
+    }
+    
+    func customizeTableView() {
+        hemeTableView.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func createObjectsForTableView() {

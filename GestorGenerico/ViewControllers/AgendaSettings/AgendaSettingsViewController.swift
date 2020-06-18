@@ -9,10 +9,29 @@
 import UIKit
 
 class AgendaSettingsViewController: UIViewController {
+    @IBOutlet weak var background: UIView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var colorImage: UIImageView!
+    @IBOutlet weak var colorLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeBackgroundColor()
+        customizeColorContentView()
         title = "Agenda"
+    }
+    
+    func customizeBackgroundColor() {
+        background.backgroundColor = AppStyle.getBackgroundColor()
+    }
+    
+    func customizeColorContentView() {
+        colorLabel.textColor = AppStyle.getPrimaryTextColor()
+        colorImage.image = UIImage(named: "pincel")!.withRenderingMode(.alwaysTemplate)
+        colorImage.tintColor = AppStyle.getPrimaryTextColor()
+        
+        contentView.layer.cornerRadius = 10
     }
 }
 

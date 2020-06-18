@@ -11,6 +11,9 @@ import UIKit
 class ClientListSelectorViewController: UIViewController {
     @IBOutlet weak var clientTextField: UITextField!
     @IBOutlet weak var clientsTableView: UITableView!
+    @IBOutlet weak var fieldContentView: UIView!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var tableSeparator: UIView!
     
     var filteredClients: [[ClientModel]] = []
     var arrayIndexSection: [String]!
@@ -22,6 +25,9 @@ class ClientListSelectorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Clientes"
+        customizeTableView()
+        customizeFilterView()
+        customizeClearButton()
         arrayIndexSection = CommonFunctions.getClientsTableIndexValues()
         setTextFieldProperties()
         addRefreshControl()
@@ -33,10 +39,28 @@ class ClientListSelectorViewController: UIViewController {
         getClients()
     }
     
+    func customizeTableView() {
+        clientsTableView.backgroundColor = AppStyle.getBackgroundColor()
+        clientsTableView.sectionIndexColor = AppStyle.getPrimaryColor()
+        tableSeparator.backgroundColor = AppStyle.getBackgroundColor()
+    }
+    
+    func customizeClearButton() {
+        clearButton.imageView?.image = UIImage(systemName: "delete.left")?.withRenderingMode(.alwaysTemplate)
+        clearButton.tintColor = AppStyle.getPrimaryColor()
+    }
+    
+    func customizeFilterView() {
+        fieldContentView.backgroundColor = AppStyle.getBackgroundColor()
+    }
+    
     func setTextFieldProperties() {
         clientTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         clientTextField.returnKeyType = .done
         clientTextField.delegate = self
+        clientTextField.layer.borderColor = AppStyle.getSecondaryColor().cgColor
+        clientTextField.textColor = AppStyle.getPrimaryTextColor()
+        clientTextField.attributedPlaceholder = NSAttributedString(string: "Nombre", attributes: [NSAttributedString.Key.foregroundColor: AppStyle.getSecondaryColor()])
     }
     
     func getClients() {
@@ -153,6 +177,12 @@ extension ClientListSelectorViewController: UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let view: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        view.tintColor = AppStyle.getBackgroundColor()
+        view.textLabel!.textColor = AppStyle.getPrimaryTextColor()
     }
 }
 

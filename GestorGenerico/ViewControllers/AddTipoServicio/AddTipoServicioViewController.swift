@@ -10,14 +10,41 @@ import UIKit
 
 class AddTipoServicioViewController: UIViewController {
     @IBOutlet weak var nombreServicioLabel: UILabel!
+    @IBOutlet weak var background: UIView!
+    
+    @IBOutlet weak var informcaionField: UILabel!
+    @IBOutlet weak var nombreField: UILabel!
+    @IBOutlet weak var nombreArrow: UIImageView!
     
     var servicio: TipoServicioModel = TipoServicioModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Nuevo Servicio"
+        customizeBackground()
+        customizeFields()
+        customizeArrow()
+        customizeLabels()
         setFields()
         addSaveServicioButton()
+    }
+    
+    func customizeFields() {
+        informcaionField.textColor = AppStyle.getPrimaryTextColor()
+        nombreField.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeArrow() {
+        nombreArrow.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
+        nombreArrow.tintColor = AppStyle.getSecondaryColor()
+    }
+    
+    func customizeLabels() {
+        nombreServicioLabel.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeBackground() {
+        background.backgroundColor = AppStyle.getBackgroundColor()
     }
     
     func setFields() {

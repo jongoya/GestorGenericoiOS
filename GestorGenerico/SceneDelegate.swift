@@ -22,9 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 vc = storyboard.instantiateInitialViewController()
             } else {
                 CommonFunctions.sincronizarBaseDeDatos()
+                WebServices.getPrivateStyle(comercioId: UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 vc = storyboard.instantiateInitialViewController()
-                
             }
             
             self.window!.rootViewController = vc

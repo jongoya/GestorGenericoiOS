@@ -68,4 +68,18 @@ class AppStyleManager: NSObject {
             }
         }
     }
+    
+    func updateEstiloPrivadoInDatabase(estilo: EstiloAppModel) {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: ESTILO_ENTITY_NAME)
+        fetchRequest.returnsObjectsAsFaults = false
+        backgroundContext.performAndWait {
+            do {
+                let results: [NSManagedObject] = try mainContext.fetch(fetchRequest)
+                let coreEstilo: NSManagedObject = results.first!
+                databaseHelper.setCoreEstiloObjectFromEstiloModel(coreDataObject: coreEstilo, estiloApp: estilo)
+                try backgroundContext.save()
+            } catch {
+            }
+        }
+    }
 }

@@ -569,4 +569,22 @@ public class WebServices {
             delegate.errorAddingCierreCaja()
         }
     }
+    
+    static func getPrivateStyle(comercioId: Int64) {
+        let url: String = baseUrl + "get_estilo_privado/" + String(comercioId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let estiloPrivado: EstiloAppModel = try! JSONDecoder().decode(EstiloAppModel.self, from: response.data!)
+                    Constants.databaseManager.estiloAppManager.updateEstiloPrivadoInDatabase(estilo: estiloPrivado)
+                    
+                    DispatchQueue.main.async {
+                        Constants.rootController.customizeNavBar()
+                        Constants.rootController.customizeTabBar()
+                        Constants.rootController.updateControllerForStyleUpdate()
+                    }
+                }
+            }
+        }
+    }
 }

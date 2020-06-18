@@ -33,13 +33,13 @@ class NotificationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customizeTableView()
         didClickcumpleButton("")
         addRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        customizeTableView()
         customizeButtonsContainer()
         showNotifications()
         

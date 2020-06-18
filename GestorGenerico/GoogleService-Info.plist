@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>67213379869-dba2oui9m706tcibau75992ral732r1i.apps.googleusercontent.com</string>
+	<string>67213379869-3dab2147gk0e7467df17p073gqgdr323.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.67213379869-dba2oui9m706tcibau75992ral732r1i</string>
+	<string>com.googleusercontent.apps.67213379869-3dab2147gk0e7467df17p073gqgdr323</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>67213379869-jsl8vu06dbp0pkqpmb8h1jainua0iemi.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD0fF0jKFx3v_Nlfq2RcJbIA4SV-lpTYzU</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>jon.GestorHeme</string>
+	<string>jon.GestorGenerico</string>
 	<key>PROJECT_ID</key>
 	<string>projectoheme</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:67213379869:ios:ebf250521cdefc1a7479f4</string>
+	<string>1:67213379869:ios:9c6409769a01897b7479f4</string>
 	<key>DATABASE_URL</key>
 	<string>https://projectoheme.firebaseio.com</string>
 </dict>

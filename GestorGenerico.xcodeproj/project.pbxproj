@@ -102,7 +102,6 @@
 		FB64940424338C0C00503627 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB64940324338C0C00503627 /* Assets.xcassets */; };
 		FB64940724338C0C00503627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB64940524338C0C00503627 /* LaunchScreen.storyboard */; };
 		FB64941C24339C3700503627 /* ListaClientesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB64941A24339C3700503627 /* ListaClientesViewController.swift */; };
-		FB75497D2434F3A70013A03F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB75497C2434F3A70013A03F /* GoogleService-Info.plist */; };
 		FB8185A224432167004697D3 /* EmpleadoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8185A124432167004697D3 /* EmpleadoModel.swift */; };
 		FB8185A52443228F004697D3 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8185A42443228F004697D3 /* ColorPickerViewController.swift */; };
 		FB8185AB24432D9F004697D3 /* EmpleadosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8185AA24432D9F004697D3 /* EmpleadosManager.swift */; };
@@ -138,6 +137,7 @@
 		FBB9F6912498CC2800A91F0C /* UpdateNotificationsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB9F6902498CC2800A91F0C /* UpdateNotificationsProtocol.swift */; };
 		FBC164C5243C7E08003C631D /* AgendaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC164C4243C7E08003C631D /* AgendaItemView.swift */; };
 		FBC164C8243CFE99003C631D /* AgendaItemViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC164C7243CFE99003C631D /* AgendaItemViewProtocol.swift */; };
+		FBD1E6D6249BC7F5007B6592 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBD1E6D5249BC7F5007B6592 /* GoogleService-Info.plist */; };
 		FBD88E102447127900BC51DB /* CarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD88E0F2447127900BC51DB /* CarouselItem.swift */; };
 		FBD88E122447735300BC51DB /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = FBD88E112447735300BC51DB /* calendar.png */; };
 		FBDF1BB2244F2887004DDD3F /* CierreCajaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDF1BB1244F2887004DDD3F /* CierreCajaViewController.swift */; };
@@ -257,7 +257,6 @@
 		FB64940624338C0C00503627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB64940824338C0C00503627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB64941A24339C3700503627 /* ListaClientesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaClientesViewController.swift; sourceTree = "<group>"; };
-		FB75497C2434F3A70013A03F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB8185A124432167004697D3 /* EmpleadoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadoModel.swift; sourceTree = "<group>"; };
 		FB8185A42443228F004697D3 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		FB8185AA24432D9F004697D3 /* EmpleadosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadosManager.swift; sourceTree = "<group>"; };
@@ -293,6 +292,7 @@
 		FBB9F6902498CC2800A91F0C /* UpdateNotificationsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationsProtocol.swift; sourceTree = "<group>"; };
 		FBC164C4243C7E08003C631D /* AgendaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItemView.swift; sourceTree = "<group>"; };
 		FBC164C7243CFE99003C631D /* AgendaItemViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaItemViewProtocol.swift; sourceTree = "<group>"; };
+		FBD1E6D5249BC7F5007B6592 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FBD88E0F2447127900BC51DB /* CarouselItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselItem.swift; sourceTree = "<group>"; };
 		FBD88E112447735300BC51DB /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		FBDF1BB1244F2887004DDD3F /* CierreCajaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CierreCajaViewController.swift; sourceTree = "<group>"; };
@@ -847,8 +847,8 @@
 				FB6493F924338C0900503627 /* SceneDelegate.swift */,
 				FB64940324338C0C00503627 /* Assets.xcassets */,
 				FB64940524338C0C00503627 /* LaunchScreen.storyboard */,
+				FBD1E6D5249BC7F5007B6592 /* GoogleService-Info.plist */,
 				FB64940824338C0C00503627 /* Info.plist */,
-				FB75497C2434F3A70013A03F /* GoogleService-Info.plist */,
 			);
 			path = GestorGenerico;
 			sourceTree = "<group>";
@@ -1314,7 +1314,6 @@
 				FB5F7D87243F91A100503E9B /* correo.png in Resources */,
 				FBA3008E246D5DEA000F1B86 /* add_image.png in Resources */,
 				FB14CEDA2440AAC2000CBE77 /* empleado.png in Resources */,
-				FB75497D2434F3A70013A03F /* GoogleService-Info.plist in Resources */,
 				FBF3DF57244257A20015BD32 /* pincel.png in Resources */,
 				FB3E4B65243649CA009DB88B /* list_icon.png in Resources */,
 				FB64940424338C0C00503627 /* Assets.xcassets in Resources */,
@@ -1335,6 +1334,7 @@
 				FBDF1BBD244F6F20004DDD3F /* StadisticasCaja.storyboard in Resources */,
 				FB8B4F122455F19C00A8097D /* personalizada.png in Resources */,
 				FB5F7D77243F262F00503E9B /* cumple.png in Resources */,
+				FBD1E6D6249BC7F5007B6592 /* GoogleService-Info.plist in Resources */,
 				FB5F7D81243F8A7400503E9B /* Notification.storyboard in Resources */,
 				FB14CEC724409696000CBE77 /* Settings.storyboard in Resources */,
 				FB14CED42440A585000CBE77 /* billing.png in Resources */,
@@ -1651,7 +1651,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C3EK57386A;
 				INFOPLIST_FILE = GestorGenerico/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -1659,7 +1659,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = jon.GestorGenerico;
 				PRODUCT_NAME = GestorGenerico;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1675,7 +1675,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C3EK57386A;
 				INFOPLIST_FILE = GestorGenerico/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -1683,7 +1683,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = jon.GestorGenerico;
 				PRODUCT_NAME = GestorGenerico;
 				PROVISIONING_PROFILE_SPECIFIER = "";

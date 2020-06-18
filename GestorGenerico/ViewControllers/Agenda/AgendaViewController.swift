@@ -33,16 +33,17 @@ class AgendaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        customizeScrollView()
-        customizeMonthCalendar()
-        customizeButtons()
-        customizeCarousel()
-        customizeMonthCalendar()
         addRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        customizeScrollView()
+        customizeMonthCalendar()
+        customizeButtons()
+        customizeCarousel()
+        customizeMonthCalendar()
+        
         setDayCarousel()
         setProfesionalArray()
         

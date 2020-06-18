@@ -21,7 +21,9 @@ class RootViewController: UITabBarController {
         customizeNavBar()
         Constants.rootController = self
         setNotificationBarItemBadge()
-        CommonFunctions.checkBackupState()
+        
+        //TODO
+        //CommonFunctions.checkBackupState()
     }
     
     func customizeTabBar() {
@@ -34,9 +36,13 @@ class RootViewController: UITabBarController {
     }
     
     func customizeNavBar() {
-        navigationController!.navigationBar.barTintColor = AppStyle.getBackgroundColor()
+        navigationController!.navigationBar.barTintColor = AppStyle.getNavigationColor()
         navigationController!.navigationBar.tintColor = AppStyle.getPrimaryColor()
         navigationController!.navigationBar.titleTextAttributes = [.foregroundColor: AppStyle.getPrimaryTextColor()]
+    }
+    
+    func updateControllerForStyleUpdate() {
+        selectedViewController?.viewWillAppear(true)
     }
     
     func setNotificationBarItemBadge() {

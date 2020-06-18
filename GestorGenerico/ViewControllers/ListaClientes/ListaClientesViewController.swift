@@ -23,10 +23,6 @@ class ListaClientesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        customizeFilterContainer()
-        setTextFieldProperties()
-        customizeTableView()
-        customizeClearButton()
         arrayIndexSection = CommonFunctions.getClientsTableIndexValues()
         
         addRefreshControl()
@@ -36,6 +32,10 @@ class ListaClientesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        customizeFilterContainer()
+        setTextFieldProperties()
+        customizeTableView()
+        customizeClearButton()
         
         getClients()
     }

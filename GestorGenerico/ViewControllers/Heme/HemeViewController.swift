@@ -16,11 +16,11 @@ class HemeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customizeTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        customizeTableView()
         
         createObjectsForTableView()
         hemeTableView.reloadData()

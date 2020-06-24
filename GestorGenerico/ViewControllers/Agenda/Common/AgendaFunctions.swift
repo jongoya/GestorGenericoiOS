@@ -91,7 +91,7 @@ class AgendaFunctions: NSObject {
         
         let empleado: EmpleadoModel = Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: profesionalId)!
         
-        return UIColor(cgColor: CGColor(srgbRed: CGFloat(empleado.redColorValue), green: CGFloat(empleado.greenColorValue), blue: CGFloat(empleado.blueColorValue), alpha: 1.0))
+        return UIColor(cgColor: CGColor(srgbRed: CGFloat(empleado.redColorValue/255), green: CGFloat(empleado.greenColorValue/255), blue: CGFloat(empleado.blueColorValue/255), alpha: 1.0))
     }
     
     static func add15MinutesToDate(date: Date) -> Date {

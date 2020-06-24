@@ -114,7 +114,7 @@ class EmpleadosViewController: UIViewController {
         let colorView: UIView = UIView()
         colorView.translatesAutoresizingMaskIntoConstraints = false
         colorView.layer.cornerRadius = 15
-        colorView.backgroundColor = UIColor(cgColor: CGColor(srgbRed: CGFloat(empleado.redColorValue), green: CGFloat(empleado.greenColorValue), blue: CGFloat(empleado.blueColorValue), alpha: 1.0))
+        colorView.backgroundColor = UIColor(cgColor: CGColor(srgbRed: CGFloat(empleado.redColorValue/255), green: CGFloat(empleado.greenColorValue/255), blue: CGFloat(empleado.blueColorValue/255), alpha: 1.0))
         contentView.addSubview(colorView)
         
         if !showColorView {

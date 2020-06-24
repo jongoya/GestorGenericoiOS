@@ -122,7 +122,7 @@ class NotificationsViewController: UIViewController {
                 notificacionesAgrupadas.append(NotificationDayModel(fecha: notification.fecha, notificaciones: []))
             }
         }
-        
+        //TODO error en las notificaciones (algun problema con las fechas)
         for model: NotificationDayModel in notificacionesAgrupadas {
             let begininOfDay: Int64 = Int64(AgendaFunctions.getBeginningOfDayFromDate(date: Date(timeIntervalSince1970: TimeInterval(model.fecha))).timeIntervalSince1970)
             let endOfDay: Int64 = Int64(AgendaFunctions.getEndOfDayFromDate(date: Date(timeIntervalSince1970: TimeInterval(model.fecha))).timeIntervalSince1970)

@@ -41,7 +41,7 @@ class ColorPickerViewController: UIViewController {
     func addColorHandler() {
         let customHandle = ChromaColorHandle()
         if empleado != nil {
-            customHandle.color = UIColor(cgColor: CGColor(srgbRed: CGFloat(empleado.redColorValue), green: CGFloat(empleado.greenColorValue), blue: CGFloat(empleado.blueColorValue), alpha: 1.0))
+            customHandle.color = UIColor(cgColor: CGColor(srgbRed: CGFloat(empleado.redColorValue/255), green: CGFloat(empleado.greenColorValue/255), blue: CGFloat(empleado.blueColorValue/255), alpha: 1.0))
         } else {
             customHandle.color = .systemBlue
         }
@@ -71,9 +71,9 @@ extension ColorPickerViewController {
         }
         
         let components = selectedColor.cgColor.components
-        empleado.redColorValue = Float(components![0])
-        empleado.greenColorValue = Float(components![1])
-        empleado.blueColorValue = Float(components![2])
+        empleado.redColorValue = Float(components![0] * 255)
+        empleado.greenColorValue = Float(components![1] * 255)
+        empleado.blueColorValue = Float(components![2] * 255)
 
         CommonFunctions.showLoadingStateView(descriptionText: "Guardando color")
         WebServices.updateEmpleado(empleado: empleado, delegate: self)

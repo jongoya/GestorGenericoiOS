@@ -280,20 +280,6 @@ class CommonFunctions: NSObject {
         WebServices.getCierreCajas(comercioId: comercioId)
     }
     
-    static func checkBackupState() {
-        if !UserPreferences.checkValueInUserDefaults(key: Constants.backupKey) {
-            UserPreferences.saveValueInUserDefaults(value: Int64(Date().timeIntervalSince1970), key: Constants.backupKey)
-            return
-        }
-        
-        let backupTimeStamp: Int64 = UserPreferences.getValueFromUserDefaults(key: Constants.backupKey) as! Int64
-        let fechaTimeStamp: Int64 = Int64(Calendar.current.date(byAdding: .day, value: -7, to: Date())!.timeIntervalSince1970)
-        
-        if backupTimeStamp < fechaTimeStamp {
-            BackupManager.buildBackupJson()
-        }
-    }
-    
     static func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
 

@@ -28,9 +28,7 @@
 		FB17F0632493D77700F0BC39 /* EmpleadoMasServicios.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17F0622493D77700F0BC39 /* EmpleadoMasServicios.swift */; };
 		FB1FFF092495350A00AD9B17 /* DeleteServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */; };
 		FB1FFF0B24953F8800AD9B17 /* GetNotificacionesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */; };
-		FB2B26D22456EBD30017D9CA /* clientesHeme.json in Resources */ = {isa = PBXBuildFile; fileRef = FB2B26D12456EBD30017D9CA /* clientesHeme.json */; };
 		FB2B26D52456EC790017D9CA /* ClientesJsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2B26D42456EC790017D9CA /* ClientesJsonManager.swift */; };
-		FB2B26D92456FBB70017D9CA /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2B26D82456FBB70017D9CA /* BackupManager.swift */; };
 		FB2B26DB245715770017D9CA /* backup.json in Resources */ = {isa = PBXBuildFile; fileRef = FB2B26DA245715770017D9CA /* backup.json */; };
 		FB2C21C0243A37C40055F4E6 /* ServicioViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2C21BF243A37C40055F4E6 /* ServicioViewProtocol.swift */; };
 		FB2D05A224379185008B5A01 /* ServicioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D05A124379185008B5A01 /* ServicioView.swift */; };
@@ -181,9 +179,7 @@
 		FB17F0622493D77700F0BC39 /* EmpleadoMasServicios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadoMasServicios.swift; sourceTree = "<group>"; };
 		FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteServiceProtocol.swift; sourceTree = "<group>"; };
 		FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotificacionesProtocol.swift; sourceTree = "<group>"; };
-		FB2B26D12456EBD30017D9CA /* clientesHeme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clientesHeme.json; sourceTree = "<group>"; };
 		FB2B26D42456EC790017D9CA /* ClientesJsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientesJsonManager.swift; sourceTree = "<group>"; };
-		FB2B26D82456FBB70017D9CA /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		FB2B26DA245715770017D9CA /* backup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = backup.json; path = ../../../../../../backup.json; sourceTree = "<group>"; };
 		FB2C21BF243A37C40055F4E6 /* ServicioViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicioViewProtocol.swift; sourceTree = "<group>"; };
 		FB2D05A124379185008B5A01 /* ServicioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicioView.swift; sourceTree = "<group>"; };
@@ -411,7 +407,6 @@
 			isa = PBXGroup;
 			children = (
 				FB2B26D32456EC670017D9CA /* Managers */,
-				FB2B26D12456EBD30017D9CA /* clientesHeme.json */,
 				FB2B26DA245715770017D9CA /* backup.json */,
 			);
 			path = Jsons;
@@ -421,7 +416,6 @@
 			isa = PBXGroup;
 			children = (
 				FB2B26D42456EC790017D9CA /* ClientesJsonManager.swift */,
-				FB2B26D82456FBB70017D9CA /* BackupManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1329,7 +1323,6 @@
 				FBFB5F87244A0A1D000DC77F /* chat.png in Resources */,
 				FB53D699245463E600331817 /* tiempo.png in Resources */,
 				FB14CECF2440A169000CBE77 /* stock.png in Resources */,
-				FB2B26D22456EBD30017D9CA /* clientesHeme.json in Resources */,
 				FB5F7D83243F8BA800503E9B /* confetti.png in Resources */,
 				FBDF1BBD244F6F20004DDD3F /* StadisticasCaja.storyboard in Resources */,
 				FB8B4F122455F19C00A8097D /* personalizada.png in Resources */,
@@ -1459,7 +1452,6 @@
 				FB9A8E1C24447C5F00E0A9E4 /* ColorPickerProtocol.swift in Sources */,
 				FB4C4453248FABCF00C5CFE9 /* WebServices.swift in Sources */,
 				FB3AFC1C2453052A00267A4D /* CadenciaModel.swift in Sources */,
-				FB2B26D92456FBB70017D9CA /* BackupManager.swift in Sources */,
 				FB57F2EF24347ED300192230 /* DatabaseHelper.swift in Sources */,
 				FB5F7D6C243F193900503E9B /* NotificationsViewController.swift in Sources */,
 				FB8185A52443228F004697D3 /* ColorPickerViewController.swift in Sources */,

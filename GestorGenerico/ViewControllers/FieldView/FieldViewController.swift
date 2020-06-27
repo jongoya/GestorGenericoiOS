@@ -45,6 +45,7 @@ class FieldViewController: UIViewController {
     func customizeInputField() {
         inpuField.textColor = AppStyle.getPrimaryTextColor()
         inpuField.tintColor = AppStyle.getPrimaryColor()
+        inpuField.backgroundColor = .white
     }
     
     func addMicrophoneButton() {

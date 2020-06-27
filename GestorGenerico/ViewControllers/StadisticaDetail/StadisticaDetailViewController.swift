@@ -27,6 +27,8 @@ class StadisticaDetailViewController: UIViewController {
         stadisticaTitleLabel.text = stadisticaTitle
         
         addChart()
+        
+        customizeTableView()
     }
     
     func addChart() {
@@ -86,6 +88,10 @@ class StadisticaDetailViewController: UIViewController {
         lineChartDataSet.highlightEnabled = false
         
         return lineChartDataSet
+    }
+    
+    func customizeTableView() {
+        chartTableView.backgroundColor = .white
     }
 }
 

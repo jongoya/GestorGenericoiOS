@@ -131,4 +131,22 @@ class CierreCajaManager: NSObject {
             }
         }
     }
+    
+    func syncronizeCierreCajas(cierreCajas: [CierreCajaModel]) {
+        backgroundContext.perform {
+            for caja: CierreCajaModel in cierreCajas {
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.CAJA_ENTITY_NAME)
+                fetchRequest.predicate = NSPredicate(format: "cajaId = %f", argumentArray: [caja.cajaId])
+                let result: NSManagedObject? = try! self.backgroundContext.fetch(fetchRequest).first
+                
+                if result == nil {
+                    let entity = NSEntityDescription.entity(forEntityName: self.CAJA_ENTITY_NAME, in: self.backgroundContext)
+                    let coreCaja = NSManagedObject(entity: entity!, insertInto: self.backgroundContext)
+                    self.databaseHelper.setCoreDataObjectDataFromCierreCaja(coreDataObject: coreCaja, newCierreCaja: caja)
+                }
+            }
+            
+            try! self.backgroundContext.save()
+        }
+    }
 }

@@ -21,6 +21,7 @@ class CadenciaNotificationDetailViewController: UIViewController {
         super.viewDidLoad()
         customizeImage()
         customizeLabels()
+        customizeTableBackground()
         title = "Detalle"
     }
     
@@ -41,6 +42,10 @@ class CadenciaNotificationDetailViewController: UIViewController {
     
     func customizeLabels() {
         cadenciaTextLabel.textColor = AppStyle.getPrimaryTextColor()
+    }
+    
+    func customizeTableBackground() {
+        clientTableView.backgroundColor = .white
     }
     
     func setCadenciaLabel() {

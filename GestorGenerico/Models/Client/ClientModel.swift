@@ -16,7 +16,7 @@ class ClientModel: Codable {
     var telefono: String = ""
     var email: String = ""
     var direccion: String = ""
-    var cadenciaVisita: String = ""
+    var cadenciaVisita: String = "cada 2 semanas"
     var observaciones: String = ""
     var fechaNotificacionPersonalizada: Int64 = 0
     var imagen: String = ""

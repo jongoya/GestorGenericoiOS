@@ -290,7 +290,10 @@ extension AgendaViewController {
     }
     
     @objc func refreshDay() {
-        WebServices.getServices(comercioId: UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64, delegate: self)
+        let comercioId: Int64 = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        let beginningOfDay: Int64 = Int64(AgendaFunctions.getBeginningOfDayFromDate(date: presentDate).timeIntervalSince1970)
+        let endOfDay: Int64 = Int64(AgendaFunctions.getEndOfDayFromDate(date: presentDate).timeIntervalSince1970)
+        WebServices.getServicesForRange(comercioId: comercioId, fechaInicio: beginningOfDay, fechaFin: endOfDay, delegate: self)
     }
     
     @objc func didClickCerrarCajaButton() {
@@ -460,7 +463,8 @@ extension AgendaViewController: UIScrollViewDelegate {
     }
 }
 
-extension AgendaViewController: GetServiciosProtocol {
+extension AgendaViewController: GetServiciosRangeProtocol {
+    
     func successGettingServicios() {
         DispatchQueue.main.async {
             self.scrollRefreshControl.endRefreshing()

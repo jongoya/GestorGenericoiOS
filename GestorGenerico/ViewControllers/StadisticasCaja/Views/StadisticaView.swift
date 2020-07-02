@@ -124,6 +124,7 @@ class StadisticaView: UIView {
         chart.extraRightOffset = 20.0
         chart.legend.enabled = false
         chart.xAxis.labelFont = .systemFont(ofSize: 12, weight: .semibold)
+        chart.xAxis.labelTextColor = AppStyle.getPrimaryColor()
     }
     
     func createDataSet(dataEntries: [BarChartDataEntry]) -> LineChartDataSet {
@@ -135,6 +136,7 @@ class StadisticaView: UIView {
         lineChartDataSet.circleHoleColor = AppStyle.getPrimaryColor()
         lineChartDataSet.mode = .cubicBezier
         lineChartDataSet.valueFont = .systemFont(ofSize: 10, weight: .semibold)
+        lineChartDataSet.valueTextColor = AppStyle.getPrimaryColor()
         lineChartDataSet.highlightColor = AppStyle.getPrimaryColor()
         lineChartDataSet.highlightEnabled = false
         

@@ -138,29 +138,6 @@ class NotificationsManager: NSObject {
         return notifications
     }
     
-    func updateNotificationsForClientAndType(notificationType: String, clientId: Int64) -> Bool {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: NOTIFICATIONS_ENTITY_NAME)
-        fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.predicate = NSPredicate(format: "type = %@", argumentArray: [notificationType])
-        var result: Bool = false
-        mainContext.performAndWait {
-            do {
-                let results: [NSManagedObject] = try mainContext.fetch(fetchRequest)
-                for data in results {
-                    let clientIds: [Int64] = data.value(forKey: "clientId") as! [Int64]
-                    data.setValue(clientIds.filter {$0 != clientId}, forKey: "clientId")
-                }
-                
-                result = true
-                try mainContext.save()
-            } catch {
-                result = false
-            }
-        }
-        
-        return result
-    }
-    
     func eliminarNotificacion(notificationId: Int64) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: NOTIFICATIONS_ENTITY_NAME)
         fetchRequest.predicate = NSPredicate(format: "notificationId = %f", argumentArray: [notificationId])
@@ -192,6 +169,27 @@ class NotificationsManager: NSObject {
                 try backgroundContext.save()
             } catch {
             }
+        }
+    }
+    
+    
+    func syncronizeNotifications(notifications: [NotificationModel]) {
+        backgroundContext.perform {
+            for notifi: NotificationModel in notifications {
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.NOTIFICATIONS_ENTITY_NAME)
+                fetchRequest.predicate = NSPredicate(format: "notificationId = %f", argumentArray: [notifi.notificationId])
+                let result: NSManagedObject? = try! self.backgroundContext.fetch(fetchRequest).first
+                
+                if result != nil {
+                    result!.setValue(notifi.leido, forKey: "leido")
+                } else {
+                    let entity = NSEntityDescription.entity(forEntityName: self.NOTIFICATIONS_ENTITY_NAME, in: self.backgroundContext)
+                    let coreNoti = NSManagedObject(entity: entity!, insertInto: self.backgroundContext)
+                    self.databaseHelper.setCoreDataObjectDataFromNotification(coreDataObject: coreNoti, newNotification: notifi)
+                }
+            }
+            
+            try! self.backgroundContext.save()
         }
     }
 }

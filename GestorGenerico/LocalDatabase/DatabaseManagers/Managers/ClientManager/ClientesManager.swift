@@ -97,14 +97,14 @@ class ClientesManager: NSObject {
         fetchRequest.predicate = NSPredicate(format: "idCliente = %f", argumentArray: [client.id])
         var results: [NSManagedObject] = []
         
-        mainContext.performAndWait {
+        backgroundContext.performAndWait {
             do {
-                results = try mainContext.fetch(fetchRequest)
+                results = try backgroundContext.fetch(fetchRequest)
                 
                 if results.count != 0 {
                     let coreClient: NSManagedObject = results.first!
                     databaseHelper.updateClientObject(coreClient: coreClient, client: client)
-                    try mainContext.save()
+                    try backgroundContext.save()
                 }
             } catch {
             }
@@ -124,6 +124,46 @@ class ClientesManager: NSObject {
                 try backgroundContext.save()
             } catch {
             }
+        }
+    }
+    
+    func syncronizeClientsAsync(clientes: [ClientModel]) {
+        backgroundContext.perform {
+            for cliente: ClientModel in clientes {
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.CLIENTES_ENTITY_NAME)
+                fetchRequest.predicate = NSPredicate(format: "idCliente = %f", argumentArray: [cliente.id])
+                let result: NSManagedObject? = try! self.backgroundContext.fetch(fetchRequest).first
+                
+                if result != nil {
+                    self.databaseHelper.updateClientObject(coreClient: result!, client: cliente)
+                } else {
+                    let entity = NSEntityDescription.entity(forEntityName: self.CLIENTES_ENTITY_NAME, in: self.backgroundContext)
+                    let client = NSManagedObject(entity: entity!, insertInto: self.backgroundContext)
+                    self.databaseHelper.setCoreDataObjectDataFromClient(coreDataObject: client, newClient: cliente)
+                }
+            }
+            
+            try! self.backgroundContext.save()
+        }
+    }
+    
+    func syncronizeClientsSync(clientes: [ClientModel]) {
+        backgroundContext.performAndWait {
+            for cliente: ClientModel in clientes {
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CLIENTES_ENTITY_NAME)
+                fetchRequest.predicate = NSPredicate(format: "idCliente = %f", argumentArray: [cliente.id])
+                let result: NSManagedObject? = try! backgroundContext.fetch(fetchRequest).first
+                
+                if result != nil {
+                    databaseHelper.updateClientObject(coreClient: result!, client: cliente)
+                } else {
+                    let entity = NSEntityDescription.entity(forEntityName: CLIENTES_ENTITY_NAME, in: backgroundContext)
+                    let client = NSManagedObject(entity: entity!, insertInto: backgroundContext)
+                    databaseHelper.setCoreDataObjectDataFromClient(coreDataObject: client, newClient: cliente)
+                }
+            }
+            
+            try! self.backgroundContext.save()
         }
     }
 }

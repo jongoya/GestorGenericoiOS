@@ -85,6 +85,19 @@ class DatabaseHelper: NSObject {
         coreClient.setValue(client.comercioId, forKey: "comercioId")
     }
     
+    func updateCoreEmpleadoWithEmpleado(coreEmpleado: NSManagedObject, empleado: EmpleadoModel) {
+        coreEmpleado.setValue(empleado.redColorValue, forKey: "redColorValue")
+        coreEmpleado.setValue(empleado.greenColorValue, forKey: "greenColorValue")
+        coreEmpleado.setValue(empleado.blueColorValue, forKey: "blueColorValue")
+        coreEmpleado.setValue(empleado.nombre, forKey: "nombre")
+        coreEmpleado.setValue(empleado.apellidos, forKey: "apellidos")
+        coreEmpleado.setValue(empleado.fecha, forKey: "fecha")
+        coreEmpleado.setValue(empleado.telefono, forKey: "telefono")
+        coreEmpleado.setValue(empleado.email, forKey: "email")
+        coreEmpleado.setValue(empleado.comercioId, forKey: "comercioId")
+        coreEmpleado.setValue(empleado.is_empleado_jefe, forKey: "is_empleado_jefe")
+    }
+    
     func parseNotificationCoreObjectToNotificationModel(coreObject: NSManagedObject) -> NotificationModel {
         let notification: NotificationModel = NotificationModel()
         notification.clientId = coreObject.value(forKey: "clientId") as! Int64

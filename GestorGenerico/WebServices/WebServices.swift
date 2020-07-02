@@ -11,9 +11,9 @@ import Alamofire
 
 
 public class WebServices {
-    private static let baseUrl: String = "https://gestor.djmrbug.com:8443/api/"
+    static let baseUrl: String = "https://gestor.djmrbug.com:8443/api/"
     
-    private static func createHeaders() -> HTTPHeaders {
+    static func createHeaders() -> HTTPHeaders {
         let token: String = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesTokenKey) as! String
         let headers: HTTPHeaders = ["Authorization": "Bearer " + token, "Content-Type": "application/json", "UniqueDeviceId" : CommonFunctions.getUniqueDeviceId()]
         return headers
@@ -74,13 +74,11 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let clientes: [ClientModel] = try! JSONDecoder().decode([ClientModel].self, from: response.data!)
-                    for cliente: ClientModel in clientes {
-                        if Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: cliente.id) == nil {
-                            Constants.databaseManager.clientsManager.addClientToDatabase(newClient: cliente)
-                        } else {
-                            Constants.databaseManager.clientsManager.updateClientInDatabase(client: cliente)
-                        }
-                        
+                    
+                    if delegate == nil {
+                        Constants.databaseManager.clientsManager.syncronizeClientsAsync(clientes: clientes)
+                    } else {
+                        Constants.databaseManager.clientsManager.syncronizeClientsSync(clientes: clientes)
                     }
                     
                     delegate?.successGettingClients()
@@ -143,14 +141,7 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let servicios: [ServiceModel] = try! JSONDecoder().decode([ServiceModel].self, from: response.data!)
-                    for servicio : ServiceModel in servicios {
-                        if Constants.databaseManager.servicesManager.getServiceFromDatabase(serviceId: servicio.serviceId).count == 0 {
-                            Constants.databaseManager.servicesManager.addServiceInDatabase(newService: servicio)
-                        } else {
-                            Constants.databaseManager.servicesManager.updateServiceInDatabase(service: servicio)
-                        }
-                    }
-                    
+                    Constants.databaseManager.servicesManager.syncronizeServicesAsync(services: servicios)
                     deleteLocalServicesIfNeeded(serverServices: servicios)
                     
                     delegate?.successGettingServicios()
@@ -159,6 +150,42 @@ public class WebServices {
             }
             
             delegate?.errorGettingServicios()
+        }
+    }
+    
+    static func getServicesForClientId(comercioId: Int64, clientId: Int64, delegate: GetServiciosClientProtocol) {
+        let url: String = baseUrl + "get_servicios_client/" + String(comercioId) + "/" + String(clientId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers:  createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let servicios: [ServiceModel] = try! JSONDecoder().decode([ServiceModel].self, from: response.data!)
+                    Constants.databaseManager.servicesManager.syncronizeServicesSync(services: servicios)
+                    deleteLocalServicesIfNeeded(serverServices: servicios)
+                    
+                    delegate.successGettingServicios()
+                    return
+                }
+            }
+            
+            delegate.errorGettingServicios()
+        }
+    }
+    
+    static func getServicesForRange(comercioId: Int64, fechaInicio: Int64, fechaFin: Int64, delegate: GetServiciosRangeProtocol) {
+        let url: String = baseUrl + "get_servicios_range/" + String(comercioId) + "/" + String(fechaInicio) + "/" + String(fechaFin)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers:  createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let servicios: [ServiceModel] = try! JSONDecoder().decode([ServiceModel].self, from: response.data!)
+                    Constants.databaseManager.servicesManager.syncronizeServicesSync(services: servicios)
+                    deleteLocalServicesIfNeeded(serverServices: servicios)
+                    
+                    delegate.successGettingServicios()
+                    return
+                }
+            }
+            
+            delegate.errorGettingServicios()
         }
     }
     
@@ -264,13 +291,7 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let empleados: [EmpleadoModel] = try! JSONDecoder().decode([EmpleadoModel].self, from: response.data!)
-                    for empleado: EmpleadoModel in empleados {
-                        if Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: empleado.empleadoId) == nil {
-                            Constants.databaseManager.empleadosManager.addEmpleadoToDatabase(newEmpleado: empleado)
-                        } else {
-                            Constants.databaseManager.empleadosManager.updateEmpleado(empleado: empleado)
-                        }
-                    }
+                    Constants.databaseManager.empleadosManager.syncronizeEmpleados(empleados: empleados)
                     
                     compareLocalEmpleadosWithServerEmpleados(serverEmpleados: empleados)
                     delegate?.succesGettingEmpleados(empleados: empleados)
@@ -405,15 +426,11 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let notificaciones: [NotificationModel] = try! JSONDecoder().decode([NotificationModel].self, from: response.data!)
-                    for notificacion: NotificationModel in notificaciones {
-                        if Constants.databaseManager.notificationsManager.getNotificationFromDatabase(notificationId: notificacion.notificationId).count == 0 {
-                            Constants.databaseManager.notificationsManager.addNotificationToDatabase(newNotification: notificacion)
-                        } else {
-                            Constants.databaseManager.notificationsManager.markNotificationAsRead(notification: notificacion)
-                        }
-                    }
-                    
+                    Constants.databaseManager.notificationsManager.syncronizeNotifications(notifications: notificaciones)
+        
                     deleteNotificationsIfNeeded(serveNotificaciones: notificaciones)
+                    
+                    //TODO utilizar la misma logica que getClientes?
                     delegate?.successGettingNotificaciones()
                     return
                 }
@@ -541,9 +558,7 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let cierreCajas: [CierreCajaModel] = try! JSONDecoder().decode([CierreCajaModel].self, from: response.data!)
-                    for cierreCaja: CierreCajaModel in cierreCajas {
-                        Constants.databaseManager.cierreCajaManager.addCierreCajaToDatabase(newCierreCaja: cierreCaja)
-                    }
+                    Constants.databaseManager.cierreCajaManager.syncronizeCierreCajas(cierreCajas: cierreCajas)
                 }
             }
         }

@@ -26,8 +26,6 @@ class ListaClientesViewController: UIViewController {
         arrayIndexSection = CommonFunctions.getClientsTableIndexValues()
         
         addRefreshControl()
-        
-        refreshClients()
     }
     
     override func viewWillAppear(_ animated: Bool) {

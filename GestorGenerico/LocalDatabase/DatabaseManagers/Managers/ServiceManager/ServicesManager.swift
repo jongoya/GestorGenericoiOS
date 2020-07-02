@@ -173,64 +173,43 @@ class ServicesManager: NSObject {
         }
     }
     
-    func updateEmpleadoIdForServices(oldEmpleadoId: Int64, newEmpleadoId: Int64) {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: SERVICES_ENTITY_NAME)
-        fetchRequest.predicate = NSPredicate(format: "profesional = %f", argumentArray: [oldEmpleadoId])
-        var results: [NSManagedObject] = []
-        
-        backgroundContext.performAndWait {
-            do {
-                results = try backgroundContext.fetch(fetchRequest)
-                
-                for object in results {
-                    object.setValue(newEmpleadoId, forKey: "profesional")
-                }
-                
-                try backgroundContext.save()
-            } catch {
-            }
-        }
+    func syncronizeServicesAsync(services: [ServiceModel]) {
+        backgroundContext.perform {
+             for service: ServiceModel in services {
+                 let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.SERVICES_ENTITY_NAME)
+                fetchRequest.predicate = NSPredicate(format: "idServicio = %f", argumentArray: [service.serviceId])
+                 let result: NSManagedObject? = try! self.backgroundContext.fetch(fetchRequest).first
+                 
+                 if result != nil {
+                    self.databaseHelper.setCoreDataObjectDataFromService(coreDataObject: result!, newService: service)
+                 } else {
+                     let entity = NSEntityDescription.entity(forEntityName: self.SERVICES_ENTITY_NAME, in: self.backgroundContext)
+                     let coreService = NSManagedObject(entity: entity!, insertInto: self.backgroundContext)
+                    self.databaseHelper.setCoreDataObjectDataFromService(coreDataObject: coreService, newService: service)
+                 }
+             }
+             
+             try! self.backgroundContext.save()
+         }
     }
     
-    func getServicesForEmpleado(empleadoId: Int64) -> [ServiceModel] {
-        var services: [ServiceModel] = []
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: SERVICES_ENTITY_NAME)
-        fetchRequest.predicate = NSPredicate(format: "profesional = %f", argumentArray: [empleadoId])
-        
-        mainContext.performAndWait {
-            do {
-                let results: [NSManagedObject] = try mainContext.fetch(fetchRequest)
-                for data in results {
-                    services.append(databaseHelper.parseServiceCoreObjectToServiceModel(coreObject: data))
-                }
-            } catch {
-                print("Error checking the client in database")
-            }
-        }
-        
-        return services
-    }
-    
-    func updateServicesForClientId(clientId: Int64) -> Bool {
-        let client: ClientModel = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: clientId)!
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: SERVICES_ENTITY_NAME)
-        fetchRequest.predicate = NSPredicate(format: "idCliente = %f", argumentArray: [clientId])
-        var result: Bool = false
+    func syncronizeServicesSync(services: [ServiceModel]) {
         backgroundContext.performAndWait {
-            do {
-                let results = try backgroundContext.fetch(fetchRequest)
-                for object in results {
-                    object.setValue(client.nombre, forKey: "nombre")
-                    object.setValue(client.apellidos, forKey: "apellidos")
-                }
-                
-                try backgroundContext.save()
-                result = true
-            } catch {
-                result = false
-            }
-        }
-        return result
+             for service: ServiceModel in services {
+                 let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: SERVICES_ENTITY_NAME)
+                fetchRequest.predicate = NSPredicate(format: "idServicio = %f", argumentArray: [service.serviceId])
+                 let result: NSManagedObject? = try! backgroundContext.fetch(fetchRequest).first
+                 
+                 if result != nil {
+                    databaseHelper.setCoreDataObjectDataFromService(coreDataObject: result!, newService: service)
+                 } else {
+                    let entity = NSEntityDescription.entity(forEntityName: SERVICES_ENTITY_NAME, in: backgroundContext)
+                    let coreService = NSManagedObject(entity: entity!, insertInto: backgroundContext)
+                    databaseHelper.setCoreDataObjectDataFromService(coreDataObject: coreService, newService: service)
+                 }
+             }
+             
+             try! self.backgroundContext.save()
+         }
     }
 }

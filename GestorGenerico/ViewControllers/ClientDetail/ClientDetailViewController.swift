@@ -367,7 +367,7 @@ extension ClientDetailViewController {
     }
     
     @objc func refreshClient() {
-        WebServices.getServices(comercioId: UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64, delegate: self)
+        WebServices.getServicesForClientId(comercioId: UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64, clientId: client.id, delegate: self)
     }
     
     @objc func didClickBackButton(sender: UIBarButtonItem) {
@@ -565,7 +565,7 @@ extension ClientDetailViewController: UpdateClientProtocol {
     }
 }
 
-extension ClientDetailViewController: GetServiciosProtocol {
+extension ClientDetailViewController: GetServiciosClientProtocol {
     func successGettingServicios() {
         DispatchQueue.main.async {
             self.scrollRefreshControl.endRefreshing()

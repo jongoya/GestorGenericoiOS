@@ -138,10 +138,14 @@ class AgendaItemView: UIView {
         addServiceItemGestures(serviceView: serviceView)
         addSubview(serviceView)
         
-        let client: ClientModel = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: service.clientId)!
+        let client: ClientModel? = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: service.clientId)
         let clientNameLabel: UILabel = UILabel()
         clientNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        clientNameLabel.text = client.nombre + " " + client.apellidos
+        if client != nil {
+            clientNameLabel.text = client!.nombre + " " + client!.apellidos
+        } else {
+            clientNameLabel.text = "Actualizando..."
+        }
         clientNameLabel.textColor = AppStyle.getPrimaryTextColor()
         clientNameLabel.font = .systemFont(ofSize: 16, weight: .semibold)
         serviceView.addSubview(clientNameLabel)

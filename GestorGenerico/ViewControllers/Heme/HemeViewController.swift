@@ -24,6 +24,9 @@ class HemeViewController: UIViewController {
         
         createObjectsForTableView()
         hemeTableView.reloadData()
+        
+        //TODO testeo parseo clientes
+        //ClientesJsonManager.parseClientesHeme()
     }
     
     func customizeTableView() {

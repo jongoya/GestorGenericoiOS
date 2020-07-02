@@ -20,8 +20,6 @@ class EmpleadoModel: Codable {
     var blueColorValue: Float = 0
     var comercioId: Int64 = 0
     var is_empleado_jefe: Bool = false
-    
- 
 }
 
 extension EmpleadoModel {

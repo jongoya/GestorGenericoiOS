@@ -93,16 +93,7 @@ class EmpleadosManager: NSObject {
                 
                 if results.count != 0 {
                     let coreEmpleado: NSManagedObject = results.first!
-                    coreEmpleado.setValue(empleado.redColorValue, forKey: "redColorValue")
-                    coreEmpleado.setValue(empleado.greenColorValue, forKey: "greenColorValue")
-                    coreEmpleado.setValue(empleado.blueColorValue, forKey: "blueColorValue")
-                    coreEmpleado.setValue(empleado.nombre, forKey: "nombre")
-                    coreEmpleado.setValue(empleado.apellidos, forKey: "apellidos")
-                    coreEmpleado.setValue(empleado.fecha, forKey: "fecha")
-                    coreEmpleado.setValue(empleado.telefono, forKey: "telefono")
-                    coreEmpleado.setValue(empleado.email, forKey: "email")
-                    coreEmpleado.setValue(empleado.comercioId, forKey: "comercioId")
-                    coreEmpleado.setValue(empleado.is_empleado_jefe, forKey: "is_empleado_jefe")
+                    databaseHelper.updateCoreEmpleadoWithEmpleado(coreEmpleado: coreEmpleado, empleado: empleado)
                     try mainContext.save()
                 }
             } catch {
@@ -140,6 +131,26 @@ class EmpleadosManager: NSObject {
                 try backgroundContext.save()
             } catch {
             }
+        }
+    }
+    
+    func syncronizeEmpleados(empleados: [EmpleadoModel]) {
+        backgroundContext.performAndWait {
+            for empleado: EmpleadoModel in empleados {
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: EMPLEADOS_ENTITY_NAME)
+                fetchRequest.predicate = NSPredicate(format: "empleadoId = %f", argumentArray: [empleado.empleadoId])
+                let result: NSManagedObject? = try! backgroundContext.fetch(fetchRequest).first
+                
+                if result != nil {
+                    databaseHelper.updateCoreEmpleadoWithEmpleado(coreEmpleado: result!, empleado: empleado)
+                } else {
+                    let entity = NSEntityDescription.entity(forEntityName: EMPLEADOS_ENTITY_NAME, in: backgroundContext)
+                    let coreEmpleado = NSManagedObject(entity: entity!, insertInto: backgroundContext)
+                    databaseHelper.setCoreDataObjectDataFromEmpleado(coreDataObject: coreEmpleado, newEmpleado: empleado)
+                }
+            }
+            
+            try! backgroundContext.save()
         }
     }
 }

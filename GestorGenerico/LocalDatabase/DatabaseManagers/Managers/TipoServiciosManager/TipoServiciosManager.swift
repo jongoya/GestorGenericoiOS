@@ -93,4 +93,22 @@ class TipoServiciosManager: NSObject {
             }
         }
     }
+    
+    func syncronizeTipoDeServicios(tipoServicios: [TipoServicioModel]) {
+        backgroundContext.performAndWait {
+            for tipoServicio: TipoServicioModel in tipoServicios {
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: TIPOSERVICIOS_ENTITY_NAME)
+                fetchRequest.predicate = NSPredicate(format: "servicioId = %f", argumentArray: [tipoServicio.servicioId])
+                let result: NSManagedObject? = try! backgroundContext.fetch(fetchRequest).first
+                
+                if result == nil {
+                    let entity = NSEntityDescription.entity(forEntityName: TIPOSERVICIOS_ENTITY_NAME, in: backgroundContext)
+                    let coreTipoServicio = NSManagedObject(entity: entity!, insertInto: backgroundContext)
+                    databaseHelper.setCoreDataObjectDataFromTipoServicio(coreDataObject: coreTipoServicio, newServicio: tipoServicio)
+                }
+            }
+            
+            try! backgroundContext.save()
+        }
+    }
 }

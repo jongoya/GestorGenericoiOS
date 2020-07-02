@@ -373,7 +373,7 @@ extension AddClientViewController: AddClientAndServicesProtocol {
     
     func succesSavingClient(model: ClientMasServicios) {
         Constants.databaseManager.clientsManager.addClientToDatabase(newClient: model.cliente)
-        for servicio: ServiceModel in servicios {
+        for servicio: ServiceModel in model.servicios {
             Constants.databaseManager.servicesManager.addServiceInDatabase(newService: servicio)
         }
         

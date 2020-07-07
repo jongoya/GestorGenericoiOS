@@ -103,7 +103,6 @@
 		FB64940424338C0C00503627 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB64940324338C0C00503627 /* Assets.xcassets */; };
 		FB64940724338C0C00503627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB64940524338C0C00503627 /* LaunchScreen.storyboard */; };
 		FB64941C24339C3700503627 /* ListaClientesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB64941A24339C3700503627 /* ListaClientesViewController.swift */; };
-		FB660BFF24AB4CD600509204 /* backupHeme.json in Resources */ = {isa = PBXBuildFile; fileRef = FB660BFE24AB4CD500509204 /* backupHeme.json */; };
 		FB660C0124AB4F5200509204 /* JsonNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB660C0024AB4F5200509204 /* JsonNotificationModel.swift */; };
 		FB660C0324AB528500509204 /* JsonCierreCajaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB660C0224AB528500509204 /* JsonCierreCajaModel.swift */; };
 		FB7FF27324ADEFB9006525F6 /* GetServiciosClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7FF27224ADEFB9006525F6 /* GetServiciosClientProtocol.swift */; };
@@ -126,6 +125,7 @@
 		FB9A8E252444911C00E0A9E4 /* AddTipoServicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A8E242444911C00E0A9E4 /* AddTipoServicioViewController.swift */; };
 		FB9A8E272444961700E0A9E4 /* sync.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9A8E262444961700E0A9E4 /* sync.png */; };
 		FB9EA5092433A9CF005B9F52 /* ClientesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9EA5082433A9CF005B9F52 /* ClientesManager.swift */; };
+		FBA2160D24B39EDC00C28F58 /* backupHeme.json in Resources */ = {isa = PBXBuildFile; fileRef = FBA2160C24B39EDC00C28F58 /* backupHeme.json */; };
 		FBA3008E246D5DEA000F1B86 /* add_image.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA3008D246D5DEA000F1B86 /* add_image.png */; };
 		FBA783FD245C359000FDF557 /* AddClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA783FC245C359000FDF557 /* AddClientProtocol.swift */; };
 		FBAA2A90243B4956009DE78B /* AgendaFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA2A8F243B4956009DE78B /* AgendaFunctions.swift */; };
@@ -266,7 +266,6 @@
 		FB64940624338C0C00503627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB64940824338C0C00503627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB64941A24339C3700503627 /* ListaClientesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaClientesViewController.swift; sourceTree = "<group>"; };
-		FB660BFE24AB4CD500509204 /* backupHeme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = backupHeme.json; sourceTree = "<group>"; };
 		FB660C0024AB4F5200509204 /* JsonNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonNotificationModel.swift; sourceTree = "<group>"; };
 		FB660C0224AB528500509204 /* JsonCierreCajaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonCierreCajaModel.swift; sourceTree = "<group>"; };
 		FB7FF27224ADEFB9006525F6 /* GetServiciosClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetServiciosClientProtocol.swift; sourceTree = "<group>"; };
@@ -289,6 +288,7 @@
 		FB9A8E242444911C00E0A9E4 /* AddTipoServicioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTipoServicioViewController.swift; sourceTree = "<group>"; };
 		FB9A8E262444961700E0A9E4 /* sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sync.png; sourceTree = "<group>"; };
 		FB9EA5082433A9CF005B9F52 /* ClientesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientesManager.swift; sourceTree = "<group>"; };
+		FBA2160C24B39EDC00C28F58 /* backupHeme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = backupHeme.json; sourceTree = "<group>"; };
 		FBA3008D246D5DEA000F1B86 /* add_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_image.png; sourceTree = "<group>"; };
 		FBA783FC245C359000FDF557 /* AddClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClientProtocol.swift; sourceTree = "<group>"; };
 		FBAA2A8F243B4956009DE78B /* AgendaFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFunctions.swift; sourceTree = "<group>"; };
@@ -443,7 +443,7 @@
 				FB199DCB24AB3C3300397950 /* Models */,
 				FB2B26D32456EC670017D9CA /* Managers */,
 				FB2B26DA245715770017D9CA /* backup.json */,
-				FB660BFE24AB4CD500509204 /* backupHeme.json */,
+				FBA2160C24B39EDC00C28F58 /* backupHeme.json */,
 			);
 			path = Jsons;
 			sourceTree = "<group>";
@@ -1353,7 +1353,7 @@
 				FB3E4B5524361D72009DB88B /* user_placeholder.png in Resources */,
 				FB14CED62440A63D000CBE77 /* cash.png in Resources */,
 				FB9A8E272444961700E0A9E4 /* sync.png in Resources */,
-				FB660BFF24AB4CD600509204 /* backupHeme.json in Resources */,
+				FBA2160D24B39EDC00C28F58 /* backupHeme.json in Resources */,
 				FB486E51243E3C2C009EBF26 /* cross.png in Resources */,
 				FB5F7D85243F916500503E9B /* telefono.png in Resources */,
 				FB3AFC1E245326B000267A4D /* cadencia.png in Resources */,
@@ -1691,15 +1691,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = C3EK57386A;
 				INFOPLIST_FILE = GestorGenerico/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = jon.GestorGenerico;
 				PRODUCT_NAME = GestorGenerico;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1715,15 +1715,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = C3EK57386A;
 				INFOPLIST_FILE = GestorGenerico/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = jon.GestorGenerico;
 				PRODUCT_NAME = GestorGenerico;
 				PROVISIONING_PROFILE_SPECIFIER = "";

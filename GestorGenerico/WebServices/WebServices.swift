@@ -142,7 +142,8 @@ public class WebServices {
                 if response.response!.statusCode == 200 {
                     let servicios: [ServiceModel] = try! JSONDecoder().decode([ServiceModel].self, from: response.data!)
                     Constants.databaseManager.servicesManager.syncronizeServicesAsync(services: servicios)
-                    deleteLocalServicesIfNeeded(serverServices: servicios)
+                    let localServices: [ServiceModel] = Constants.databaseManager.servicesManager.getAllServicesFromDatabase()
+                    deleteLocalServicesIfNeeded(serverServices: servicios, localServices: localServices)
                     
                     delegate?.successGettingServicios()
                     return
@@ -160,7 +161,8 @@ public class WebServices {
                 if response.response!.statusCode == 200 {
                     let servicios: [ServiceModel] = try! JSONDecoder().decode([ServiceModel].self, from: response.data!)
                     Constants.databaseManager.servicesManager.syncronizeServicesSync(services: servicios)
-                    deleteLocalServicesIfNeeded(serverServices: servicios)
+                    let localServices: [ServiceModel] = Constants.databaseManager.servicesManager.getServicesForClientId(clientId: clientId)
+                    deleteLocalServicesIfNeeded(serverServices: servicios, localServices: localServices)
                     
                     delegate.successGettingServicios()
                     return
@@ -178,7 +180,8 @@ public class WebServices {
                 if response.response!.statusCode == 200 {
                     let servicios: [ServiceModel] = try! JSONDecoder().decode([ServiceModel].self, from: response.data!)
                     Constants.databaseManager.servicesManager.syncronizeServicesSync(services: servicios)
-                    deleteLocalServicesIfNeeded(serverServices: servicios)
+                    let localServices: [ServiceModel] = Constants.databaseManager.servicesManager.getAllServicesForDay(beginingOfDay: fechaInicio, endOfDay: fechaFin)
+                    deleteLocalServicesIfNeeded(serverServices: servicios, localServices: localServices)
                     
                     delegate.successGettingServicios()
                     return
@@ -189,8 +192,7 @@ public class WebServices {
         }
     }
     
-    private static func deleteLocalServicesIfNeeded(serverServices: [ServiceModel]) {
-        let localServices: [ServiceModel] = Constants.databaseManager.servicesManager.getAllServicesFromDatabase()
+    private static func deleteLocalServicesIfNeeded(serverServices: [ServiceModel], localServices: [ServiceModel]) {
         for localService: ServiceModel in localServices {
             var servicioExists: Bool = false
             for serverService: ServiceModel in serverServices {

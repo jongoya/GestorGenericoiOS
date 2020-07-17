@@ -31,7 +31,6 @@
 		FB1FFF092495350A00AD9B17 /* DeleteServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */; };
 		FB1FFF0B24953F8800AD9B17 /* GetNotificacionesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */; };
 		FB2B26D52456EC790017D9CA /* ClientesJsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2B26D42456EC790017D9CA /* ClientesJsonManager.swift */; };
-		FB2B26DB245715770017D9CA /* backup.json in Resources */ = {isa = PBXBuildFile; fileRef = FB2B26DA245715770017D9CA /* backup.json */; };
 		FB2C21C0243A37C40055F4E6 /* ServicioViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2C21BF243A37C40055F4E6 /* ServicioViewProtocol.swift */; };
 		FB2D05A224379185008B5A01 /* ServicioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D05A124379185008B5A01 /* ServicioView.swift */; };
 		FB2D05A5243791FB008B5A01 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D05A4243791FB008B5A01 /* AgendaViewController.swift */; };
@@ -192,7 +191,6 @@
 		FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteServiceProtocol.swift; sourceTree = "<group>"; };
 		FB1FFF0A24953F8800AD9B17 /* GetNotificacionesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotificacionesProtocol.swift; sourceTree = "<group>"; };
 		FB2B26D42456EC790017D9CA /* ClientesJsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientesJsonManager.swift; sourceTree = "<group>"; };
-		FB2B26DA245715770017D9CA /* backup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = backup.json; path = ../../../../../../backup.json; sourceTree = "<group>"; };
 		FB2C21BF243A37C40055F4E6 /* ServicioViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicioViewProtocol.swift; sourceTree = "<group>"; };
 		FB2D05A124379185008B5A01 /* ServicioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicioView.swift; sourceTree = "<group>"; };
 		FB2D05A4243791FB008B5A01 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
@@ -256,7 +254,7 @@
 		FB5F7D84243F916500503E9B /* telefono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = telefono.png; sourceTree = "<group>"; };
 		FB5F7D86243F91A100503E9B /* correo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = correo.png; sourceTree = "<group>"; };
 		FB5F7D89243F9D5A00503E9B /* HemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HemeViewController.swift; sourceTree = "<group>"; };
-		FB6493F424338C0900503627 /* GestorGenerico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GestorGenerico.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB6493F424338C0900503627 /* Heme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB6493F724338C0900503627 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB6493F924338C0900503627 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FB6493FB24338C0900503627 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -442,7 +440,6 @@
 			children = (
 				FB199DCB24AB3C3300397950 /* Models */,
 				FB2B26D32456EC670017D9CA /* Managers */,
-				FB2B26DA245715770017D9CA /* backup.json */,
 				FBA2160C24B39EDC00C28F58 /* backupHeme.json */,
 			);
 			path = Jsons;
@@ -857,7 +854,7 @@
 		FB6493F524338C0900503627 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FB6493F424338C0900503627 /* GestorGenerico.app */,
+				FB6493F424338C0900503627 /* Heme.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1300,7 +1297,7 @@
 			);
 			name = GestorGenerico;
 			productName = GestorHeme;
-			productReference = FB6493F424338C0900503627 /* GestorGenerico.app */;
+			productReference = FB6493F424338C0900503627 /* Heme.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1370,7 +1367,6 @@
 				FB5F7D81243F8A7400503E9B /* Notification.storyboard in Resources */,
 				FB14CEC724409696000CBE77 /* Settings.storyboard in Resources */,
 				FB14CED42440A585000CBE77 /* billing.png in Resources */,
-				FB2B26DB245715770017D9CA /* backup.json in Resources */,
 				FB8B4F102455B6F900A8097D /* campana.png in Resources */,
 				FBD88E122447735300BC51DB /* calendar.png in Resources */,
 			);
@@ -1701,7 +1697,7 @@
 				);
 				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = jon.GestorGenerico;
-				PRODUCT_NAME = GestorGenerico;
+				PRODUCT_NAME = Heme;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1725,7 +1721,7 @@
 				);
 				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = jon.GestorGenerico;
-				PRODUCT_NAME = GestorGenerico;
+				PRODUCT_NAME = Heme;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

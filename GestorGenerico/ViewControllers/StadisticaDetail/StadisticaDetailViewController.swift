@@ -29,6 +29,10 @@ class StadisticaDetailViewController: UIViewController {
         addChart()
         
         customizeTableView()
+        
+        removeDuplicateElements()
+        
+        chartTableView.reloadData()
     }
     
     func addChart() {
@@ -94,6 +98,17 @@ class StadisticaDetailViewController: UIViewController {
     
     func customizeTableView() {
         chartTableView.backgroundColor = .white
+    }
+    
+    func removeDuplicateElements() {
+        var valoresFiltrados = [StadisticaModel]()
+        for valor in valores {
+            if !valoresFiltrados.contains(where: {$0.fecha == valor.fecha }) {
+                valoresFiltrados.append(valor)
+            }
+        }
+        
+        valores = valoresFiltrados
     }
 }
 

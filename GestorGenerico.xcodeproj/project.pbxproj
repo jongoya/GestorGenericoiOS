@@ -26,6 +26,8 @@
 		FB17F05E2493D24F00F0BC39 /* AddEmpleadoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17F05D2493D24F00F0BC39 /* AddEmpleadoProtocol.swift */; };
 		FB17F0602493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17F05F2493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift */; };
 		FB17F0632493D77700F0BC39 /* EmpleadoMasServicios.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17F0622493D77700F0BC39 /* EmpleadoMasServicios.swift */; };
+		FB1972AE24C83EDF0021E187 /* GetProductosProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1972AD24C83EDF0021E187 /* GetProductosProtocol.swift */; };
+		FB1972B124C85C430021E187 /* VentaProductoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1972B024C85C430021E187 /* VentaProductoViewController.swift */; };
 		FB199DCD24AB3C4400397950 /* JsonEmpleadoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB199DCC24AB3C4400397950 /* JsonEmpleadoModel.swift */; };
 		FB199DCF24AB410E00397950 /* JsonTipoServicioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB199DCE24AB410E00397950 /* JsonTipoServicioModel.swift */; };
 		FB1FFF092495350A00AD9B17 /* DeleteServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */; };
@@ -63,6 +65,7 @@
 		FB486E4C243E27F8009EBF26 /* ClientListSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB486E4B243E27F8009EBF26 /* ClientListSelectorViewController.swift */; };
 		FB486E4F243E28B6009EBF26 /* ClientListSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB486E4E243E28B6009EBF26 /* ClientListSelectorProtocol.swift */; };
 		FB486E51243E3C2C009EBF26 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = FB486E50243E3C2C009EBF26 /* cross.png */; };
+		FB48942924CB4B1100D4DDBD /* UpdateCestaProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB48942824CB4B1100D4DDBD /* UpdateCestaProtocol.swift */; };
 		FB4C444D248FA4D700C5CFE9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB4C444C248FA4D700C5CFE9 /* Login.storyboard */; };
 		FB4C4450248FA86100C5CFE9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4C444F248FA86100C5CFE9 /* LoginViewController.swift */; };
 		FB4C4453248FABCF00C5CFE9 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4C4452248FABCF00C5CFE9 /* WebServices.swift */; };
@@ -104,6 +107,10 @@
 		FB64941C24339C3700503627 /* ListaClientesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB64941A24339C3700503627 /* ListaClientesViewController.swift */; };
 		FB660C0124AB4F5200509204 /* JsonNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB660C0024AB4F5200509204 /* JsonNotificationModel.swift */; };
 		FB660C0324AB528500509204 /* JsonCierreCajaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB660C0224AB528500509204 /* JsonCierreCajaModel.swift */; };
+		FB7A7D9524C8A30100FA8484 /* ProductoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7A7D9424C8A30100FA8484 /* ProductoView.swift */; };
+		FB7A7D9824C8B55D00FA8484 /* VentaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7A7D9724C8B55D00FA8484 /* VentaModel.swift */; };
+		FB7A7D9B24C8B69100FA8484 /* ProductoViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7A7D9A24C8B69100FA8484 /* ProductoViewProtocol.swift */; };
+		FB7A7D9D24C8B8A500FA8484 /* CestaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7A7D9C24C8B8A500FA8484 /* CestaModel.swift */; };
 		FB7FF27324ADEFB9006525F6 /* GetServiciosClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7FF27224ADEFB9006525F6 /* GetServiciosClientProtocol.swift */; };
 		FB7FF27524ADF0E4006525F6 /* GetServiciosRangeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7FF27424ADF0E4006525F6 /* GetServiciosRangeProtocol.swift */; };
 		FB8185A224432167004697D3 /* EmpleadoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8185A124432167004697D3 /* EmpleadoModel.swift */; };
@@ -114,6 +121,10 @@
 		FB8329DD2490F32D003B8009 /* DeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8329DC2490F32D003B8009 /* DeviceExtension.swift */; };
 		FB8329E02490F95D003B8009 /* DispositivoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8329DF2490F95D003B8009 /* DispositivoModel.swift */; };
 		FB8329E32490FA00003B8009 /* LoginMasDispositivosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8329E22490FA00003B8009 /* LoginMasDispositivosModel.swift */; };
+		FB8421F124C9A8AC0068B800 /* CestaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8421F024C9A8AC0068B800 /* CestaManager.swift */; };
+		FB8421F424C9A8C20068B800 /* VentaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8421F324C9A8C20068B800 /* VentaManager.swift */; };
+		FB8421F624C9BD520068B800 /* SaveCestaProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8421F524C9BD520068B800 /* SaveCestaProtocol.swift */; };
+		FB8421F924C9BD7D0068B800 /* CestaMasVentas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8421F824C9BD7D0068B800 /* CestaMasVentas.swift */; };
 		FB88AE632443939F00B21648 /* EmpleadosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88AE622443939F00B21648 /* EmpleadosViewController.swift */; };
 		FB88AE662443A0C100B21648 /* AddEmpleadoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB88AE652443A0C100B21648 /* AddEmpleadoViewController.swift */; };
 		FB8B4F102455B6F900A8097D /* campana.png in Resources */ = {isa = PBXBuildFile; fileRef = FB8B4F0F2455B6F900A8097D /* campana.png */; };
@@ -132,6 +143,16 @@
 		FBAB77CB2451C478001C5F4E /* StadisticaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB77CA2451C478001C5F4E /* StadisticaDetailViewController.swift */; };
 		FBAB77CE2451C99C001C5F4E /* StadisticaDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB77CD2451C99C001C5F4E /* StadisticaDetailCell.swift */; };
 		FBAB77D324520477001C5F4E /* notification_cumple.png in Resources */ = {isa = PBXBuildFile; fileRef = FBAB77D224520477001C5F4E /* notification_cumple.png */; };
+		FBAE215024C6F9EC00467D69 /* StockProductosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE214F24C6F9EC00467D69 /* StockProductosViewController.swift */; };
+		FBAE215224C6FA1A00467D69 /* Productos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBAE215124C6FA1A00467D69 /* Productos.storyboard */; };
+		FBAE215524C6FCFE00467D69 /* ProductoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE215424C6FCFE00467D69 /* ProductoTableViewCell.swift */; };
+		FBAE215824C6FD6F00467D69 /* ProductoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE215724C6FD6F00467D69 /* ProductoModel.swift */; };
+		FBAE215B24C6FED100467D69 /* ProductoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE215A24C6FED100467D69 /* ProductoManager.swift */; };
+		FBAE215E24C704EA00467D69 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE215D24C704EA00467D69 /* ScannerViewController.swift */; };
+		FBAE216124C7064B00467D69 /* ProductoScannerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE216024C7064B00467D69 /* ProductoScannerProtocol.swift */; };
+		FBAE216424C709B700467D69 /* ProductoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE216324C709B700467D69 /* ProductoDetailViewController.swift */; };
+		FBAE216624C7784100467D69 /* AddProductoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE216524C7784100467D69 /* AddProductoProtocol.swift */; };
+		FBAE216824C7799400467D69 /* UpdateProductoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAE216724C7799400467D69 /* UpdateProductoProtocol.swift */; };
 		FBB4F832245992EA00278161 /* AgendaServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4F831245992EA00278161 /* AgendaServiceProtocol.swift */; };
 		FBB59DF22450429E005E5EB0 /* StadisticaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF12450429E005E5EB0 /* StadisticaView.swift */; };
 		FBB59DF52450438B005E5EB0 /* StadisticaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59DF42450438B005E5EB0 /* StadisticaModel.swift */; };
@@ -186,6 +207,8 @@
 		FB17F05D2493D24F00F0BC39 /* AddEmpleadoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmpleadoProtocol.swift; sourceTree = "<group>"; };
 		FB17F05F2493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmpleadoProtocol.swift; sourceTree = "<group>"; };
 		FB17F0622493D77700F0BC39 /* EmpleadoMasServicios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadoMasServicios.swift; sourceTree = "<group>"; };
+		FB1972AD24C83EDF0021E187 /* GetProductosProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProductosProtocol.swift; sourceTree = "<group>"; };
+		FB1972B024C85C430021E187 /* VentaProductoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentaProductoViewController.swift; sourceTree = "<group>"; };
 		FB199DCC24AB3C4400397950 /* JsonEmpleadoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonEmpleadoModel.swift; sourceTree = "<group>"; };
 		FB199DCE24AB410E00397950 /* JsonTipoServicioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTipoServicioModel.swift; sourceTree = "<group>"; };
 		FB1FFF082495350A00AD9B17 /* DeleteServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteServiceProtocol.swift; sourceTree = "<group>"; };
@@ -223,6 +246,7 @@
 		FB486E4B243E27F8009EBF26 /* ClientListSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListSelectorViewController.swift; sourceTree = "<group>"; };
 		FB486E4E243E28B6009EBF26 /* ClientListSelectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListSelectorProtocol.swift; sourceTree = "<group>"; };
 		FB486E50243E3C2C009EBF26 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		FB48942824CB4B1100D4DDBD /* UpdateCestaProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCestaProtocol.swift; sourceTree = "<group>"; };
 		FB4C444C248FA4D700C5CFE9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FB4C444F248FA86100C5CFE9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FB4C4452248FABCF00C5CFE9 /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
@@ -266,6 +290,10 @@
 		FB64941A24339C3700503627 /* ListaClientesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaClientesViewController.swift; sourceTree = "<group>"; };
 		FB660C0024AB4F5200509204 /* JsonNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonNotificationModel.swift; sourceTree = "<group>"; };
 		FB660C0224AB528500509204 /* JsonCierreCajaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonCierreCajaModel.swift; sourceTree = "<group>"; };
+		FB7A7D9424C8A30100FA8484 /* ProductoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoView.swift; sourceTree = "<group>"; };
+		FB7A7D9724C8B55D00FA8484 /* VentaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentaModel.swift; sourceTree = "<group>"; };
+		FB7A7D9A24C8B69100FA8484 /* ProductoViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoViewProtocol.swift; sourceTree = "<group>"; };
+		FB7A7D9C24C8B8A500FA8484 /* CestaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CestaModel.swift; sourceTree = "<group>"; };
 		FB7FF27224ADEFB9006525F6 /* GetServiciosClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetServiciosClientProtocol.swift; sourceTree = "<group>"; };
 		FB7FF27424ADF0E4006525F6 /* GetServiciosRangeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetServiciosRangeProtocol.swift; sourceTree = "<group>"; };
 		FB8185A124432167004697D3 /* EmpleadoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadoModel.swift; sourceTree = "<group>"; };
@@ -276,6 +304,10 @@
 		FB8329DC2490F32D003B8009 /* DeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceExtension.swift; sourceTree = "<group>"; };
 		FB8329DF2490F95D003B8009 /* DispositivoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispositivoModel.swift; sourceTree = "<group>"; };
 		FB8329E22490FA00003B8009 /* LoginMasDispositivosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMasDispositivosModel.swift; sourceTree = "<group>"; };
+		FB8421F024C9A8AC0068B800 /* CestaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CestaManager.swift; sourceTree = "<group>"; };
+		FB8421F324C9A8C20068B800 /* VentaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentaManager.swift; sourceTree = "<group>"; };
+		FB8421F524C9BD520068B800 /* SaveCestaProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCestaProtocol.swift; sourceTree = "<group>"; };
+		FB8421F824C9BD7D0068B800 /* CestaMasVentas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CestaMasVentas.swift; sourceTree = "<group>"; };
 		FB88AE622443939F00B21648 /* EmpleadosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpleadosViewController.swift; sourceTree = "<group>"; };
 		FB88AE652443A0C100B21648 /* AddEmpleadoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmpleadoViewController.swift; sourceTree = "<group>"; };
 		FB8B4F0F2455B6F900A8097D /* campana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = campana.png; sourceTree = "<group>"; };
@@ -294,6 +326,16 @@
 		FBAB77CA2451C478001C5F4E /* StadisticaDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaDetailViewController.swift; sourceTree = "<group>"; };
 		FBAB77CD2451C99C001C5F4E /* StadisticaDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaDetailCell.swift; sourceTree = "<group>"; };
 		FBAB77D224520477001C5F4E /* notification_cumple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_cumple.png; sourceTree = "<group>"; };
+		FBAE214F24C6F9EC00467D69 /* StockProductosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockProductosViewController.swift; sourceTree = "<group>"; };
+		FBAE215124C6FA1A00467D69 /* Productos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Productos.storyboard; sourceTree = "<group>"; };
+		FBAE215424C6FCFE00467D69 /* ProductoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoTableViewCell.swift; sourceTree = "<group>"; };
+		FBAE215724C6FD6F00467D69 /* ProductoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoModel.swift; sourceTree = "<group>"; };
+		FBAE215A24C6FED100467D69 /* ProductoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoManager.swift; sourceTree = "<group>"; };
+		FBAE215D24C704EA00467D69 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		FBAE216024C7064B00467D69 /* ProductoScannerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoScannerProtocol.swift; sourceTree = "<group>"; };
+		FBAE216324C709B700467D69 /* ProductoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoDetailViewController.swift; sourceTree = "<group>"; };
+		FBAE216524C7784100467D69 /* AddProductoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductoProtocol.swift; sourceTree = "<group>"; };
+		FBAE216724C7799400467D69 /* UpdateProductoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductoProtocol.swift; sourceTree = "<group>"; };
 		FBB4F831245992EA00278161 /* AgendaServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaServiceProtocol.swift; sourceTree = "<group>"; };
 		FBB59DF12450429E005E5EB0 /* StadisticaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaView.swift; sourceTree = "<group>"; };
 		FBB59DF42450438B005E5EB0 /* StadisticaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadisticaModel.swift; sourceTree = "<group>"; };
@@ -411,6 +453,16 @@
 				FB17F0622493D77700F0BC39 /* EmpleadoMasServicios.swift */,
 			);
 			path = EmpleadoMasServicios;
+			sourceTree = "<group>";
+		};
+		FB1972AF24C85C300021E187 /* VentaProducto */ = {
+			isa = PBXGroup;
+			children = (
+				FB7A7D9924C8B68100FA8484 /* Protocol */,
+				FB7A7D9324C8A2EE00FA8484 /* Views */,
+				FB1972B024C85C430021E187 /* VentaProductoViewController.swift */,
+			);
+			path = VentaProducto;
 			sourceTree = "<group>";
 		};
 		FB199DCB24AB3C3300397950 /* Models */ = {
@@ -654,6 +706,10 @@
 		FB57F2F024347F0500192230 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FB8421F724C9BD6E0068B800 /* CestaMasVentas */,
+				FB8421EE24C9A7DE0068B800 /* Venta */,
+				FB8421ED24C9A7CE0068B800 /* Cesta */,
+				FBAE215624C6FD6100467D69 /* Producto */,
 				FB59496324991FBE00BE14C8 /* EstiloApp */,
 				FB17F0612493D76200F0BC39 /* EmpleadoMasServicios */,
 				FB17F0542493845D00F0BC39 /* ClientMasServicios */,
@@ -682,6 +738,9 @@
 		FB57F2F82434832F00192230 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				FB8421F224C9A8B00068B800 /* VentaManager */,
+				FB8421EF24C9A89C0068B800 /* CestaManager */,
+				FBAE215924C6FEC300467D69 /* ProductoManager */,
 				FB5949662499212B00BE14C8 /* AppStyleManager */,
 				FBDF1BB3244F55D5004DDD3F /* CierreCajaManager */,
 				FB8185AF244343E5004697D3 /* TipoServiciosManager */,
@@ -892,6 +951,10 @@
 		FB64940F24338E2600503627 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FB1972AF24C85C300021E187 /* VentaProducto */,
+				FBAE216224C709A700467D69 /* ProductoDetail */,
+				FBAE215C24C704CE00467D69 /* ProductoScanner */,
+				FBAE214E24C6F9D700467D69 /* StockProductos */,
 				FB4C444E248FA84700C5CFE9 /* Login */,
 				FB3AFC1F2453289A00267A4D /* CadenciaNotificationDetail */,
 				FBAB77C92451C460001C5F4E /* StadisticaDetail */,
@@ -953,6 +1016,7 @@
 				FB14CEC624409696000CBE77 /* Settings.storyboard */,
 				FBDF1BBC244F6F20004DDD3F /* StadisticasCaja.storyboard */,
 				FB4C444C248FA4D700C5CFE9 /* Login.storyboard */,
+				FBAE215124C6FA1A00467D69 /* Productos.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -963,6 +1027,22 @@
 				FB6493FB24338C0900503627 /* RootViewController.swift */,
 			);
 			path = RootViewController;
+			sourceTree = "<group>";
+		};
+		FB7A7D9324C8A2EE00FA8484 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FB7A7D9424C8A30100FA8484 /* ProductoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FB7A7D9924C8B68100FA8484 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				FB7A7D9A24C8B69100FA8484 /* ProductoViewProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		FB8185A024432157004697D3 /* Empleado */ = {
@@ -1028,6 +1108,46 @@
 				FB8329E22490FA00003B8009 /* LoginMasDispositivosModel.swift */,
 			);
 			path = LoginMasDispositivos;
+			sourceTree = "<group>";
+		};
+		FB8421ED24C9A7CE0068B800 /* Cesta */ = {
+			isa = PBXGroup;
+			children = (
+				FB7A7D9C24C8B8A500FA8484 /* CestaModel.swift */,
+			);
+			path = Cesta;
+			sourceTree = "<group>";
+		};
+		FB8421EE24C9A7DE0068B800 /* Venta */ = {
+			isa = PBXGroup;
+			children = (
+				FB7A7D9724C8B55D00FA8484 /* VentaModel.swift */,
+			);
+			path = Venta;
+			sourceTree = "<group>";
+		};
+		FB8421EF24C9A89C0068B800 /* CestaManager */ = {
+			isa = PBXGroup;
+			children = (
+				FB8421F024C9A8AC0068B800 /* CestaManager.swift */,
+			);
+			path = CestaManager;
+			sourceTree = "<group>";
+		};
+		FB8421F224C9A8B00068B800 /* VentaManager */ = {
+			isa = PBXGroup;
+			children = (
+				FB8421F324C9A8C20068B800 /* VentaManager.swift */,
+			);
+			path = VentaManager;
+			sourceTree = "<group>";
+		};
+		FB8421F724C9BD6E0068B800 /* CestaMasVentas */ = {
+			isa = PBXGroup;
+			children = (
+				FB8421F824C9BD7D0068B800 /* CestaMasVentas.swift */,
+			);
+			path = CestaMasVentas;
 			sourceTree = "<group>";
 		};
 		FB88AE612443938700B21648 /* Empleados */ = {
@@ -1128,6 +1248,64 @@
 				FBAB77CD2451C99C001C5F4E /* StadisticaDetailCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		FBAE214E24C6F9D700467D69 /* StockProductos */ = {
+			isa = PBXGroup;
+			children = (
+				FBAE215324C6FCE000467D69 /* Cells */,
+				FBAE214F24C6F9EC00467D69 /* StockProductosViewController.swift */,
+			);
+			path = StockProductos;
+			sourceTree = "<group>";
+		};
+		FBAE215324C6FCE000467D69 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FBAE215424C6FCFE00467D69 /* ProductoTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FBAE215624C6FD6100467D69 /* Producto */ = {
+			isa = PBXGroup;
+			children = (
+				FBAE215724C6FD6F00467D69 /* ProductoModel.swift */,
+			);
+			path = Producto;
+			sourceTree = "<group>";
+		};
+		FBAE215924C6FEC300467D69 /* ProductoManager */ = {
+			isa = PBXGroup;
+			children = (
+				FBAE215A24C6FED100467D69 /* ProductoManager.swift */,
+			);
+			path = ProductoManager;
+			sourceTree = "<group>";
+		};
+		FBAE215C24C704CE00467D69 /* ProductoScanner */ = {
+			isa = PBXGroup;
+			children = (
+				FBAE215F24C7063600467D69 /* Protocol */,
+				FBAE215D24C704EA00467D69 /* ScannerViewController.swift */,
+			);
+			path = ProductoScanner;
+			sourceTree = "<group>";
+		};
+		FBAE215F24C7063600467D69 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				FBAE216024C7064B00467D69 /* ProductoScannerProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		FBAE216224C709A700467D69 /* ProductoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				FBAE216324C709B700467D69 /* ProductoDetailViewController.swift */,
+			);
+			path = ProductoDetail;
 			sourceTree = "<group>";
 		};
 		FBB4F830245992DD00278161 /* Protocols */ = {
@@ -1249,6 +1427,11 @@
 				FBB9F6902498CC2800A91F0C /* UpdateNotificationsProtocol.swift */,
 				FB7FF27224ADEFB9006525F6 /* GetServiciosClientProtocol.swift */,
 				FB7FF27424ADF0E4006525F6 /* GetServiciosRangeProtocol.swift */,
+				FBAE216524C7784100467D69 /* AddProductoProtocol.swift */,
+				FBAE216724C7799400467D69 /* UpdateProductoProtocol.swift */,
+				FB1972AD24C83EDF0021E187 /* GetProductosProtocol.swift */,
+				FB8421F524C9BD520068B800 /* SaveCestaProtocol.swift */,
+				FB48942824CB4B1100D4DDBD /* UpdateCestaProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1352,6 +1535,7 @@
 				FB9A8E272444961700E0A9E4 /* sync.png in Resources */,
 				FBA2160D24B39EDC00C28F58 /* backupHeme.json in Resources */,
 				FB486E51243E3C2C009EBF26 /* cross.png in Resources */,
+				FBAE215224C6FA1A00467D69 /* Productos.storyboard in Resources */,
 				FB5F7D85243F916500503E9B /* telefono.png in Resources */,
 				FB3AFC1E245326B000267A4D /* cadencia.png in Resources */,
 				FB6493FF24338C0900503627 /* Main.storyboard in Resources */,
@@ -1425,6 +1609,7 @@
 				FB88AE632443939F00B21648 /* EmpleadosViewController.swift in Sources */,
 				FB3E4B5824363FF0009DB88B /* ServiceModel.swift in Sources */,
 				FB8185AB24432D9F004697D3 /* EmpleadosManager.swift in Sources */,
+				FB1972B124C85C430021E187 /* VentaProductoViewController.swift in Sources */,
 				FB58968D2434A40B000683D4 /* AddClientInputFieldProtocol.swift in Sources */,
 				FB3E4B5A24364300009DB88B /* CommonFunctions.swift in Sources */,
 				FB5002A42497DA04004D278F /* DeleteNotificacionProtocol.swift in Sources */,
@@ -1438,6 +1623,9 @@
 				FB17F0562493846F00F0BC39 /* ClientMasServicios.swift in Sources */,
 				FBE4C1C72460340F00351452 /* UserPreferences.swift in Sources */,
 				FB0B1B2A2492566E00703E32 /* AppStyle.swift in Sources */,
+				FBAE215524C6FCFE00467D69 /* ProductoTableViewCell.swift in Sources */,
+				FBAE215024C6F9EC00467D69 /* StockProductosViewController.swift in Sources */,
+				FBAE216824C7799400467D69 /* UpdateProductoProtocol.swift in Sources */,
 				FB43BF252494FBF60035BA87 /* UpdateNotificacionPersonalizadaProtocol.swift in Sources */,
 				FB57F2FC2434857E00192230 /* ClientCell.swift in Sources */,
 				FB2B26D52456EC790017D9CA /* ClientesJsonManager.swift in Sources */,
@@ -1449,15 +1637,21 @@
 				FBDF1BB2244F2887004DDD3F /* CierreCajaViewController.swift in Sources */,
 				FB14CECA24409760000CBE77 /* SettingsViewController.swift in Sources */,
 				FB4C4456248FB2C700C5CFE9 /* LoginModel.swift in Sources */,
+				FB7A7D9524C8A30100FA8484 /* ProductoView.swift in Sources */,
 				FB43BF1D2494E5180035BA87 /* AddNuevoServicioProtocol.swift in Sources */,
+				FBAE216624C7784100467D69 /* AddProductoProtocol.swift in Sources */,
 				FB3E4B4A2435D20C009DB88B /* DatePickerSelectorViewController.swift in Sources */,
+				FBAE216124C7064B00467D69 /* ProductoScannerProtocol.swift in Sources */,
 				FB3E4B532435EEC9009DB88B /* ClientDetailViewController.swift in Sources */,
 				FB59496524991FD000BE14C8 /* EstiloAppModel.swift in Sources */,
+				FB7A7D9D24C8B8A500FA8484 /* CestaModel.swift in Sources */,
 				FB5949682499214000BE14C8 /* AppStyleManager.swift in Sources */,
 				FB53D697245462BE00331817 /* CadenciaNotificationCell.swift in Sources */,
 				FB6493FC24338C0900503627 /* RootViewController.swift in Sources */,
 				FBAA2A90243B4956009DE78B /* AgendaFunctions.swift in Sources */,
+				FBAE215E24C704EA00467D69 /* ScannerViewController.swift in Sources */,
 				FBB9F6912498CC2800A91F0C /* UpdateNotificationsProtocol.swift in Sources */,
+				FBAE215B24C6FED100467D69 /* ProductoManager.swift in Sources */,
 				FB3E4B4D2435D3D0009DB88B /* DatePickerSelectorProtocol.swift in Sources */,
 				FB43BF192494D9610035BA87 /* GetTipoServiciosProtocol.swift in Sources */,
 				FB57F30524349DDD00192230 /* FieldViewController.swift in Sources */,
@@ -1470,20 +1664,25 @@
 				FBDF1BC0244F6FEE004DDD3F /* StadisticasCajaViewController.swift in Sources */,
 				FB17F0602493D5E100F0BC39 /* UpdateEmpleadoProtocol.swift in Sources */,
 				FB660C0324AB528500509204 /* JsonCierreCajaModel.swift in Sources */,
+				FB7A7D9B24C8B69100FA8484 /* ProductoViewProtocol.swift in Sources */,
 				FB17F0632493D77700F0BC39 /* EmpleadoMasServicios.swift in Sources */,
+				FB8421F924C9BD7D0068B800 /* CestaMasVentas.swift in Sources */,
 				FB43BF212494F4310035BA87 /* UpdateClientProtocol.swift in Sources */,
 				FB57F2F7243481EF00192230 /* DatabaseManager.swift in Sources */,
 				FBE58D3D249036410060004E /* LoginProtocol.swift in Sources */,
 				FB9EA5092433A9CF005B9F52 /* ClientesManager.swift in Sources */,
+				FB8421F624C9BD520068B800 /* SaveCestaProtocol.swift in Sources */,
 				FB5002A22497D881004D278F /* AddCierreCajaProtocol.swift in Sources */,
 				FB199DCF24AB410E00397950 /* JsonTipoServicioModel.swift in Sources */,
 				FBAB77CB2451C478001C5F4E /* StadisticaDetailViewController.swift in Sources */,
 				FB486E4C243E27F8009EBF26 /* ClientListSelectorViewController.swift in Sources */,
 				FBB4F832245992EA00278161 /* AgendaServiceProtocol.swift in Sources */,
+				FB1972AE24C83EDF0021E187 /* GetProductosProtocol.swift in Sources */,
 				FB8329E02490F95D003B8009 /* DispositivoModel.swift in Sources */,
 				FBDF1BB8244F5669004DDD3F /* CierreCajaModel.swift in Sources */,
 				FB1FFF092495350A00AD9B17 /* DeleteServiceProtocol.swift in Sources */,
 				FBB59DF22450429E005E5EB0 /* StadisticaView.swift in Sources */,
+				FB7A7D9824C8B55D00FA8484 /* VentaModel.swift in Sources */,
 				FB9A8E252444911C00E0A9E4 /* AddTipoServicioViewController.swift in Sources */,
 				FB43BF1B2494DBA80035BA87 /* AddTipoServicioProtocol.swift in Sources */,
 				FB5F7D72243F1EAC00503E9B /* NotificationsManager.swift in Sources */,
@@ -1499,11 +1698,14 @@
 				FB8185A52443228F004697D3 /* ColorPickerViewController.swift in Sources */,
 				FBFB5F82244A01D7000DC77F /* PickerSelectorViewController.swift in Sources */,
 				FB486E46243DC7D4009EBF26 /* ClientItemViewProtocol.swift in Sources */,
+				FB8421F424C9A8C20068B800 /* VentaManager.swift in Sources */,
 				FB3E4B5D2436456F009DB88B /* ListSelectorViewController.swift in Sources */,
 				FB8329DD2490F32D003B8009 /* DeviceExtension.swift in Sources */,
 				FB57F2F324347F2100192230 /* ClientModel.swift in Sources */,
+				FB48942924CB4B1100D4DDBD /* UpdateCestaProtocol.swift in Sources */,
 				FB8185A224432167004697D3 /* EmpleadoModel.swift in Sources */,
 				FB486E49243DDF75009EBF26 /* AgendaServiceViewController.swift in Sources */,
+				FB8421F124C9A8AC0068B800 /* CestaManager.swift in Sources */,
 				FB8329E32490FA00003B8009 /* LoginMasDispositivosModel.swift in Sources */,
 				FBAB77C82451C2FB001C5F4E /* StadisticaViewProtocol.swift in Sources */,
 				FBB59DF824509A64005E5EB0 /* StadisticasFunctions.swift in Sources */,
@@ -1527,6 +1729,7 @@
 				FB5F7D8A243F9D5A00503E9B /* HemeViewController.swift in Sources */,
 				FB9A8E1F24448CC400E0A9E4 /* ServiciosViewController.swift in Sources */,
 				FB4C4450248FA86100C5CFE9 /* LoginViewController.swift in Sources */,
+				FBAE216424C709B700467D69 /* ProductoDetailViewController.swift in Sources */,
 				FB3E4B502435DF2D009DB88B /* AddServicioViewController.swift in Sources */,
 				FB3E4B6B24364EFD009DB88B /* ServicesManager.swift in Sources */,
 				FB660C0124AB4F5200509204 /* JsonNotificationModel.swift in Sources */,
@@ -1538,6 +1741,7 @@
 				FB17F05C2493CF3100F0BC39 /* DeleteEmpleadoProtocol.swift in Sources */,
 				FB3E4B60243645EA009DB88B /* ListSelectorProtocol.swift in Sources */,
 				FB486E4F243E28B6009EBF26 /* ClientListSelectorProtocol.swift in Sources */,
+				FBAE215824C6FD6F00467D69 /* ProductoModel.swift in Sources */,
 				FB0B1B2D24925D3F00703E32 /* ListaClientesProtocol.swift in Sources */,
 				FB5F7D7D243F845500503E9B /* NotificationDetailViewController.swift in Sources */,
 				FB57F3022434953500192230 /* AddClientViewController.swift in Sources */,

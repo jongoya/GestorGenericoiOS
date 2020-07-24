@@ -9,6 +9,13 @@
         <attribute name="totalCaja" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="totalProductos" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="Cesta" representedClassName="Cesta" syncable="YES" codeGenerationType="class">
+        <attribute name="cestaId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="clientId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="comercioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fecha" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isEfectivo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Cliente" representedClassName="Cliente" syncable="YES" codeGenerationType="class">
         <attribute name="apellidos" optional="YES" attributeType="String"/>
         <attribute name="cadenciaVisita" optional="YES" attributeType="String"/>
@@ -57,6 +64,15 @@
         <attribute name="notificationId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Producto" representedClassName="Producto" syncable="YES" codeGenerationType="class">
+        <attribute name="codigoBarras" optional="YES" attributeType="String"/>
+        <attribute name="comercioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imagen" optional="YES" attributeType="String"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="numProductos" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="precio" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="productoId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Servicio" representedClassName="Servicio" syncable="YES" codeGenerationType="class">
         <attribute name="comercioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="empleadoId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -73,13 +89,23 @@
         <attribute name="nombre" optional="YES" attributeType="String"/>
         <attribute name="servicioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="Venta" representedClassName="Venta" syncable="YES" codeGenerationType="class">
+        <attribute name="cantidad" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cestaId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="comercioId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="productoId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ventaId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="Caja" positionX="-54" positionY="99" width="128" height="148"/>
         <element name="Cliente" positionX="-63" positionY="-18" width="128" height="223"/>
         <element name="Empleado" positionX="-54" positionY="81" width="128" height="208"/>
+        <element name="EstiloApp" positionX="-54" positionY="117" width="128" height="193"/>
         <element name="Notifications" positionX="-54" positionY="81" width="128" height="148"/>
+        <element name="Producto" positionX="-54" positionY="126" width="128" height="148"/>
         <element name="Servicio" positionX="-45" positionY="63" width="128" height="178"/>
         <element name="TipoServicios" positionX="-45" positionY="90" width="128" height="88"/>
-        <element name="EstiloApp" positionX="-54" positionY="117" width="128" height="193"/>
+        <element name="Cesta" positionX="-54" positionY="126" width="128" height="118"/>
+        <element name="Venta" positionX="-45" positionY="135" width="128" height="118"/>
     </elements>
 </model>

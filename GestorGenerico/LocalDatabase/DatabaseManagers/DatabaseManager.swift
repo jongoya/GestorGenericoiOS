@@ -18,6 +18,9 @@ class DatabaseManager: NSObject {
     var tipoServiciosManager: TipoServiciosManager!
     var cierreCajaManager: CierreCajaManager!
     var estiloAppManager: AppStyleManager!
+    var productosManager: ProductoManager!
+    var cestaManager: CestaManager!
+    var ventaManager: VentaManager!
     
     override init() {
         super.init()
@@ -28,6 +31,9 @@ class DatabaseManager: NSObject {
         tipoServiciosManager = TipoServiciosManager()
         cierreCajaManager = CierreCajaManager()
         estiloAppManager = AppStyleManager()
+        productosManager = ProductoManager()
+        cestaManager = CestaManager()
+        ventaManager = VentaManager()
     }
     
     func clearAllDatabase() {
@@ -38,5 +44,8 @@ class DatabaseManager: NSObject {
         tipoServiciosManager.deleteAllTipoServicios()
         cierreCajaManager.deleteAllCierreCajas()
         estiloAppManager.deleteStyle()
+        productosManager.deleteAllProductos()
+        cestaManager.deleteAllCestas()
+        ventaManager.deleteAllVentas()
     }
 }

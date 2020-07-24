@@ -24,9 +24,6 @@ class HemeViewController: UIViewController {
         
         createObjectsForTableView()
         hemeTableView.reloadData()
-        
-        //TODO testeo parseo clientes
-        //ClientesJsonManager.parseClientesHeme()
     }
     
     func customizeTableView() {
@@ -36,6 +33,7 @@ class HemeViewController: UIViewController {
     func createObjectsForTableView() {
         hemeModels.removeAll()
         createCajaModel()
+        createStockModel()
     }
     
     func createCajaModel() {
@@ -46,10 +44,24 @@ class HemeViewController: UIViewController {
         hemeModels.append(caja)
     }
     
+    func createStockModel() {
+        let caja: HemeModel = HemeModel()
+        caja.nombreImagen = "stock"
+        caja.titulo = "STOCK PRODUCTOS"
+        caja.descripcion = "Stock de los productos de la tienda"
+        hemeModels.append(caja)
+    }
+    
     func openStadisticasViewController() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "StadisticasCaja", bundle:nil)
         let controller: StadisticasCajaViewController = storyBoard.instantiateViewController(withIdentifier: "StadisticasCajaViewController") as! StadisticasCajaViewController
         controller.presentDate = Date()
+        self.navigationController!.pushViewController(controller, animated: true)
+    }
+    
+    func openStockProductosViewController() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Productos", bundle:nil)
+        let controller: StockProductosViewController = storyBoard.instantiateViewController(withIdentifier: "StockProductosview") as! StockProductosViewController
         self.navigationController!.pushViewController(controller, animated: true)
     }
 }
@@ -73,6 +85,8 @@ extension HemeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             identifyUser()
+        } else if indexPath.row == 1 {
+            openStockProductosViewController()
         }
     }
 }

@@ -254,6 +254,15 @@ class AgendaViewController: UIViewController {
         
         return true
     }
+    
+    func openVentaProductoViewController(cesta: CestaModel) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Productos", bundle:nil)
+        let controller: VentaProductoViewController = storyBoard.instantiateViewController(withIdentifier: "ventaProducto") as! VentaProductoViewController
+        let ventas: [VentaModel] = Constants.databaseManager.ventaManager.getVentas(cestaId: cesta.cestaId)
+        controller.cesta = cesta
+        controller.ventas = ventas
+        self.navigationController!.pushViewController(controller, animated: true)
+    }
 }
 
 extension AgendaViewController {
@@ -329,8 +338,12 @@ extension AgendaViewController: AgendaItemViewProtocol {
         performSegue(withIdentifier: "AgendaServiceIdentifier", sender: date)
     }
     
-    func serviceClicked(service: ServiceModel) {
-        performSegue(withIdentifier: "ServiceDetailIdentifier", sender: service)
+    func serviceClicked(service: ServiceModel?, cesta: CestaModel?) {
+        if service != nil {
+            performSegue(withIdentifier: "ServiceDetailIdentifier", sender: service)
+        } else {
+            openVentaProductoViewController(cesta: cesta!)
+        }
     }
 }
 

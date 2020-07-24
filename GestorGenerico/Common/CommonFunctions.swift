@@ -278,6 +278,9 @@ class CommonFunctions: NSObject {
         WebServices.getNotificaciones(comercioId: comercioId, delegate: nil)
         WebServices.getServices(comercioId: comercioId, delegate: nil)
         WebServices.getCierreCajas(comercioId: comercioId)
+        WebServices.getProductos(delegate: nil)
+        WebServices.getCestas()
+        WebServices.getVentas()
     }
     
     static func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FB6493F324338C0900503627"
-               BuildableName = "GestorGenerico.app"
+               BuildableName = "Heme.app"
                BlueprintName = "GestorGenerico"
                ReferencedContainer = "container:GestorGenerico.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FB6493F324338C0900503627"
-            BuildableName = "GestorGenerico.app"
+            BuildableName = "Heme.app"
             BlueprintName = "GestorGenerico"
             ReferencedContainer = "container:GestorGenerico.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FB6493F324338C0900503627"
-            BuildableName = "GestorGenerico.app"
+            BuildableName = "Heme.app"
             BlueprintName = "GestorGenerico"
             ReferencedContainer = "container:GestorGenerico.xcodeproj">
          </BuildableReference>

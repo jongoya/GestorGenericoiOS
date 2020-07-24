@@ -12,6 +12,7 @@ import MessageUI
 class RootViewController: UITabBarController {
     @IBOutlet weak var rigthNavigationButton: UIBarButtonItem!
     @IBOutlet weak var secondRightNavigationButton: UIBarButtonItem!
+    @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +73,19 @@ class RootViewController: UITabBarController {
     func unfillSecondRightNavigationButtonImage() {
         secondRightNavigationButton.image = UIImage(systemName: "person")
     }
-
+    
+    private func openProductScanner() {
+        let scannerViewController: ScannerViewController = ScannerViewController()
+        scannerViewController.delegate = self
+        present(scannerViewController, animated: true, completion: nil)
+    }
+    
+    func openVentaProductoViewController(producto: ProductoModel) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Productos", bundle:nil)
+        let controller: VentaProductoViewController = storyBoard.instantiateViewController(withIdentifier: "ventaProducto") as! VentaProductoViewController
+        controller.ventas.append(VentaModel(productoId: producto.productoId))
+        self.navigationController!.pushViewController(controller, animated: true)
+    }
 }
 
 
@@ -95,6 +108,10 @@ extension RootViewController {
             controller.didClickListarClientes()
         }
     }
+    
+    @IBAction func didClickLeftBarButton(_ sender: Any) {
+        openProductScanner()
+    }
 }
 
 extension RootViewController: UITabBarControllerDelegate {
@@ -102,18 +119,22 @@ extension RootViewController: UITabBarControllerDelegate {
         switch tabBarController.selectedIndex {
         case 0:
             title = "Clientes"
+            leftBarButtonItem.image = UIImage(named: "")
             rigthNavigationButton.image = UIImage(systemName: "plus")
             secondRightNavigationButton.image = UIImage(named: "")
         case 1:
             title = "Agenda"
+            leftBarButtonItem.image = UIImage(systemName: "barcode")
             rigthNavigationButton.image = UIImage(systemName: "calendar")
             secondRightNavigationButton.image = UIImage(systemName: "person")
         case 2:
             title = "Notificaciones"
+            leftBarButtonItem.image = UIImage(named: "")
             rigthNavigationButton.image = UIImage(named: "")
             secondRightNavigationButton.image = UIImage(named: "")
         default:
             title = "Heme"
+            leftBarButtonItem.image = UIImage(named: "")
             rigthNavigationButton.image = UIImage(systemName: "wrench.fill")
             secondRightNavigationButton.image = UIImage(named: "")
         }
@@ -126,5 +147,26 @@ extension RootViewController: MFMailComposeViewControllerDelegate {
         if error == nil  && result == .sent {
             UserPreferences.saveValueInUserDefaults(value: Int64(Date().timeIntervalSince1970), key: Constants.backupKey)
         }
+    }
+}
+
+extension RootViewController: ProductoScannerProtocol {
+    func codigoBarrasDetected(codigoBarras: String) {
+        let producto: ProductoModel? = Constants.databaseManager.productosManager.getProductWithBarcode(barcode: codigoBarras)
+        if producto == nil {
+            CommonFunctions.showGenericAlertMessage(mensaje: "El producto no se encuentra en stock", viewController: selectedViewController!)
+            return
+        }
+        
+        if producto!.numProductos == 0 {
+            CommonFunctions.showGenericAlertMessage(mensaje: "Este producto está agotado", viewController: selectedViewController!)
+            return
+        }
+        
+        openVentaProductoViewController(producto: producto!)
+    }
+    
+    func errorDetectingCodigoBarras() {
+        CommonFunctions.showGenericAlertMessage(mensaje: "No se ha podido leer el codigo de barras", viewController: selectedViewController!)
     }
 }

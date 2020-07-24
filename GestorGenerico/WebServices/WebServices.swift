@@ -604,4 +604,191 @@ public class WebServices {
             }
         }
     }
+    
+    static func addProducto(producto: ProductoModel, delegate: AddProductoProtocol) {
+        let url: String = baseUrl + "save_producto"
+        producto.comercioId = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        AF.request(url, method: .post, parameters: producto.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 201 {
+                    let respuesta: ProductoModel = try! JSONDecoder().decode(ProductoModel.self, from: response.data!)
+                    delegate.successAddingProduct(producto: respuesta)
+                    return
+                }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
+            delegate.errorAddingProduct()
+        }
+    }
+    
+    static func updateProducto(producto: ProductoModel, delegate: UpdateProductoProtocol) {
+        let url: String = baseUrl + "update_producto"
+        AF.request(url, method: .put, parameters: producto.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let respuesta: ProductoModel = try! JSONDecoder().decode(ProductoModel.self, from: response.data!)
+                    delegate.successUpdatingProduct(producto: respuesta)
+                    return
+                }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
+            delegate.errorUpdatingProduct()
+        }
+    }
+    
+    static func getProductos(delegate: GetProductosProtocol?) {
+        let comercioId: Int64 = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        let url: String = baseUrl + "get_productos/" + String(comercioId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let productos: [ProductoModel] = try! JSONDecoder().decode([ProductoModel].self, from: response.data!)
+                    
+                    if delegate != nil {
+                        Constants.databaseManager.productosManager.syncronizeProductosSync(productos: productos)
+                    } else {
+                        Constants.databaseManager.productosManager.syncronizeProductosAsync(productos: productos)
+                    }
+                    
+                    let localProductos: [ProductoModel] = Constants.databaseManager.productosManager.getAllProductos()
+                    deleteLocalProductosIfNeeded(serverProductos: productos, localProductos: localProductos)
+                    
+                    delegate?.successGettingProductos()
+                    return
+                }
+            }
+            
+            delegate?.errorGettingProductos()
+        }
+    }
+    
+    private static func deleteLocalProductosIfNeeded(serverProductos: [ProductoModel], localProductos: [ProductoModel]) {
+        for localProducto: ProductoModel in localProductos {
+            var productoExists: Bool = false
+            for serverProducto: ProductoModel in serverProductos {
+                if localProducto.productoId == serverProducto.productoId {
+                    productoExists = true
+                }
+            }
+            
+            if !productoExists {
+                Constants.databaseManager.productosManager.deleteProducto(producto: localProducto)
+            }
+        }
+    }
+    
+    static func saveCesta(cesta: CestaModel, ventas: [VentaModel], delegate: SaveCestaProtocol) {
+        let url: String = baseUrl + "save_cesta"
+        let model: CestaMasVentas = CestaMasVentas(cesta: cesta, ventas: ventas)
+        AF.request(url, method: .post, parameters: model.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 201 {
+                    let respuesta: CestaMasVentas = try! JSONDecoder().decode(CestaMasVentas.self, from: response.data!)
+                    delegate.successSavingCesta(model: respuesta)
+                    return
+                }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
+            delegate.errorSavingCesta()
+        }
+    }
+    
+    static func updateCesta(cesta: CestaModel, ventas: [VentaModel], delegate: UpdateCestaProtocol) {
+        let url: String = baseUrl + "update_cesta"
+        for venta: VentaModel in ventas {
+            venta.cestaId = cesta.cestaId
+        }
+        let model: CestaMasVentas = CestaMasVentas(cesta: cesta, ventas: ventas)
+        AF.request(url, method: .put, parameters: model.createJson(), encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let respuesta: CestaMasVentas = try! JSONDecoder().decode(CestaMasVentas.self, from: response.data!)
+                    delegate.successUpdatingCesta(model: respuesta)
+                    return
+                }
+            }
+            
+            if (response.response?.statusCode == Constants.logoutResponseValue) {
+                delegate.logoutResponse()
+                return
+            }
+            
+            delegate.errorUpdatingCesta()
+        }
+    }
+    
+    static func getCestas() {
+        let comercioId: Int64 = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        let url: String = baseUrl + "get_cestas/" + String(comercioId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let cestas: [CestaModel] = try! JSONDecoder().decode([CestaModel].self, from: response.data!)
+                    Constants.databaseManager.cestaManager.syncronizeCestasAsync(cestas: cestas)
+                    let localCestas: [CestaModel] = Constants.databaseManager.cestaManager.getAllCestas()
+                    deleteLocalCestasIfNeeded(serverCestas: cestas, localCestas: localCestas)
+                }
+            }
+        }
+    }
+    
+    static func getVentas() {
+        let comercioId: Int64 = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
+        let url: String = baseUrl + "get_ventas/" + String(comercioId)
+        AF.request(url, method: .get, encoding: JSONEncoding.default, headers: createHeaders()).responseJSON { (response) in
+            if response.error == nil {
+                if response.response!.statusCode == 200 {
+                    let ventas: [VentaModel] = try! JSONDecoder().decode([VentaModel].self, from: response.data!)
+                    Constants.databaseManager.ventaManager.syncronizeVentasAsync(ventas: ventas)
+                    let localVentas: [VentaModel] = Constants.databaseManager.ventaManager.getAllVentas()
+                    deleteLocalVentasIfNeeded(serverVentas: ventas, localVentas: localVentas)
+                }
+            }
+        }
+    }
+    
+    private static func deleteLocalCestasIfNeeded(serverCestas: [CestaModel], localCestas: [CestaModel]) {
+        for localCesta: CestaModel in localCestas {
+            var cestaExists: Bool = false
+            for serverCesta: CestaModel in serverCestas {
+                if localCesta.cestaId == serverCesta.cestaId {
+                    cestaExists = true
+                }
+            }
+            
+            if !cestaExists {
+                Constants.databaseManager.cestaManager.deleteCesta(cesta: localCesta)
+            }
+        }
+    }
+    
+    private static func deleteLocalVentasIfNeeded(serverVentas: [VentaModel], localVentas: [VentaModel]) {
+        for localVenta: VentaModel in localVentas {
+            var ventaExists: Bool = false
+            for serverVenta: VentaModel in serverVentas {
+                if localVenta.ventaId == serverVenta.ventaId {
+                    ventaExists = true
+                }
+            }
+            
+            if !ventaExists {
+                Constants.databaseManager.ventaManager.deleteVenta(venta: localVenta)
+            }
+        }
+    }
 }

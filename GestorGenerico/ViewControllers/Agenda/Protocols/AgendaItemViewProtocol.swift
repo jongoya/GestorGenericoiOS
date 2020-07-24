@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AgendaItemViewProtocol {
-    func serviceClicked(service: ServiceModel)
+    func serviceClicked(service: ServiceModel?, cesta: CestaModel?)
     func dayClicked(date: Date)
     func crossButtonClicked(service: ServiceModel)
 }

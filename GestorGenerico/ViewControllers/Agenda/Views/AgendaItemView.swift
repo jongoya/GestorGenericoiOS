@@ -12,6 +12,7 @@ class AgendaItemView: UIView {
     var date: Date!
     
     var services: [ServiceModel] = []
+    var cestas: [CestaModel] = []
     var serviceViews: [ServiceItemView] = []
     var profesional: Int64 = 0
     
@@ -53,6 +54,16 @@ class AgendaItemView: UIView {
         }
     }
     
+    func getCestas() {
+        let wholeDayCestas: [CestaModel] = Constants.databaseManager.cestaManager.getCestasForDay(date: date)
+        let endDate = Calendar.current.date(byAdding: .minute, value: 15, to: date)!
+        for cesta: CestaModel in wholeDayCestas {
+            if cesta.fecha >= Int64(date.timeIntervalSince1970) && cesta.fecha < Int64(endDate.timeIntervalSince1970) {
+                cestas.append(cesta)
+            }
+        }
+    }
+    
     func addContent() {
         addFecha()
         addServices()
@@ -86,13 +97,18 @@ class AgendaItemView: UIView {
     
     func addServices() {
         getServices()
+        getCestas()
         
-        if services.count == 0 {
+        if services.count == 0  && cestas.count == 0 {
             fechaView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         }
         
         for service: ServiceModel in services {
-            addServiceViewWithService(service: service)
+            addViewWithModel(service: service, cesta: nil)
+        }
+        
+        for cesta: CestaModel in cestas {
+            addViewWithModel(service: nil, cesta: cesta)
         }
         
         var previousView: ServiceItemView!
@@ -117,12 +133,12 @@ class AgendaItemView: UIView {
         trailing.isActive = true
     }
     
-    func addServiceViewWithService(service: ServiceModel) {
+    func addViewWithModel(service: ServiceModel?, cesta: CestaModel?) {
         let redView: UIView = UIView()
         redView.translatesAutoresizingMaskIntoConstraints = false
         redView.backgroundColor = .systemRed
         redView.layer.cornerRadius = 10
-        addRedViewTapGesture(redView: redView, service: service)
+        addRedViewTapGesture(redView: redView, service: service, cesta: cesta)
         addSubview(redView)
         
         let imageView: UIImageView = UIImageView()
@@ -133,33 +149,57 @@ class AgendaItemView: UIView {
         
         let serviceView: ServiceItemView = ServiceItemView()
         serviceView.service = service
+        serviceView.cesta = cesta
         serviceView.translatesAutoresizingMaskIntoConstraints = false
         customizeServiceView(serviceView: serviceView)
         addServiceItemGestures(serviceView: serviceView)
         addSubview(serviceView)
         
-        let client: ClientModel? = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: service.clientId)
+        var client: ClientModel?
+        if service != nil {
+            client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: service!.clientId)
+        } else {
+            client = Constants.databaseManager.clientsManager.getClientFromDatabase(clientId: cesta!.clientId)
+        }
+        
         let clientNameLabel: UILabel = UILabel()
         clientNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        if client != nil {
-            clientNameLabel.text = client!.nombre + " " + client!.apellidos
-        } else {
-            clientNameLabel.text = "Actualizando..."
-        }
         clientNameLabel.textColor = AppStyle.getPrimaryTextColor()
         clientNameLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        
+        if client != nil && service != nil {
+            clientNameLabel.text = client!.nombre + " " + client!.apellidos
+        } else {
+            if cesta != nil {
+                clientNameLabel.text = "Venta Producto"
+            } else {
+                clientNameLabel.text = "Actualizando..."
+            }
+        }
         serviceView.addSubview(clientNameLabel)
         
         let serviceName: UILabel = UILabel()
         serviceName.translatesAutoresizingMaskIntoConstraints = false
-        serviceName.text = CommonFunctions.getServiciosString(servicios: getServiciosFromServiciosId(servicios: service.servicios))
         serviceName.textColor = AppStyle.getPrimaryTextColor()
         serviceName.font = .systemFont(ofSize: 15)
+        
+        if service != nil {
+            serviceName.text = CommonFunctions.getServiciosString(servicios: getServiciosFromServiciosId(servicios: service!.servicios))
+        } else {
+            serviceName.text = client!.nombre + " " + client!.apellidos
+        }
         serviceView.addSubview(serviceName)
         
         let profesionalNameLabel: UILabel = UILabel()
         profesionalNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        profesionalNameLabel.text = Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: service.empleadoId)?.nombre
+        
+        if service != nil {
+           profesionalNameLabel.text = Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: service!.empleadoId)?.nombre
+        } else {
+            let ventas: [VentaModel] = Constants.databaseManager.ventaManager.getVentas(cestaId: cesta!.cestaId)
+            profesionalNameLabel.text = "Precio: " + String(format: "%.2f", calcularVentaTotal(ventas: ventas)) + " €"
+        }
+        
         profesionalNameLabel.textColor = AppStyle.getPrimaryTextColor()
         profesionalNameLabel.font = UIFont.systemFont(ofSize: 15)
         serviceView.addSubview(profesionalNameLabel)
@@ -191,29 +231,40 @@ class AgendaItemView: UIView {
     }
     
     func customizeServiceView(serviceView: ServiceItemView) {
-        serviceView.backgroundColor = AgendaFunctions.getColorForProfesional(profesionalId: serviceView.service.empleadoId)
+        if serviceView.service != nil {
+            serviceView.backgroundColor = AgendaFunctions.getColorForProfesional(profesionalId: serviceView.service!.empleadoId)
+            serviceView.layer.borderColor = AgendaFunctions.getColorForProfesional(profesionalId: serviceView.service!.empleadoId).cgColor
+        } else {
+            serviceView.backgroundColor = AppStyle.getPrimaryColor()
+            serviceView.layer.borderColor = AppStyle.getPrimaryColor().cgColor
+        }
+        
         serviceView.layer.cornerRadius = 10
-        serviceView.layer.borderColor = AgendaFunctions.getColorForProfesional(profesionalId: serviceView.service.empleadoId).cgColor
         serviceView.layer.borderWidth = 1
     }
     
     func addServiceItemGestures(serviceView: ServiceItemView) {
         let tap = AgendaItemTypeGesture(target: self, action: #selector(serviceClicked(_:)))
         tap.service = serviceView.service
+        tap.cesta = serviceView.cesta
         serviceView.addGestureRecognizer(tap)
-        let swipeLeft = AgendaItemSwipeGesture(target: self, action: #selector(serviceSwipedLeft))
-        swipeLeft.direction = .left
-        swipeLeft.serviceView = serviceView
-        serviceView.addGestureRecognizer(swipeLeft)
-        let swipeRight = AgendaItemSwipeGesture(target: self, action: #selector(serviceSwipedRight))
-        swipeRight.direction = .right
-        swipeRight.serviceView = serviceView
-        serviceView.addGestureRecognizer(swipeRight)
+        
+        if serviceView.service != nil {
+            let swipeLeft = AgendaItemSwipeGesture(target: self, action: #selector(serviceSwipedLeft))
+            swipeLeft.direction = .left
+            swipeLeft.serviceView = serviceView
+            serviceView.addGestureRecognizer(swipeLeft)
+            let swipeRight = AgendaItemSwipeGesture(target: self, action: #selector(serviceSwipedRight))
+            swipeRight.direction = .right
+            swipeRight.serviceView = serviceView
+            serviceView.addGestureRecognizer(swipeRight)
+        }
     }
     
-    func addRedViewTapGesture(redView: UIView, service: ServiceModel) {
+    func addRedViewTapGesture(redView: UIView, service: ServiceModel?, cesta: CestaModel?) {
         let tap = AgendaItemTypeGesture(target: self, action: #selector(crossViewClicked(_:)))
         tap.service = service
+        tap.cesta = cesta
         redView.addGestureRecognizer(tap)
     }
     
@@ -253,11 +304,22 @@ class AgendaItemView: UIView {
         
         return arrayServicios
     }
+    
+    func calcularVentaTotal(ventas: [VentaModel]) -> Double {
+        var precioTotal: Double = 0.0
+        for venta: VentaModel in ventas {
+            let producto: ProductoModel = Constants.databaseManager.productosManager.getProductWithProductId(productId: venta.productoId)!
+            precioTotal = precioTotal + (producto.precio * Double(venta.cantidad))
+        }
+        
+        return precioTotal
+    }
 }
 
 extension AgendaItemView {
     @objc func serviceClicked(_ sender: AgendaItemTypeGesture) {
-        delegate.serviceClicked(service: sender.service)
+        //TODO crashea con las ventas producto
+        delegate.serviceClicked(service: sender.service, cesta: sender.cesta)
     }
     
     @objc func serviceSwipedLeft(sender: AgendaItemSwipeGesture) {
@@ -275,13 +337,14 @@ extension AgendaItemView {
     }
     
     @objc func crossViewClicked(_ sender: AgendaItemTypeGesture) {
-        delegate.crossButtonClicked(service: sender.service)
+        delegate.crossButtonClicked(service: sender.service!)
     }
 }
 
 //Custom classes
 class AgendaItemTypeGesture: UITapGestureRecognizer {
-    var service: ServiceModel!
+    var service: ServiceModel?
+    var cesta: CestaModel?
     var date: Date!
 }
 
@@ -292,5 +355,7 @@ class AgendaItemSwipeGesture: UISwipeGestureRecognizer {
 class ServiceItemView: UIView {
     var serviceLeadingAnchor: NSLayoutConstraint!
     var serviceTrailingAnchor: NSLayoutConstraint!
-    var service: ServiceModel!
+    var service: ServiceModel?
+    var cesta: CestaModel?
+    
 }

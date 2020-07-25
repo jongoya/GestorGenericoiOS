@@ -15,16 +15,18 @@ class ServicioView: UIView {
     let observacionesTopMargin: CGFloat = 20
     
     var titleLabel: UILabel = UILabel()
-    let observacionesLabel: UILabel = UILabel()
+    var observacionesLabel: UILabel!
     
     var servicio: ServiceModel!
+    var cesta: CestaModel!
     var fieldArray: [UIView] = []
     var delegate: ServicioViewProtocol!
     
-    init(service: ServiceModel, client: ClientModel) {
+    init(service: ServiceModel?, client: ClientModel, cesta: CestaModel?) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         servicio = service
+        self.cesta = cesta
         
         addGestureRecognizer()
         createContent(cliente: client)
@@ -41,14 +43,33 @@ class ServicioView: UIView {
     func createContent(cliente: ClientModel) {
         customizeView()
         
-        addTitle()
-        addFieldForServiceField(serviceField: "Nombre y Apellidos", serviceValue: cliente.nombre + " " + cliente.apellidos)
-        addFieldForServiceField(serviceField: "Fecha", serviceValue: CommonFunctions.getDateAndTimeTypeStringFromDate(date: Date(timeIntervalSince1970: TimeInterval(servicio.fecha))))
-        addFieldForServiceField(serviceField: "Profesional", serviceValue: Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: servicio.empleadoId)!.nombre)
-        addFieldForServiceField(serviceField: "Servicio", serviceValue: CommonFunctions.getServiciosStringFromServiciosArray(servicios: servicio.servicios))
-        addFieldForServiceField(serviceField: "Precio", serviceValue: String(format: "%.2f", servicio.precio) + " €")
+        if servicio != nil {
+            addTitleWithString(title: "SERVICIO")
+            createServiceContent(cliente: cliente)
+        } else {
+            addTitleWithString(title: "VENTA")
+            createCestaContent(cliente: cliente)
+        }
+    }
+    
+    func createServiceContent(cliente: ClientModel) {
+        addFieldForServiceField(serviceField: "Nombre y Apellidos", serviceValue: cliente.nombre + " " + cliente.apellidos, addDivisory: true)
+        addFieldForServiceField(serviceField: "Fecha", serviceValue: CommonFunctions.getDateAndTimeTypeStringFromDate(date: Date(timeIntervalSince1970: TimeInterval(servicio.fecha))), addDivisory: true)
+        addFieldForServiceField(serviceField: "Profesional", serviceValue: Constants.databaseManager.empleadosManager.getEmpleadoFromDatabase(empleadoId: servicio.empleadoId)!.nombre, addDivisory: true)
+        addFieldForServiceField(serviceField: "Servicio", serviceValue: CommonFunctions.getServiciosStringFromServiciosArray(servicios: servicio.servicios), addDivisory: true)
+        addFieldForServiceField(serviceField: "Precio", serviceValue: String(format: "%.2f", servicio.precio) + " €", addDivisory: true)
         
         addObservacionView()
+        
+        setContentContraints()
+    }
+    
+    func createCestaContent(cliente: ClientModel) {
+        addFieldForServiceField(serviceField: "Nombre y Apellidos", serviceValue: cliente.nombre + " " + cliente.apellidos, addDivisory: true)
+        addFieldForServiceField(serviceField: "Fecha", serviceValue: CommonFunctions.getDateAndTimeTypeStringFromDate(date: Date(timeIntervalSince1970: TimeInterval(cesta.fecha))), addDivisory: true)
+        
+        let ventas: [VentaModel] = Constants.databaseManager.ventaManager.getVentas(cestaId: cesta.cestaId)
+        addFieldForServiceField(serviceField: "Precio venta", serviceValue: String(format: "%.2f", calcularVentaTotal(ventas:ventas)) + " €", addDivisory: false)
         
         setContentContraints()
     }
@@ -60,19 +81,18 @@ class ServicioView: UIView {
         backgroundColor = .white
     }
     
-    func addTitle() {
+    func addTitleWithString(title: String) {
         titleLabel.frame = .zero
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "SERVICIO"
+        titleLabel.text = title
         titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         titleLabel.textColor = AppStyle.getPrimaryTextColor()
         addSubview(titleLabel)
     }
     
-    func addFieldForServiceField(serviceField: String, serviceValue: String) {
+    func addFieldForServiceField(serviceField: String, serviceValue: String, addDivisory: Bool) {
         let view: UIView = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
         addSubview(view)
         
         let serviceFieldLabel: UILabel = UILabel()
@@ -90,10 +110,13 @@ class ServicioView: UIView {
         serviceValueLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         view.addSubview(serviceValueLabel)
         
-        let divisory: UIView = UIView()
-        divisory.translatesAutoresizingMaskIntoConstraints = false
-        divisory.backgroundColor = AppStyle.getSecondaryColor()
-        view.addSubview(divisory)
+        var divisory: UIView!
+        if addDivisory {
+            divisory = UIView()
+            divisory.translatesAutoresizingMaskIntoConstraints = false
+            divisory.backgroundColor = AppStyle.getSecondaryColor()
+            view.addSubview(divisory)
+        }
         
         fieldArray.append(view)
         
@@ -109,14 +132,17 @@ class ServicioView: UIView {
         serviceValueLabel.leadingAnchor.constraint(equalTo: serviceFieldLabel.trailingAnchor, constant: defaultMargin).isActive = true
         serviceValueLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -defaultMargin).isActive = true
         
-        divisory.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: defaultMargin).isActive = true
-        divisory.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        divisory.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        divisory.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        if divisory != nil {
+            divisory.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: defaultMargin).isActive = true
+            divisory.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            divisory.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            divisory.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        }
     }
     
     func addObservacionView() {
         let observacionText: String = servicio.observaciones.count > 0 ? servicio.observaciones : "Añade una observación"
+        observacionesLabel = UILabel()
         observacionesLabel.translatesAutoresizingMaskIntoConstraints = false
         observacionesLabel.text = observacionText
         observacionesLabel.numberOfLines = 100
@@ -138,17 +164,35 @@ class ServicioView: UIView {
             previousView = view
         }
         
-        observacionesLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: defaultMargin).isActive = true
-        observacionesLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -defaultMargin).isActive = true
-        observacionesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
-        observacionesLabel.topAnchor.constraint(equalTo: fieldArray.last!.bottomAnchor, constant: observacionesTopMargin).isActive = true
+        if observacionesLabel != nil {
+            observacionesLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: defaultMargin).isActive = true
+            observacionesLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -defaultMargin).isActive = true
+            observacionesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+            observacionesLabel.topAnchor.constraint(equalTo: fieldArray.last!.bottomAnchor, constant: observacionesTopMargin).isActive = true
+        } else {
+            previousView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        }
+    }
+    
+    func calcularVentaTotal(ventas: [VentaModel]) -> Double {
+        var precioTotal: Double = 0.0
+        for venta: VentaModel in ventas {
+            let producto: ProductoModel = Constants.databaseManager.productosManager.getProductWithProductId(productId: venta.productoId)!
+            precioTotal = precioTotal + (producto.precio * Double(venta.cantidad))
+        }
+        
+        return precioTotal
     }
 }
 
 extension ServicioView {
     @objc func servicioClicked(_ sender: UITapGestureRecognizer? = nil) {
         if delegate != nil {
-            delegate.servicioClicked(service: servicio)
+            if servicio != nil {
+                delegate.servicioClicked(service: servicio)
+            } else {
+                delegate.cestaClicked(cesta: cesta)
+            }
         }
     }
 }

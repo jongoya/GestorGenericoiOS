@@ -47,6 +47,7 @@ class ClientDetailViewController: UIViewController {
     
     var client: ClientModel!
     var services: [ServiceModel] = []
+    var cestas: [CestaModel] = []
     var serviceViewsArray: [UIView] = []
     var addServicioButtonBottomAnchor: NSLayoutConstraint!
     var scrollRefreshControl: UIRefreshControl = UIRefreshControl()
@@ -130,7 +131,9 @@ class ClientDetailViewController: UIViewController {
     
     func getClientDetails() {
         services = Constants.databaseManager.servicesManager.getServicesForClientId(clientId: client.id)
+        cestas = Constants.databaseManager.cestaManager.getCestasForClientId(clientId: client.id)
         sortServicesByDate()
+        sortCestasByDate()
         
         setFields()
         showServices()
@@ -162,7 +165,7 @@ class ClientDetailViewController: UIViewController {
     
     func showServices() {
         removeServicesViews()
-        if services.count == 0 {
+        if services.count == 0  && cestas.count == 0 {
             addServicioButtonBottomAnchor = addServicioView.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor, constant: -20)
             addServicioButtonBottomAnchor.isActive = true
             return
@@ -182,7 +185,7 @@ class ClientDetailViewController: UIViewController {
         }
         
         for service: ServiceModel in serviciosFuturos {
-            let serviceView: ServicioView = ServicioView(service: service, client: client)
+            let serviceView: ServicioView = ServicioView(service: service, client: client, cesta: nil)
             serviceView.delegate = self
             scrollContentView.addSubview(serviceView)
             serviceViewsArray.append(serviceView)
@@ -193,7 +196,18 @@ class ClientDetailViewController: UIViewController {
         }
         
         for service: ServiceModel in serviciosPasados {
-            let serviceView: ServicioView = ServicioView(service: service, client: client)
+            let serviceView: ServicioView = ServicioView(service: service, client: client, cesta: nil)
+            serviceView.delegate = self
+            scrollContentView.addSubview(serviceView)
+            serviceViewsArray.append(serviceView)
+        }
+        
+        if cestas.count > 0 {
+            addServiceHeaderWithText(text: "VENTA PRODUCTOS")
+        }
+        
+        for cesta: CestaModel in cestas {
+            let serviceView: ServicioView = ServicioView(service: nil, client: client, cesta: cesta)
             serviceView.delegate = self
             scrollContentView.addSubview(serviceView)
             serviceViewsArray.append(serviceView)
@@ -226,7 +240,11 @@ class ClientDetailViewController: UIViewController {
     }
     
     func sortServicesByDate() {
-        return services.sort(by: { $0.fecha > $1.fecha })
+        services.sort(by: { $0.fecha > $1.fecha })
+    }
+    
+    func sortCestasByDate() {
+        cestas.sort(by: { $0.fecha > $1.fecha })
     }
     
     func removeServicesViews() {
@@ -310,6 +328,16 @@ class ClientDetailViewController: UIViewController {
     func updateClientForNotificacionPersonalizada() {
         CommonFunctions.showLoadingStateView(descriptionText: "Actualizando cliente")
         WebServices.updateNotificacionPersonalizada(cliente: client, delegate: self)
+    }
+    
+    func openVentaProductoViewController(cesta: CestaModel) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Productos", bundle:nil)
+        let controller: VentaProductoViewController = storyBoard.instantiateViewController(withIdentifier: "ventaProducto") as! VentaProductoViewController
+        let ventas: [VentaModel] = Constants.databaseManager.ventaManager.getVentas(cestaId: cesta.cestaId)
+        controller.cesta = cesta
+        controller.ventas = ventas
+        controller.delegate = self
+        self.navigationController!.pushViewController(controller, animated: true)
     }
 }
 
@@ -517,6 +545,10 @@ extension ClientDetailViewController: AddServicioProtocol {
 }
 
 extension ClientDetailViewController: ServicioViewProtocol {
+    func cestaClicked(cesta: CestaModel) {
+        openVentaProductoViewController(cesta: cesta)
+    }
+    
     func servicioClicked(service: ServiceModel) {
         performSegue(withIdentifier: "AddServicioIdentifier", sender: ["update" :  true, "service" : service])
     }
@@ -606,6 +638,14 @@ extension ClientDetailViewController: UpdateNotificacionPersonalizadaProtocol {
             CommonFunctions.hideLoadingStateView()
             CommonFunctions.showGenericAlertMessage(mensaje: "Error actualizando cliente", viewController: self)
         }
+    }
+}
+
+extension ClientDetailViewController: ClientUpdateCestaProtocol {
+    func cestaUpdated() {
+        cestas = Constants.databaseManager.cestaManager.getCestasForClientId(clientId: client.id)
+        sortCestasByDate()
+        showServices()
     }
 }
 

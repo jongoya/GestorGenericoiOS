@@ -87,6 +87,23 @@ class CestaManager: NSObject {
         return result
     }
     
+    func getCestasForClientId(clientId: Int64) -> [CestaModel] {
+        var cestas: [CestaModel] = []
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: TABLE_ENTITY_NAME)
+        fetchRequest.predicate = NSPredicate(format: "clientId = %f", argumentArray: [clientId])
+        mainContext.performAndWait {
+            do {
+                let results: [NSManagedObject] = try mainContext.fetch(fetchRequest)
+                for data in results {
+                    cestas.append(parseCestaCoreObjectToCestaModel(coreObject: data))
+                }
+            } catch {
+            }
+        }
+    
+        return cestas
+    }
+    
     func getCestasForDay(date: Date) -> [CestaModel] {
         let beginningOfDay: Int64 = Int64(AgendaFunctions.getBeginningOfDayFromDate(date: date).timeIntervalSince1970)
         let endOfDay: Int64 = Int64(AgendaFunctions.getEndOfDayFromDate(date: date).timeIntervalSince1970)

@@ -137,7 +137,7 @@ class AddClientViewController: UIViewController {
     }
     
     func showServicio(servicio: ServiceModel) {
-        let view: ServicioView = ServicioView(service: servicio, client: newClient)
+        let view: ServicioView = ServicioView(service: servicio, client: newClient, cesta: nil)
         scrollContentView.addSubview(view)
         view.topAnchor.constraint(equalTo: addServicioPreviousView.bottomAnchor, constant: 30).isActive = true
         view.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor, constant: 15).isActive = true

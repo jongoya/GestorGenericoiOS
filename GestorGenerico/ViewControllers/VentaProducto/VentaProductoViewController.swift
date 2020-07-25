@@ -29,6 +29,7 @@ class VentaProductoViewController: UIViewController {
     var ventas: [VentaModel] = []
     var productosViews: [ProductoView] = []
     var ventaPosition: Int = 0
+    var delegate: ClientUpdateCestaProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -301,6 +302,9 @@ extension VentaProductoViewController: UpdateCestaProtocol {
             }
         }
         
+        if delegate != nil {
+            delegate.cestaUpdated()
+        }
         self.navigationController!.popViewController(animated: true)
     }
     

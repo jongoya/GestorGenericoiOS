@@ -477,7 +477,6 @@ extension AgendaViewController: UIScrollViewDelegate {
 }
 
 extension AgendaViewController: GetServiciosRangeProtocol {
-    
     func successGettingServicios() {
         DispatchQueue.main.async {
             self.scrollRefreshControl.endRefreshing()

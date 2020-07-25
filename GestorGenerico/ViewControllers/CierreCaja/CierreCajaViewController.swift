@@ -85,40 +85,51 @@ class CierreCajaViewController: UIViewController {
     
     func fillFields() {
         let services: [ServiceModel] = Constants.databaseManager.servicesManager.getServicesForDay(date: presentDate)
+        let cestas: [CestaModel] = Constants.databaseManager.cestaManager.getCestasForDay(date: presentDate)
         numeroServiciosLabel.text = String(services.count)
         cierreCaja.numeroServicios = services.count
-        totalCajaLabel.text = String(format: "%.2f", getTotalCajaFromServicios(servicios: services)) + " €"
-        cierreCaja.totalCaja = getTotalCajaFromServicios(servicios: services)
-        totalProductosLabel.text = String(format: "%.2f", getTotalProductosFromServicios(servicios: services)) + " €"
-        cierreCaja.totalProductos = getTotalProductosFromServicios(servicios: services)
-        efectivoLabel.text = String(format: "%.2f", getTotalEfectivoFromServicios(servicios: services)) + " €"
-        cierreCaja.efectivo = getTotalEfectivoFromServicios(servicios: services)
-        tarjetaLabel.text = String(format: "%.2f", getTotalTarjetaFromServicios(servicios: services)) + " €"
-        cierreCaja.tarjeta = getTotalTarjetaFromServicios(servicios: services)
+        totalCajaLabel.text = String(format: "%.2f", getTotalCajaFromServiciosYVentas(servicios: services, cestas: cestas)) + " €"
+        cierreCaja.totalCaja = getTotalCajaFromServiciosYVentas(servicios: services, cestas: cestas)
+        totalProductosLabel.text = String(format: "%.2f", getTotalProductosFromCestas(cestas: cestas)) + " €"
+        cierreCaja.totalProductos = getTotalProductosFromCestas(cestas: cestas)
+        efectivoLabel.text = String(format: "%.2f", getTotalEfectivoFromServiciosYCestas(servicios: services, cestas: cestas)) + " €"
+        cierreCaja.efectivo = getTotalEfectivoFromServiciosYCestas(servicios: services, cestas: cestas)
+        tarjetaLabel.text = String(format: "%.2f", getTotalTarjetaFromServiciosYCestas(servicios: services, cestas: cestas)) + " €"
+        cierreCaja.tarjeta = getTotalTarjetaFromServiciosYCestas(servicios: services, cestas: cestas)
     }
     
-    func getTotalCajaFromServicios(servicios: [ServiceModel]) -> Double {
+    func getTotalCajaFromServiciosYVentas(servicios: [ServiceModel], cestas: [CestaModel]) -> Double {
         var totalCaja: Double = 0.0
         for servicio: ServiceModel in servicios {
             totalCaja = totalCaja + servicio.precio
         }
         
+        for cesta: CestaModel in cestas {
+            let ventas: [VentaModel] = Constants.databaseManager.ventaManager.getVentas(cestaId: cesta.cestaId)
+            for venta: VentaModel in ventas {
+                let producto: ProductoModel = Constants.databaseManager.productosManager.getProductWithProductId(productId: venta.productoId)!
+                totalCaja = totalCaja + (producto.precio * Double(venta.cantidad))
+            }
+        }
+        
         return totalCaja
     }
     
-    func getTotalProductosFromServicios(servicios: [ServiceModel]) -> Double {
-        let ventaProductoId: Int64 = getVentaProductoId()
+    func getTotalProductosFromCestas(cestas: [CestaModel]) -> Double {
         var totalProductos = 0.0
-        for servicio: ServiceModel in servicios {
-            if servicio.servicios.contains(ventaProductoId) {
-                totalProductos = totalProductos + servicio.precio
+        
+        for cesta: CestaModel in cestas {
+            let ventas: [VentaModel] = Constants.databaseManager.ventaManager.getVentas(cestaId: cesta.cestaId)
+            for venta: VentaModel in ventas {
+                let producto: ProductoModel = Constants.databaseManager.productosManager.getProductWithProductId(productId: venta.productoId)!
+                totalProductos = totalProductos + (producto.precio * Double(venta.cantidad))
             }
         }
         
         return totalProductos
     }
     
-    func getTotalEfectivoFromServicios(servicios: [ServiceModel]) -> Double {
+    func getTotalEfectivoFromServiciosYCestas(servicios: [ServiceModel], cestas: [CestaModel]) -> Double {
         var totalEfectivo = 0.0
         for servicio: ServiceModel in servicios {
             if servicio.isEfectivo {
@@ -126,10 +137,20 @@ class CierreCajaViewController: UIViewController {
             }
         }
         
+        for cesta: CestaModel in cestas {
+            if cesta.isEfectivo {
+                let ventas: [VentaModel] = Constants.databaseManager.ventaManager.getVentas(cestaId: cesta.cestaId)
+                for venta: VentaModel in ventas {
+                    let producto: ProductoModel = Constants.databaseManager.productosManager.getProductWithProductId(productId: venta.productoId)!
+                    totalEfectivo = totalEfectivo + (producto.precio * Double(venta.cantidad))
+                }
+            }
+        }
+        
         return totalEfectivo
     }
     
-    func getTotalTarjetaFromServicios(servicios: [ServiceModel]) -> Double {
+    func getTotalTarjetaFromServiciosYCestas(servicios: [ServiceModel], cestas: [CestaModel]) -> Double {
         var totalTarjeta = 0.0
         for servicio: ServiceModel in servicios {
             if !servicio.isEfectivo {
@@ -137,18 +158,17 @@ class CierreCajaViewController: UIViewController {
             }
         }
         
-        return totalTarjeta
-    }
-    
-    func getVentaProductoId() -> Int64 {
-        let tipoServicios: [TipoServicioModel] = Constants.databaseManager.tipoServiciosManager.getAllServiciosFromDatabase()
-        for servicio: TipoServicioModel in tipoServicios {
-            if servicio.nombre == "Venta producto" {
-                return servicio.servicioId
+        for cesta: CestaModel in cestas {
+            if !cesta.isEfectivo {
+                let ventas: [VentaModel] = Constants.databaseManager.ventaManager.getVentas(cestaId: cesta.cestaId)
+                for venta: VentaModel in ventas {
+                    let producto: ProductoModel = Constants.databaseManager.productosManager.getProductWithProductId(productId: venta.productoId)!
+                    totalTarjeta = totalTarjeta + (producto.precio * Double(venta.cantidad))
+                }
             }
         }
         
-        return 0
+        return totalTarjeta
     }
     
     func getKeyboardTypeForField(inputReference: Int) -> UIKeyboardType {

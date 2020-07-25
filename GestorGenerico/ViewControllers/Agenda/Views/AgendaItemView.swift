@@ -318,7 +318,6 @@ class AgendaItemView: UIView {
 
 extension AgendaItemView {
     @objc func serviceClicked(_ sender: AgendaItemTypeGesture) {
-        //TODO crashea con las ventas producto
         delegate.serviceClicked(service: sender.service, cesta: sender.cesta)
     }
     

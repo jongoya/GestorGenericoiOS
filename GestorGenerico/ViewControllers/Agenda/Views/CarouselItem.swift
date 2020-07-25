@@ -68,7 +68,10 @@ class CarouselItem: UIView {
     }
     
     func checkCitasPoint() {
-        if Constants.databaseManager.servicesManager.getServicesForDay(date: date).count > 0 {
+        let servicios: [ServiceModel] = Constants.databaseManager.servicesManager.getServicesForDay(date: date)
+        let cestas: [CestaModel] = Constants.databaseManager.cestaManager.getCestasForDay(date: date)
+        
+        if servicios.count + cestas.count > 0 {
             addCitasPointView()
         } else {
             if citasPoint != nil {

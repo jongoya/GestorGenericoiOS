@@ -72,6 +72,7 @@
 		FB4C4456248FB2C700C5CFE9 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4C4455248FB2C700C5CFE9 /* LoginModel.swift */; };
 		FB5002A22497D881004D278F /* AddCierreCajaProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5002A12497D881004D278F /* AddCierreCajaProtocol.swift */; };
 		FB5002A42497DA04004D278F /* DeleteNotificacionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5002A32497DA04004D278F /* DeleteNotificacionProtocol.swift */; };
+		FB512CE624CC53940005DCB5 /* ClientUpdateCestaProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB512CE524CC53940005DCB5 /* ClientUpdateCestaProtocol.swift */; };
 		FB53D697245462BE00331817 /* CadenciaNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB53D696245462BE00331817 /* CadenciaNotificationCell.swift */; };
 		FB53D699245463E600331817 /* tiempo.png in Resources */ = {isa = PBXBuildFile; fileRef = FB53D698245463E600331817 /* tiempo.png */; };
 		FB566A6B24AC8CE600D57AED /* ControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB566A6A24AC8CE600D57AED /* ControlModel.swift */; };
@@ -253,6 +254,7 @@
 		FB4C4455248FB2C700C5CFE9 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		FB5002A12497D881004D278F /* AddCierreCajaProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCierreCajaProtocol.swift; sourceTree = "<group>"; };
 		FB5002A32497DA04004D278F /* DeleteNotificacionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNotificacionProtocol.swift; sourceTree = "<group>"; };
+		FB512CE524CC53940005DCB5 /* ClientUpdateCestaProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUpdateCestaProtocol.swift; sourceTree = "<group>"; };
 		FB53D696245462BE00331817 /* CadenciaNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenciaNotificationCell.swift; sourceTree = "<group>"; };
 		FB53D698245463E600331817 /* tiempo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiempo.png; sourceTree = "<group>"; };
 		FB566A6A24AC8CE600D57AED /* ControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlModel.swift; sourceTree = "<group>"; };
@@ -1041,6 +1043,7 @@
 			isa = PBXGroup;
 			children = (
 				FB7A7D9A24C8B69100FA8484 /* ProductoViewProtocol.swift */,
+				FB512CE524CC53940005DCB5 /* ClientUpdateCestaProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1702,6 +1705,7 @@
 				FB3E4B5D2436456F009DB88B /* ListSelectorViewController.swift in Sources */,
 				FB8329DD2490F32D003B8009 /* DeviceExtension.swift in Sources */,
 				FB57F2F324347F2100192230 /* ClientModel.swift in Sources */,
+				FB512CE624CC53940005DCB5 /* ClientUpdateCestaProtocol.swift in Sources */,
 				FB48942924CB4B1100D4DDBD /* UpdateCestaProtocol.swift in Sources */,
 				FB8185A224432167004697D3 /* EmpleadoModel.swift in Sources */,
 				FB486E49243DDF75009EBF26 /* AgendaServiceViewController.swift in Sources */,

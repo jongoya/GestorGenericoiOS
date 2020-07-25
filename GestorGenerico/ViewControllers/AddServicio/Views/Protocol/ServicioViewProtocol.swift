@@ -10,4 +10,5 @@ import Foundation
 
 protocol ServicioViewProtocol {
     func servicioClicked(service: ServiceModel)
+    func cestaClicked(cesta: CestaModel)
 }

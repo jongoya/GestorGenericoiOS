@@ -133,10 +133,17 @@ class NotificationsViewController: UIViewController {
             }
         }
         
+        var notificacionesAgrupadasFinales: [NotificationDayModel] = []
+        for groupedNotification: NotificationDayModel in notificacionesAgrupadas {
+            if groupedNotification.notificaciones.count > 0 {
+                notificacionesAgrupadasFinales.append(groupedNotification)
+            }
+        }
+        
         if isOldNotifications {
-            groupedOldNotifications = notificacionesAgrupadas
+            groupedOldNotifications = notificacionesAgrupadasFinales
         } else {
-            groupedTodayNotifications = notificacionesAgrupadas
+            groupedTodayNotifications = notificacionesAgrupadasFinales
         }
     }
     

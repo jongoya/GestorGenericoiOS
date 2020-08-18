@@ -16,23 +16,26 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var wholeContentView: UIView!
     
     func setupCell(notificationModel: NotificationDayModel) {
-        customizeContentView(notification: notificationModel.notificaciones[0])
-        wholeContentView.backgroundColor = AppStyle.getBackgroundColor()
-        
-        if notificationModel.notificaciones[0].type == Constants.notificacionCumpleIdentifier {
-            setBirthdayContent(notificationModel: notificationModel)
-        } else if notificationModel.notificaciones[0].type == Constants.notificacionCajaCierreIdentifier {
-            setCierreCajaContent(notificationModel: notificationModel)
-        } else if notificationModel.notificaciones[0].type == Constants.notificacionCadenciaIdentifier {
-            setCadenciacontent(notificationModel: notificationModel)
-        } else if notificationModel.notificaciones[0].type == Constants.notificacionPersonalizadaIdentifier {
-            setPersonalizadaContent(notificationModel: notificationModel)
+        if notificationModel.notificaciones.count > 0 {
+            customizeContentView(notification: notificationModel.notificaciones[0])
+            wholeContentView.backgroundColor = AppStyle.getBackgroundColor()
+            
+            if notificationModel.notificaciones[0].type == Constants.notificacionCumpleIdentifier {
+                setBirthdayContent(notificationModel: notificationModel)
+            } else if notificationModel.notificaciones[0].type == Constants.notificacionCajaCierreIdentifier {
+                setCierreCajaContent(notificationModel: notificationModel)
+            } else if notificationModel.notificaciones[0].type == Constants.notificacionCadenciaIdentifier {
+                setCadenciacontent(notificationModel: notificationModel)
+            } else if notificationModel.notificaciones[0].type == Constants.notificacionPersonalizadaIdentifier {
+                setPersonalizadaContent(notificationModel: notificationModel)
+            }
         }
     }
     
     private func customizeContentView(notification: NotificationModel) {
         notificationContentView.layer.cornerRadius = 10
         notificationContentView.layer.borderWidth = 1
+        notificationContentView.backgroundColor = .white
         if notification.leido {
             notificationImage.tintColor = AppStyle.getPrimaryTextColor()
             notificationContentView.layer.borderColor = AppStyle.getSecondaryColor().cgColor

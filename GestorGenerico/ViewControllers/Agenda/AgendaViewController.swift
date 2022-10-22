@@ -101,7 +101,7 @@ class AgendaViewController: UIViewController {
         Constants.rootController.unfillSecondRightNavigationButtonImage()
         showingClientes = false
         removeAgenda()
-        
+        let services = Constants.databaseManager.servicesManager.getAllServicesFromDatabase()
         addAgendaItems(profesional: profesional)
         
         setAgendaItemsConstraints()

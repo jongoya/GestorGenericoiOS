@@ -173,23 +173,17 @@ class NotificationsManager: NSObject {
     }
     
     
-    func syncronizeNotifications(notifications: [NotificationModel]) {
+    func syncronizeNotifications(notifications: [NotificationModel], delegate: GetNotificacionesProtocol?) {
         backgroundContext.perform {
             for notifi: NotificationModel in notifications {
                 let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.NOTIFICATIONS_ENTITY_NAME)
-                fetchRequest.predicate = NSPredicate(format: "notificationId = %f", argumentArray: [notifi.notificationId])
-                let result: NSManagedObject? = try! self.backgroundContext.fetch(fetchRequest).first
-                
-                if result != nil {
-                    result!.setValue(notifi.leido, forKey: "leido")
-                } else {
-                    let entity = NSEntityDescription.entity(forEntityName: self.NOTIFICATIONS_ENTITY_NAME, in: self.backgroundContext)
-                    let coreNoti = NSManagedObject(entity: entity!, insertInto: self.backgroundContext)
-                    self.databaseHelper.setCoreDataObjectDataFromNotification(coreDataObject: coreNoti, newNotification: notifi)
-                }
+                let entity = NSEntityDescription.entity(forEntityName: self.NOTIFICATIONS_ENTITY_NAME, in: self.backgroundContext)
+                let coreNoti = NSManagedObject(entity: entity!, insertInto: self.backgroundContext)
+                self.databaseHelper.setCoreDataObjectDataFromNotification(coreDataObject: coreNoti, newNotification: notifi)
             }
             
             try! self.backgroundContext.save()
+            delegate?.successGettingNotificaciones()
         }
     }
 }

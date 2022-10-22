@@ -57,6 +57,21 @@ class TipoServiciosManager: NSObject {
         }
     }
     
+    func addTipoServiciosToDatabaseWithoutChecking(servicios: [TipoServicioModel]) {
+        backgroundContext.performAndWait {
+            do {
+                let entity = NSEntityDescription.entity(forEntityName: TIPOSERVICIOS_ENTITY_NAME, in: backgroundContext)
+                for tipoServicio in servicios {
+                    let coreService = NSManagedObject(entity: entity!, insertInto: backgroundContext)
+                    databaseHelper.setCoreDataObjectDataFromTipoServicio(coreDataObject: coreService, newServicio: tipoServicio)
+                }
+                
+                try backgroundContext.save()
+            } catch {
+            }
+        }
+    }
+    
     private func getCoreTipoServicioFromDatabase(servicioId: Int64) -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: TIPOSERVICIOS_ENTITY_NAME)
         fetchRequest.predicate = NSPredicate(format: "servicioId = %f", argumentArray: [servicioId])

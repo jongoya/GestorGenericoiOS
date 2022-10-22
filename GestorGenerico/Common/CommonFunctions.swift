@@ -273,14 +273,15 @@ class CommonFunctions: NSObject {
     static func sincronizarBaseDeDatos() {
         let comercioId: Int64 = UserPreferences.getValueFromUserDefaults(key: Constants.preferencesComercioIdKey) as! Int64
         WebServices.getClientes(comercioId: comercioId, delegate: nil)
+        WebServices.getServices(comercioId: comercioId, delegate: nil)
         WebServices.getEmpleados(comercioId: comercioId, delegate: nil)
         WebServices.getTipoServicios(comercioId: comercioId, delegate: nil)
-        WebServices.getNotificaciones(comercioId: comercioId, delegate: nil)
-        WebServices.getServices(comercioId: comercioId, delegate: nil)
         WebServices.getCierreCajas(comercioId: comercioId)
         WebServices.getProductos(delegate: nil)
         WebServices.getCestas()
         WebServices.getVentas()
+        //Eliminamos las notificaciones de la app
+        //WebServices.getNotificaciones(comercioId: comercioId, delegate: nil)
     }
     
     static func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
@@ -337,5 +338,18 @@ class CommonFunctions: NSObject {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+    
+    static func getNumberOfServicesFromArray(array: [ServiceModel], numberOfItems: Int) -> [ServiceModel] {
+        var newArray: [ServiceModel] = []
+        if numberOfItems >= array.count {
+            return array
+        }
+        
+        for index in 0...numberOfItems - 1 {
+            newArray.append(array[index])
+        }
+        
+        return newArray
     }
 }

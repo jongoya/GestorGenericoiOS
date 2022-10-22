@@ -188,9 +188,24 @@ class ServicesManager: NSObject {
                     self.databaseHelper.setCoreDataObjectDataFromService(coreDataObject: coreService, newService: service)
                  }
              }
-             
              try! self.backgroundContext.save()
          }
+    }
+    
+    func syncronizeRestServicesAsync(services: [ServiceModel]) {
+        var serviciosPendientes: [ServiceModel] = []
+        serviciosPendientes.append(contentsOf: services)
+        //TODO testear en el ipad de erregue cada cuanto guardar
+        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { timer in
+            if serviciosPendientes.count == 0 {
+                timer.invalidate()
+                return
+            }
+            
+            let grupoServicios = CommonFunctions.getNumberOfServicesFromArray(array: serviciosPendientes, numberOfItems: 200)
+            serviciosPendientes.removeFirst(grupoServicios.count)
+            Constants.databaseManager.servicesManager.syncronizeServicesAsync(services: grupoServicios)
+        }
     }
     
     func syncronizeServicesSync(services: [ServiceModel]) {

@@ -141,10 +141,12 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let servicios: [ServiceModel] = try! JSONDecoder().decode([ServiceModel].self, from: response.data!)
-                    Constants.databaseManager.servicesManager.syncronizeServicesAsync(services: servicios)
-                    let localServices: [ServiceModel] = Constants.databaseManager.servicesManager.getAllServicesFromDatabase()
-                    deleteLocalServicesIfNeeded(serverServices: servicios, localServices: localServices)
-                    
+                    Constants.databaseManager.servicesManager.deleteAllServices()
+                    var serviciosOrdenados = servicios.sorted(by: {$0.fecha > $1.fecha})
+                    let primerGrupoServicios = CommonFunctions.getNumberOfServicesFromArray(array: serviciosOrdenados, numberOfItems: 800)
+                    serviciosOrdenados.removeFirst(primerGrupoServicios.count)
+                    Constants.databaseManager.servicesManager.syncronizeServicesAsync(services: primerGrupoServicios)
+                    Constants.databaseManager.servicesManager.syncronizeRestServicesAsync(services: serviciosOrdenados)
                     delegate?.successGettingServicios()
                     return
                 }
@@ -293,31 +295,14 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let empleados: [EmpleadoModel] = try! JSONDecoder().decode([EmpleadoModel].self, from: response.data!)
+                    Constants.databaseManager.empleadosManager.deleteAllEmpleados()
                     Constants.databaseManager.empleadosManager.syncronizeEmpleados(empleados: empleados)
-                    
-                    compareLocalEmpleadosWithServerEmpleados(serverEmpleados: empleados)
                     delegate?.succesGettingEmpleados(empleados: empleados)
                     return
                 }
             }
             
             delegate?.errorGettingEmpleados()
-        }
-    }
-    
-    private static func compareLocalEmpleadosWithServerEmpleados(serverEmpleados: [EmpleadoModel]) {
-        let localEmpleados: [EmpleadoModel] = Constants.databaseManager.empleadosManager.getAllEmpleadosFromDatabase()
-        for localEmpleado: EmpleadoModel in localEmpleados {
-            var empleadoExiste: Bool = false
-            for serverEmpleado: EmpleadoModel in serverEmpleados {
-                if serverEmpleado.empleadoId == localEmpleado.empleadoId {
-                    empleadoExiste = true
-                }
-            }
-            
-            if !empleadoExiste {
-                Constants.databaseManager.empleadosManager.eliminarEmpleado(empleadoId: localEmpleado.empleadoId)
-            }
         }
     }
     
@@ -388,10 +373,8 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let tipoServicios: [TipoServicioModel] = try! JSONDecoder().decode([TipoServicioModel].self, from: response.data!)
-                    for tipoServicio: TipoServicioModel in tipoServicios {
-                        Constants.databaseManager.tipoServiciosManager.addTipoServicioToDatabase(servicio: tipoServicio)
-                    }
-                    
+                    Constants.databaseManager.tipoServiciosManager.deleteAllTipoServicios()
+                    Constants.databaseManager.tipoServiciosManager.addTipoServiciosToDatabaseWithoutChecking(servicios: tipoServicios)
                     delegate?.successGettingServicios()
                     return
                 }
@@ -428,33 +411,14 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let notificaciones: [NotificationModel] = try! JSONDecoder().decode([NotificationModel].self, from: response.data!)
-                    Constants.databaseManager.notificationsManager.syncronizeNotifications(notifications: notificaciones)
-        
-                    deleteNotificationsIfNeeded(serveNotificaciones: notificaciones)
+                    Constants.databaseManager.notificationsManager.deleteAllNotifications()
+                    Constants.databaseManager.notificationsManager.syncronizeNotifications(notifications: notificaciones, delegate: delegate)
                     
-                    //TODO utilizar la misma logica que getClientes?
-                    delegate?.successGettingNotificaciones()
                     return
                 }
             }
             
             delegate?.errorGettingNotificaciones()
-        }
-    }
-    
-    private static func deleteNotificationsIfNeeded(serveNotificaciones: [NotificationModel]) {
-        let localNotificaciones: [NotificationModel] = Constants.databaseManager.notificationsManager.getAllNotificationsFromDatabase()
-        for localNoti: NotificationModel in localNotificaciones {
-            var notificationExists: Bool = false
-            for serverNoti: NotificationModel in serveNotificaciones {
-                if serverNoti.notificationId == localNoti.notificationId {
-                    notificationExists = true
-                }
-            }
-            
-            if !notificationExists {
-                Constants.databaseManager.notificationsManager.eliminarNotificacion(notificationId: localNoti.notificationId)
-            }
         }
     }
     
@@ -739,9 +703,10 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let cestas: [CestaModel] = try! JSONDecoder().decode([CestaModel].self, from: response.data!)
+                    Constants.databaseManager.cestaManager.deleteAllCestas()
                     Constants.databaseManager.cestaManager.syncronizeCestasAsync(cestas: cestas)
-                    let localCestas: [CestaModel] = Constants.databaseManager.cestaManager.getAllCestas()
-                    deleteLocalCestasIfNeeded(serverCestas: cestas, localCestas: localCestas)
+                    /*let localCestas: [CestaModel] = Constants.databaseManager.cestaManager.getAllCestas()
+                    deleteLocalCestasIfNeeded(serverCestas: cestas, localCestas: localCestas)*/
                 }
             }
         }
@@ -754,15 +719,16 @@ public class WebServices {
             if response.error == nil {
                 if response.response!.statusCode == 200 {
                     let ventas: [VentaModel] = try! JSONDecoder().decode([VentaModel].self, from: response.data!)
+                    Constants.databaseManager.ventaManager.deleteAllVentas()
                     Constants.databaseManager.ventaManager.syncronizeVentasAsync(ventas: ventas)
-                    let localVentas: [VentaModel] = Constants.databaseManager.ventaManager.getAllVentas()
-                    deleteLocalVentasIfNeeded(serverVentas: ventas, localVentas: localVentas)
+                    /*let localVentas: [VentaModel] = Constants.databaseManager.ventaManager.getAllVentas()
+                    deleteLocalVentasIfNeeded(serverVentas: ventas, localVentas: localVentas)*/
                 }
             }
         }
     }
     
-    private static func deleteLocalCestasIfNeeded(serverCestas: [CestaModel], localCestas: [CestaModel]) {
+    /*private static func deleteLocalCestasIfNeeded(serverCestas: [CestaModel], localCestas: [CestaModel]) {
         for localCesta: CestaModel in localCestas {
             var cestaExists: Bool = false
             for serverCesta: CestaModel in serverCestas {
@@ -775,9 +741,9 @@ public class WebServices {
                 Constants.databaseManager.cestaManager.deleteCesta(cesta: localCesta)
             }
         }
-    }
+    }*/
     
-    private static func deleteLocalVentasIfNeeded(serverVentas: [VentaModel], localVentas: [VentaModel]) {
+    /*private static func deleteLocalVentasIfNeeded(serverVentas: [VentaModel], localVentas: [VentaModel]) {
         for localVenta: VentaModel in localVentas {
             var ventaExists: Bool = false
             for serverVenta: VentaModel in serverVentas {
@@ -790,5 +756,5 @@ public class WebServices {
                 Constants.databaseManager.ventaManager.deleteVenta(venta: localVenta)
             }
         }
-    }
+    }*/
 }
